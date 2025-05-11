@@ -655,7 +655,7 @@ end
           TextLabel.Text = text
           TextLabel.TextColor3 = Color3.fromRGB(255, 0, 0)
           TextLabel.BackgroundTransparency = DTTransparency
-          TextLabel.TextSize = 14.000
+          TextLabel.TextSize = 16.000
     
           LabelC.CornerRadius = UDim.new(0, 6)
           LabelC.Name = "LabelC"
@@ -697,7 +697,7 @@ end
             ToggleBtn.Font = Enum.Font.GothamSemibold
             ToggleBtn.Text = "   " .. text
             ToggleBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
-            ToggleBtn.TextSize = 16.000
+            ToggleBtn.TextSize = 18.000
             ToggleBtn.TextXAlignment = Enum.TextXAlignment.Left
             
             ToggleBtnC.CornerRadius = UDim.new(0, 6)
