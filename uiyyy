@@ -636,17 +636,38 @@ end
                 end)
             end
         
-        function section:Label(text)
-          local LabelModule = Instance.new("Frame")
-          local TextLabel = Instance.new("TextLabel")
-          local LabelC = Instance.new("UICorner")
-          
-          LabelModule.Name = "LabelModule"
-          LabelModule.Parent = Objs
-          LabelModule.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-          LabelModule.BackgroundTransparency = 1.000
-          LabelModule.BorderSizePixel = 0
-          LabelModule.Position = UDim2.new(0, 0, NAN, 0)
+     function section:Label(text)
+    local LabelModule = Instance.new("Frame")
+    local TextLabel = Instance.new("TextLabel")
+
+    LabelModule.Name = "LabelModule"
+    LabelModule.Parent = self
+    LabelModule.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    LabelModule.BackgroundTransparency = 1.000
+    LabelModule.Position = UDim2.new(0, 0, 0, 0)
+    LabelModule.Size = UDim2.new(0, 428, 0, 38)
+
+    TextLabel.Name = "TextLabel"
+    TextLabel.Parent = LabelModule
+    TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    TextLabel.BackgroundTransparency = 1.000
+    TextLabel.Size = UDim2.new(0, 428, 0, 38)
+    TextLabel.AutoButtonColor = false
+    TextLabel.Font = Enum.Font.GothamSemibold
+    TextLabel.Text = text
+    TextLabel.TextColor3 = Color3.new(1, 1, 1)
+    TextLabel.TextSize = 24
+    TextLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+    local gradient = Instance.new("UIGradient")
+    gradient.Color = ColorSequence.new(Color3.fromRGB(255, 0, 0), Color3.fromRGB(0, 255, 0), Color3.fromRGB(0, 0, 255))
+    gradient.Rotation = 90
+    TextLabel.UIGradient = gradient
+
+    TextLabel.TextStrokeTransparency = Enum.TextStrokeTransparency.None
+    TextLabel.TextStrokeColor3 = Color3.new(0, 0, 0)
+    return TextLabel
+end
           LabelModule.Size = UDim2.new(0, 428, 0, 19)
           TextLabel.Parent = LabelModule
           TextLabel.BackgroundColor3 = zyColor
