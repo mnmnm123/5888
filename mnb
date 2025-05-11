@@ -309,7 +309,7 @@ end
       ScriptTitle.Font = Enum.Font.GothamSemibold
       ScriptTitle.Text = name
       ScriptTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-      ScriptTitle.TextSize = 14.000
+      ScriptTitle.TextSize = 18.000
       ScriptTitle.TextScaled = true
       ScriptTitle.TextXAlignment = Enum.TextXAlignment.Left
       
