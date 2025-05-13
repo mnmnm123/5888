@@ -620,7 +620,7 @@ end
             Btn.AutoButtonColor = false
             Btn.Font = Enum.Font.GothamSemibold
             Btn.Text = "   " .. text
-            Btn.TextColor3 = Color3.fromRGB(0, 0, 255)
+            Btn.TextColor3 = Color3.fromRGB(0, 255, 0)
             Btn.TextSize = 20.000
             Btn.TextXAlignment = Enum.TextXAlignment.Left
             
@@ -696,7 +696,7 @@ end
             ToggleBtn.AutoButtonColor = false
             ToggleBtn.Font = Enum.Font.GothamSemibold
             ToggleBtn.Text = "   " .. text
-            ToggleBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+            ToggleBtn.TextColor3 = Color3.fromRGB(0, 255, 0)
             ToggleBtn.TextSize = 18.000
             ToggleBtn.TextXAlignment = Enum.TextXAlignment.Left
             
