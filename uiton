@@ -713,11 +713,13 @@ end
             ToggleDisable.BorderSizePixel = 0
             ToggleDisable.Position = UDim2.new(0.901869178, 0, 0.208881587, 0)
             ToggleDisable.Size = UDim2.new(0, 36, 0, 22)
-            
+          
+            local ToggleSwitch = Instance.new("Frame")
             ToggleSwitch.Name = "ToggleSwitch"
             ToggleSwitch.Parent = ToggleDisable
-            ToggleSwitch.BackgroundColor3 = beijingColor
+            ToggleSwitch.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
             ToggleSwitch.Size = UDim2.new(0, 24, 0, 22)
+
             
             ToggleSwitchC.CornerRadius = UDim.new(0, 6)
             ToggleSwitchC.Name = "ToggleSwitchC"
