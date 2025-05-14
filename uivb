@@ -885,27 +885,32 @@ end
             local TextBox = Instance.new("TextBox")
             local TextboxBackL = Instance.new("UIListLayout")
             local TextboxBackP = Instance.new("UIPadding")  
-    
-            TextboxModule.Name = "TextboxModule"
-            TextboxModule.Parent = Objs
-            TextboxModule.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            TextboxModule.BackgroundTransparency = 1.000
-            TextboxModule.BorderSizePixel = 0
-            TextboxModule.Position = UDim2.new(0, 0, 0, 0)
-            TextboxModule.Size = UDim2.new(0, 428, 0, 38)
-            
-            TextboxBack.Name = "TextboxBack"
-            TextboxBack.Parent = TextboxModule
-            TextboxBack.BackgroundColor3 = zyColor
-            TextboxBack.BackgroundTransparency = DTTransparency
-            TextboxBack.BorderSizePixel = 0
-            TextboxBack.Size = UDim2.new(0, 428, 0, 38)
-            TextboxBack.AutoButtonColor = false
-            TextboxBack.Font = Enum.Font.GothamSemibold
-            TextboxBack.Text = "   " .. text
-            TextboxBack.TextColor3 = Color3.fromRGB(255, 255, 255)
-            TextboxBack.TextSize = 16.000
-            TextboxBack.TextXAlignment = Enum.TextXAlignment.Left
+
+ToggleBtn.Name = "ToggleBtn"
+ToggleBtn.Parent = ToggleModule
+ToggleBtn.BackgroundColor3 = zyColor
+ToggleBtn.BackgroundTransparency = DTTransparency
+ToggleBtn.BorderSizePixel = 0
+ToggleBtn.Size = UDim2.new(0, 428, 0, 38)
+ToggleBtn.AutoButtonColor = false
+ToggleBtn.Font = Enum.Font.GothamSemibold
+ToggleBtn.Text = "   " .. text
+ToggleBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+ToggleBtn.TextSize = 16.000
+ToggleBtn.TextXAlignment = Enum.TextXAlignment.Left
+
+local TextGradient = Instance.new("UIGradient")
+TextGradient.Parent = ToggleBtn
+TextGradient.Rotation = 90 
+TextGradient.Color = ColorSequence.new({
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 0, 0)),    
+    ColorSequenceKeypoint.new(0.2, Color3.fromRGB(255, 165, 0)), 
+    ColorSequenceKeypoint.new(0.4, Color3.fromRGB(255, 255, 0)), 
+    ColorSequenceKeypoint.new(0.6, Color3.fromRGB(0, 255, 0)),  
+    ColorSequenceKeypoint.new(0.8, Color3.fromRGB(0, 0, 255)),  
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(128, 0, 128))    
+})
+
             
             TextboxBackC.CornerRadius = UDim.new(0, 6)
             TextboxBackC.Name = "TextboxBackC"
