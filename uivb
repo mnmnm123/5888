@@ -614,7 +614,7 @@ end
             Btn.Name = "Btn"
             Btn.Parent = BtnModule
             Btn.BackgroundColor3 = Color3.fromRGB(3, 255, 0)
-            Btn.BackgroundTransparency = 0.8
+            Btn.BackgroundTransparency = 0.4
             Btn.BorderSizePixel = 0
             Btn.Size = UDim2.new(0, 428, 0, 38)
             Btn.AutoButtonColor = false
@@ -643,7 +643,6 @@ end
   
           LabelModule.Name = "LabelModule"
           LabelModule.Parent = Objs
-          LabelModule.BackgroundColor3 = Color3.fromRGB(255, 165, 0)
           LabelModule.BackgroundTransparency = 0
           LabelModule.BorderSizePixel = 0
           LabelModule.Position = UDim2.new(0, 0, NAN, 0)
