@@ -1031,7 +1031,7 @@ SliderBar.Size = UDim2.new(0, 140, 0, 12)
             
             SliderPart.Name = "SliderPart"
             SliderPart.Parent = SliderBar
-            SliderPart.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            SliderPart.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
             SliderPart.BorderSizePixel = 0
             SliderPart.Size = UDim2.new(0, 54, 0, 13)
             
