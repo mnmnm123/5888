@@ -895,7 +895,6 @@ ToggleBtn.Size = UDim2.new(0, 428, 0, 38)
 ToggleBtn.AutoButtonColor = false
 ToggleBtn.Font = Enum.Font.GothamSemibold
 ToggleBtn.Text = "   " .. text
-ToggleBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 ToggleBtn.TextSize = 16.000
 ToggleBtn.TextXAlignment = Enum.TextXAlignment.Left
 
