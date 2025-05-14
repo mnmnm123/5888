@@ -643,7 +643,7 @@ end
   
           LabelModule.Name = "LabelModule"
           LabelModule.Parent = Objs
-          LabelModule.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+          LabelModule.BackgroundColor3 = Color3.fromRGB(255, 165, 0)
           LabelModule.BackgroundTransparency = 0
           LabelModule.BorderSizePixel = 0
           LabelModule.Position = UDim2.new(0, 0, NAN, 0)
@@ -895,21 +895,9 @@ ToggleBtn.Size = UDim2.new(0, 428, 0, 38)
 ToggleBtn.AutoButtonColor = false
 ToggleBtn.Font = Enum.Font.GothamSemibold
 ToggleBtn.Text = "   " .. text
+SliderBack.TextColor3 = Color3.fromRGB(128, 0, 128)
 ToggleBtn.TextSize = 16.000
 ToggleBtn.TextXAlignment = Enum.TextXAlignment.Left
-
-local TextGradient = Instance.new("UIGradient")
-TextGradient.Parent = ToggleBtn
-TextGradient.Rotation = 90 
-TextGradient.Color = ColorSequence.new({
-    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 0, 0)),    
-    ColorSequenceKeypoint.new(0.2, Color3.fromRGB(255, 165, 0)), 
-    ColorSequenceKeypoint.new(0.4, Color3.fromRGB(255, 255, 0)), 
-    ColorSequenceKeypoint.new(0.6, Color3.fromRGB(0, 255, 0)),  
-    ColorSequenceKeypoint.new(0.8, Color3.fromRGB(0, 0, 255)),  
-    ColorSequenceKeypoint.new(1, Color3.fromRGB(128, 0, 128))    
-})
-
             
             TextboxBackC.CornerRadius = UDim.new(0, 6)
             TextboxBackC.Name = "TextboxBackC"
