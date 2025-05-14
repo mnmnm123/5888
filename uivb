@@ -650,7 +650,7 @@ end
           LabelModule.Size = UDim2.new(0, 428, 0, 19)
   
           TextLabel.Parent = LabelModule
-          TextLabel.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+          TextLabel.BackgroundColor3 = Color3.fromRGB(255, 165, 0)
           TextLabel.Size = UDim2.new(0, 428, 0, 22)
           TextLabel.Font = Enum.Font.GothamSemibold
           TextLabel.Text = text
@@ -895,7 +895,6 @@ ToggleBtn.Size = UDim2.new(0, 428, 0, 38)
 ToggleBtn.AutoButtonColor = false
 ToggleBtn.Font = Enum.Font.GothamSemibold
 ToggleBtn.Text = "   " .. text
-SliderBack.TextColor3 = Color3.fromRGB(128, 0, 128)
 ToggleBtn.TextSize = 16.000
 ToggleBtn.TextXAlignment = Enum.TextXAlignment.Left
             
