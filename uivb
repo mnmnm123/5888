@@ -620,8 +620,8 @@ end
             Btn.AutoButtonColor = false
             Btn.Font = Enum.Font.GothamSemibold
             Btn.Text = "   " .. text
-            Btn.TextColor3 = Color3.fromRGB(255, 0, 0)
-            Btn.TextSize = 14.000
+            Btn.TextColor3 = Color3.fromRGB(255, 0, 255)
+            Btn.TextSize = 16.000
             Btn.TextXAlignment = Enum.TextXAlignment.Left
 
             BtnC.CornerRadius = UDim.new(0, 6)
@@ -653,7 +653,7 @@ end
           TextLabel.Size = UDim2.new(0, 428, 0, 22)
           TextLabel.Font = Enum.Font.GothamSemibold
           TextLabel.Text = text
-          TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+          TextLabel.TextColor3 = Color3.fromRGB(255, 0, 0)
           TextLabel.TextSize = 14.000
   
           LabelC.CornerRadius = UDim.new(0, 6)
