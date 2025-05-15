@@ -471,6 +471,9 @@ end
         TabText.Size = UDim2.new(0, 76, 0, 24)
         TabText.Font = Enum.Font.GothamSemibold
         TabText.Text = name
+print(name)
+TabText.TextColor3 = Color3.fromRGB(255, 0, 0)
+
         TabText.TextColor3 = Color3.fromRGB(255, 255, 255)
         TabText.TextSize = 14.000
         TabText.TextXAlignment = Enum.TextXAlignment.Left
