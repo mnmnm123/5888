@@ -620,7 +620,7 @@ end
             Btn.AutoButtonColor = false
             Btn.Font = Enum.Font.GothamSemibold
             Btn.Text = "   " .. text
-            Btn.TextColor3 = Color3.fromRGB(255, 255, 255)
+            Btn.TextColor3 = Color3.fromRGB(255, 0, 0)
             Btn.TextSize = 14.000
             Btn.TextXAlignment = Enum.TextXAlignment.Left
 
