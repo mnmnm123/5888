@@ -934,3 +934,8 @@ function Library:Create(xHubName,xGameName)
 end
 return Library
 
+for _, gui in pairs(ScreenGui:GetDescendants()) do
+    if gui:IsA("TextLabel") or gui:IsA("TextButton") or gui:IsA("TextBox") then
+        gui.TextSize = gui.TextSize * 0.8
+    end
+end
