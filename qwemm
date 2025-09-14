@@ -80,8 +80,8 @@ function Library:Create(xHubName,xGameName)
     Main.Name = "Main"
     Main.Parent = ScreenGui
     Main.BackgroundColor3 = Color3.fromRGB(31, 30, 46)
-    Main.Position = UDim2.new(0.5, -290, 0.5, -185)
-    Main.Size = UDim2.new(0, 580, 0, 370)
+    Main.Position = UDim2.new(0.5, -232, 0.5, -148)
+    Main.Size = UDim2.new(0, 464, 0, 296)
 
     MainCorner.CornerRadius = UDim.new(0, 12)
     MainCorner.Name = "MainCorner"
@@ -90,7 +90,7 @@ function Library:Create(xHubName,xGameName)
     Sidebar.Name = "Sidebar"
     Sidebar.Parent = Main
     Sidebar.BackgroundColor3 = Color3.fromRGB(40, 42, 60)
-    Sidebar.Size = UDim2.new(0, 140, 0, 370)
+    Sidebar.Size = UDim2.new(0, 112, 0, 296)
 
     SidebarCorner.Name = "SidebarCorner"
     SidebarCorner.Parent = Sidebar
@@ -159,8 +159,8 @@ function Library:Create(xHubName,xGameName)
     TabHolder.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     TabHolder.BackgroundTransparency = 1.000
     TabHolder.BorderSizePixel = 0
-    TabHolder.Position = UDim2.new(0.244827583, 0, 0.024324324, 0)
-    TabHolder.Size = UDim2.new(0, 438, 0, 352)
+    TabHolder.Position = UDim2.new(0.240, 0, 0.024324324, 0)
+    TabHolder.Size = UDim2.new(0, 352, 0, 280)
 
     Tabs.Name = "Tabs"
     Tabs.Parent = TabHolder
