@@ -188,7 +188,7 @@ function Library:Create(xHubName,xGameName)
         Tab.BackgroundColor3 = Color3.fromRGB(31, 30, 46)
         Tab.BorderSizePixel = 0
         Tab.Size = UDim2.new(0, 438, 0, 352)
-        Tab.ScrollBarThickness = 5
+        Tab.ScrollBarThickness = 6
         
         TabListLayout.Name = "TabListLayout"
         TabListLayout.Parent = Tab
