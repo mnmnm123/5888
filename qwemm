@@ -127,7 +127,7 @@ function Library:Create(xHubName,xGameName)
     ActualSide.BackgroundTransparency = 1.000
     ActualSide.BorderSizePixel = 0
     ActualSide.Position = UDim2.new(0, 0, 0.172972977, 0)
-    ActualSide.Size = UDim2.new(0, 139, 0, 297)
+    ActualSide.Size = UDim2.new(0, 112, 0, 297)
     ActualSide.CanvasSize = UDim2.new(0,0,0,0)
     ActualSide.ScrollBarThickness = 0
 
@@ -187,7 +187,7 @@ function Library:Create(xHubName,xGameName)
         Tab.Visible = xVisible
         Tab.BackgroundColor3 = Color3.fromRGB(31, 30, 46)
         Tab.BorderSizePixel = 0
-        Tab.Size = UDim2.new(0, 438, 0, 352)
+        Tab.Size = UDim2.new(0, 352, 0, 280)
         Tab.ScrollBarThickness = 5
         
         TabListLayout.Name = "TabListLayout"
@@ -200,7 +200,7 @@ function Library:Create(xHubName,xGameName)
         TabButton.Parent = ActualSide
         TabButton.BackgroundColor3 = Color3.fromRGB(55, 74, 251)
         TabButton.BorderSizePixel = 0
-        TabButton.Size = UDim2.new(0, 139, 0, 35)
+        TabButton.Size = UDim2.new(0, 112, 0, 35)
         TabButton.Font = Enum.Font.Gotham
         TabButton.Text = Name
         TabButton.TextColor3 = Color3.fromRGB(255, 255, 255)
