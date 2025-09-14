@@ -160,7 +160,7 @@ function Library:Create(xHubName,xGameName)
     TabHolder.BackgroundTransparency = 1.000
     TabHolder.BorderSizePixel = 0
     TabHolder.Position = UDim2.new(0.244827583, 0, 0.024324324, 0)
-    TabHolder.Size = UDim2.new(0, 350, 0, 282)
+    TabHolder.Size = UDim2.new(0, 200, 0, 282)
 
     Tabs.Name = "Tabs"
     Tabs.Parent = TabHolder
@@ -933,9 +933,3 @@ function Library:Create(xHubName,xGameName)
     return xTabs
 end
 return Library
-
-for _, gui in pairs(ScreenGui:GetDescendants()) do
-    if gui:IsA("TextLabel") or gui:IsA("TextButton") or gui:IsA("TextBox") then
-        gui.TextSize = gui.TextSize * 0.8
-    end
-end
