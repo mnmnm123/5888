@@ -160,7 +160,7 @@ function Library:Create(xHubName,xGameName)
     TabHolder.BackgroundTransparency = 1.000
     TabHolder.BorderSizePixel = 0
     TabHolder.Position = UDim2.new(0.244827583, 0, 0.024324324, 0)
-    TabHolder.Size = UDim2.new(0, 200, 0, 282)
+    TabHolder.Size = UDim2.new(0, 380, 0, 282)
 
     Tabs.Name = "Tabs"
     Tabs.Parent = TabHolder
@@ -932,4 +932,9 @@ function Library:Create(xHubName,xGameName)
     end
     return xTabs
 end
+return Library
+
+-- 整盘 UI 等比缩小 20 %
+ScreenGui.StudsPerPixel = 1.25
+
 return Library
