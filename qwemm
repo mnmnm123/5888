@@ -573,7 +573,7 @@ function Library:Create(xHubName,xGameName)
             TextboxFrame.Name = tostring(Name).."_Textbox"
             TextboxFrame.Parent = Tab
             TextboxFrame.BackgroundColor3 = Color3.fromRGB(40, 42, 60)
-            TextboxFrame.Size = UDim2.new(0, 408, 0, 35)
+            TextboxFrame.Size = UDim2.new(0, 326, 0, 28)
 
             TextboxFrameCorner.Name = "TextboxFrameCorner"
             TextboxFrameCorner.Parent = TextboxFrame
@@ -583,11 +583,11 @@ function Library:Create(xHubName,xGameName)
             TextboxName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             TextboxName.BackgroundTransparency = 1.000
             TextboxName.BorderSizePixel = 0
-            TextboxName.Size = UDim2.new(0, 235, 0, 35)
+            TextboxName.Size = UDim2.new(0, 188, 0, 28)
             TextboxName.Font = Enum.Font.Gotham
             TextboxName.Text = Name
             TextboxName.TextColor3 = Color3.fromRGB(255, 255, 255)
-            TextboxName.TextSize = 16.000
+            TextboxName.TextSize = 13
             TextboxName.TextXAlignment = Enum.TextXAlignment.Left
 
             TextboxNamePadding.Name = "TextboxNamePadding"
@@ -599,13 +599,13 @@ function Library:Create(xHubName,xGameName)
             Textbox.BackgroundColor3 = Color3.fromRGB(55, 55, 75)
             Textbox.BorderSizePixel = 0
             Textbox.Position = UDim2.new(0.610294104, 0, 0.171428576, 0)
-            Textbox.Size = UDim2.new(0, 150, 0, 23)
+            Textbox.Size = UDim2.new(0, 120, 0, 18)
             Textbox.Font = Enum.Font.Gotham
             Textbox.PlaceholderColor3 = Color3.fromRGB(255, 255, 255)
             Textbox.PlaceholderText = Default
             Textbox.Text = ""
             Textbox.TextColor3 = Color3.fromRGB(255, 255, 255)
-            Textbox.TextSize = 14.000
+            Textbox.TextSize = 11
 
             TextboxCorner.Name = "TextboxCorner"
             TextboxCorner.Parent = Textbox
@@ -639,7 +639,7 @@ function Library:Create(xHubName,xGameName)
             KeybindFrame.Parent = Tab
             KeybindFrame.BackgroundColor3 = Color3.fromRGB(40, 42, 60)
             KeybindFrame.BorderSizePixel = 0
-            KeybindFrame.Size = UDim2.new(0, 408, 0, 35)
+            KeybindFrame.Size = UDim2.new(0, 326, 0, 28)
             
             KeybindFrameCorner.Name = "KeybindFrameCorner"
             KeybindFrameCorner.Parent = KeybindFrame
@@ -649,11 +649,11 @@ function Library:Create(xHubName,xGameName)
             KeybindName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             KeybindName.BackgroundTransparency = 1.000
             KeybindName.BorderSizePixel = 0
-            KeybindName.Size = UDim2.new(0, 235, 0, 35)
+            KeybindName.Size = UDim2.new(0, 188, 0, 28)
             KeybindName.Font = Enum.Font.Gotham
             KeybindName.Text = Name
             KeybindName.TextColor3 = Color3.fromRGB(255, 255, 255)
-            KeybindName.TextSize = 16.000
+            KeybindName.TextSize = 13
             KeybindName.TextXAlignment = Enum.TextXAlignment.Left
             
             KeybindNamePadding.Name = "KeybindNamePadding"
@@ -664,11 +664,11 @@ function Library:Create(xHubName,xGameName)
             KeybindButton.Parent = KeybindFrame
             KeybindButton.BackgroundColor3 = Color3.fromRGB(55, 55, 75)
             KeybindButton.Position = UDim2.new(0.610294104, 0, 0.171428576, 0)
-            KeybindButton.Size = UDim2.new(0, 150, 0, 23)
+            KeybindButton.Size = UDim2.new(0, 120, 0, 18)
             KeybindButton.Font = Enum.Font.Gotham
             KeybindButton.Text = Keyx
             KeybindButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-            KeybindButton.TextSize = 14.000
+            KeybindButton.TextSize = 11
             KeybindButton.ZIndex = 2
             
             KeybindButtonCorner.Name = "KeybindButtonCorner"
@@ -718,7 +718,7 @@ function Library:Create(xHubName,xGameName)
             DropdownFrame.Parent = Tab
             DropdownFrame.BackgroundColor3 = Color3.fromRGB(40, 42, 60)
             DropdownFrame.BorderSizePixel = 0
-            DropdownFrame.Size = UDim2.new(0, 408, 0, 35)
+            DropdownFrame.Size = UDim2.new(0, 326, 0, 28)
 
             DropdownFrameCorner.Name = "DropdownFrameCorner"
             DropdownFrameCorner.Parent = DropdownFrame
@@ -728,11 +728,11 @@ function Library:Create(xHubName,xGameName)
             DropdownName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             DropdownName.BackgroundTransparency = 1.000
             DropdownName.BorderSizePixel = 0
-            DropdownName.Size = UDim2.new(0, 358, 0, 35)
+            DropdownName.Size = UDim2.new(0, 286, 0, 28)
             DropdownName.Font = Enum.Font.Gotham
             DropdownName.Text = Name
             DropdownName.TextColor3 = Color3.fromRGB(255, 255, 255)
-            DropdownName.TextSize = 16.000
+            DropdownName.TextSize = 13
             DropdownName.TextXAlignment = Enum.TextXAlignment.Left
 
             DropdownNamePadding.Name = "DropdownNamePadding"
@@ -743,7 +743,7 @@ function Library:Create(xHubName,xGameName)
             DropdownIcon.Parent = DropdownFrame
             DropdownIcon.BackgroundTransparency = 1.000
             DropdownIcon.Position = UDim2.new(0.914644599, 0, 0.140659884, 0)
-            DropdownIcon.Size = UDim2.new(0, 25, 0, 25)
+            DropdownIcon.Size = UDim2.new(0, 20, 0, 20)
             DropdownIcon.ZIndex = 2
             DropdownIcon.Image = "rbxassetid://3926305904"
             DropdownIcon.ImageRectOffset = Vector2.new(604, 684)
@@ -754,7 +754,7 @@ function Library:Create(xHubName,xGameName)
             DropdownButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             DropdownButton.BackgroundTransparency = 1.000
             DropdownButton.BorderSizePixel = 0
-            DropdownButton.Size = UDim2.new(0, 408, 0, 35)
+            DropdownButton.Size = UDim2.new(0, 326, 0, 28)
             DropdownButton.Font = Enum.Font.SourceSans
             DropdownButton.Text = ""
             DropdownButton.TextColor3 = Color3.fromRGB(0, 0, 0)
@@ -766,7 +766,7 @@ function Library:Create(xHubName,xGameName)
             DropList.BackgroundTransparency = 1.000
             DropList.BorderSizePixel = 0
             DropList.ClipsDescendants = true
-            DropList.Size = UDim2.new(0, 408, 0, 35)
+            DropList.Size = UDim2.new(0, 326, 0, 28)
             DropList.ZIndex = 100
             DropList.Position = UDim2.new(0, 0, 1.14285719, 0)
             DropList.Visible = false
@@ -831,11 +831,11 @@ function Library:Create(xHubName,xGameName)
                 Option.Name = tostring(v).."_Option"
                 Option.Parent = DropList
                 Option.BackgroundColor3 = Color3.fromRGB(40, 42, 60)
-                Option.Size = UDim2.new(0, 408, 0, 35)
+                Option.Size = UDim2.new(0, 326, 0, 28)
                 Option.Font = Enum.Font.Gotham
                 Option.Text = v
                 Option.TextColor3 = Color3.fromRGB(255, 255, 255)
-                Option.TextSize = 16.000
+                Option.TextSize = 13
 
                 OptionCorner.Name = "OptionCorner"
                 OptionCorner.Parent = Option
