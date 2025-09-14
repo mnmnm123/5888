@@ -933,8 +933,3 @@ function Library:Create(xHubName,xGameName)
     return xTabs
 end
 return Library
-
--- 整盘 UI 等比缩小 20 %
-ScreenGui.StudsPerPixel = 1.25
-
-return Library
