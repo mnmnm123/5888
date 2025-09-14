@@ -108,11 +108,11 @@ function Library:Create(xHubName,xGameName)
     HubName.BackgroundTransparency = 1.000
     HubName.BorderSizePixel = 0
     HubName.Position = UDim2.new(0, 0, 0.024324324, 0)
-    HubName.Size = UDim2.new(0, 140, 0, 21)
+    HubName.Size = UDim2.new(0, 112, 0, 17)
     HubName.Font = Enum.Font.Gotham
     HubName.Text = xHubName
     HubName.TextColor3 = Color3.fromRGB(255, 255, 255)
-    HubName.TextSize = 16.000
+    HubName.TextSize = 13
 
     Line.Name = "Line"
     Line.Parent = Sidebar
@@ -148,11 +148,11 @@ function Library:Create(xHubName,xGameName)
     GameName.BackgroundTransparency = 1.000
     GameName.BorderSizePixel = 0
     GameName.Position = UDim2.new(-0.00714285718, 0, 0.0810810775, 0)
-    GameName.Size = UDim2.new(0, 141, 0, 25)
+    GameName.Size = UDim2.new(0, 113, 0, 20)
     GameName.Font = Enum.Font.Gotham
     GameName.Text = xGameName
     GameName.TextColor3 = Color3.fromRGB(190, 190, 190)
-    GameName.TextSize = 14.000
+    GameName.TextSize = 11
 
     TabHolder.Name = "TabHolder"
     TabHolder.Parent = Main
@@ -254,7 +254,7 @@ function Library:Create(xHubName,xGameName)
             LabelFrame.Parent = Tab
             LabelFrame.BackgroundColor3 = Color3.fromRGB(55, 74, 251)
             LabelFrame.Position = UDim2.new(0.0456621014, 0, 0, 0)
-            LabelFrame.Size = UDim2.new(0, 408, 0, 35)
+            LabelFrame.Size = UDim2.new(0, 326, 0, 28)
 
             LabelFrameCorner.Name = "LabelFrameCorner"
             LabelFrameCorner.Parent = LabelFrame
@@ -264,11 +264,11 @@ function Library:Create(xHubName,xGameName)
             Label.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             Label.BackgroundTransparency = 1.000
             Label.BorderSizePixel = 0
-            Label.Size = UDim2.new(0, 408, 0, 35)
+            Label.Size = UDim2.new(0, 326, 0, 28)
             Label.Font = Enum.Font.Gotham
             Label.Text = Name
             Label.TextColor3 = Color3.fromRGB(255, 255, 255)
-            Label.TextSize = 16.000
+            Label.TextSize = 13
 
             Label.MouseEnter:Connect(function()
                 game:GetService("TweenService"):Create(LabelFrame, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
