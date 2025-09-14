@@ -370,18 +370,18 @@ function Library:Create(xHubName,xGameName)
             ToggleFrame.Parent = Tab
             ToggleFrame.BackgroundColor3 = Color3.fromRGB(40, 42, 60)
             ToggleFrame.BorderSizePixel = 0
-            ToggleFrame.Size = UDim2.new(0, 408, 0, 35)
+            ToggleFrame.Size = UDim2.new(0, 326, 0, 28)
 
             ToggleName.Name = "ToggleName"
             ToggleName.Parent = ToggleFrame
             ToggleName.BackgroundColor3 = Color3.fromRGB(40, 42, 60)
             ToggleName.BackgroundTransparency = 1.000
             ToggleName.BorderSizePixel = 0
-            ToggleName.Size = UDim2.new(0, 347, 0, 35)
+            ToggleName.Size = UDim2.new(0, 278, 0, 28)
             ToggleName.Font = Enum.Font.Gotham
             ToggleName.Text = Name
             ToggleName.TextColor3 = Color3.fromRGB(255, 255, 255)
-            ToggleName.TextSize = 16.000
+            ToggleName.TextSize = 13
             ToggleName.TextXAlignment = Enum.TextXAlignment.Left
 
             ToggleNamePadding.Name = "ToggleNamePadding"
@@ -397,7 +397,7 @@ function Library:Create(xHubName,xGameName)
             ToggleF.BackgroundTransparency = 0
             ToggleF.BorderSizePixel = 0
             ToggleF.Position = UDim2.new(0.867647052, 0, 0.142857149, 0)
-            ToggleF.Size = UDim2.new(0, 45, 0, 23)
+            ToggleF.Size = UDim2.new(0, 38, 0, 18)
 
             ToggleCorner.CornerRadius = UDim.new(0, 25)
             ToggleCorner.Name = "ToggleCorner"
@@ -419,7 +419,7 @@ function Library:Create(xHubName,xGameName)
             ToggleCircle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             ToggleCircle.BackgroundTransparency = 1.000
             ToggleCircle.Position = UDim2.new(0.093, 0,0.153, 0)
-            ToggleCircle.Size = UDim2.new(0, 17, 0, 17)
+            ToggleCircle.Size = UDim2.new(0, 14, 0, 14)
             ToggleCircle.Image = "rbxassetid://3570695787"
             ToggleCircle.ScaleType = Enum.ScaleType.Slice
             ToggleCircle.SliceCenter = Rect.new(100, 100, 100, 100)
@@ -457,7 +457,7 @@ function Library:Create(xHubName,xGameName)
             SliderFrame.Name = tostring(Name).."_Slider"
             SliderFrame.Parent = Tab
             SliderFrame.BackgroundColor3 = Color3.fromRGB(40, 42, 60)
-            SliderFrame.Size = UDim2.new(0, 408, 0, 50)
+            SliderFrame.Size = UDim2.new(0, 326, 0, 40)
 
             SliderFrameCorner.Name = "SliderFrameCorner"
             SliderFrameCorner.Parent = SliderFrame
@@ -467,7 +467,7 @@ function Library:Create(xHubName,xGameName)
             SliderButton.BackgroundColor3 = Color3.fromRGB(55, 55, 75)
             SliderButton.BorderSizePixel = 0
             SliderButton.Position = UDim2.new(0.0242369417, 0, 0.639999986, 0)
-            SliderButton.Size = UDim2.new(0, 389, 0, 10)
+            SliderButton.Size = UDim2.new(0, 311, 0, 8)
             SliderButton.Font = Enum.Font.SourceSans
             SliderButton.Text = ""
             SliderButton.TextColor3 = Color3.fromRGB(0, 0, 0)
@@ -490,11 +490,11 @@ function Library:Create(xHubName,xGameName)
             SliderName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             SliderName.BackgroundTransparency = 1.000
             SliderName.BorderSizePixel = 0
-            SliderName.Size = UDim2.new(0, 320, 0, 26)
+            SliderName.Size = UDim2.new(0, 256, 0, 21)
             SliderName.Font = Enum.Font.Gotham
             SliderName.Text = Name
             SliderName.TextColor3 = Color3.fromRGB(255, 255, 255)
-            SliderName.TextSize = 16.000
+            SliderName.TextSize = 13
             SliderName.TextXAlignment = Enum.TextXAlignment.Left
 
             SliderNamePadding.Name = "SliderNamePadding"
@@ -508,11 +508,11 @@ function Library:Create(xHubName,xGameName)
             SliderValue.BorderSizePixel = 0
             SliderValue.TextTransparency = 1.000
             SliderValue.Position = UDim2.new(0.802061796, 0, 0, 0)
-            SliderValue.Size = UDim2.new(0, 80, 0, 26)
+            SliderValue.Size = UDim2.new(0, 64, 0, 21)
             SliderValue.Font = Enum.Font.Gotham
             SliderValue.Text = "Value"
             SliderValue.TextColor3 = Color3.fromRGB(255, 255, 255)
-            SliderValue.TextSize = 16.000
+            SliderValue.TextSize = 13
             SliderValue.TextXAlignment = Enum.TextXAlignment.Right
 
             SliderValuePadding.Name = "SliderValuePadding"
