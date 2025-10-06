@@ -81,7 +81,7 @@ function Library:Create(xHubName,xGameName)
     Main.Parent = ScreenGui
     Main.BackgroundColor3 = Color3.fromRGB(31, 30, 46)
     Main.Position = UDim2.new(0.5, -232, 0.5, -148)
-    Main.Size = UDim2.new(0, 464, 0, 250)
+    Main.Size = UDim2.new(0, 464, 0, 100)
 
     MainCorner.CornerRadius = UDim.new(0, 12)
     MainCorner.Name = "MainCorner"
