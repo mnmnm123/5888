@@ -140,7 +140,7 @@ function Library:Create(xHubName,xGameName)
     SideLine.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
     SideLine.BorderSizePixel = 0
     SideLine.Position = UDim2.new(1, 0, 0, 0)
-    SideLine.Size = UDim2.new(0, 2, 0, 370)
+    SideLine.Size = UDim2.new(0, 2, 0, 270)
 
     GameName.Name = "GameName"
     GameName.Parent = Sidebar
