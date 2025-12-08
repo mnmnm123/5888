@@ -166,7 +166,35 @@ function Library:Create(xHubName,xGameName)
     Tabs.Parent = TabHolder
 
     Library:Drag(Main)
-
+    local FloatToggle = Instance.new("ImageButton")
+local FloatCorner = Instance.new("UICorner")
+FloatToggle.Name = "FloatWindowToggle"
+FloatToggle.Parent = ScreenGui
+FloatToggle.Position = UDim2.new(0.02, 0, 0.5, 0)
+FloatToggle.Size = UDim2.new(0, 45, 0, 45)
+FloatToggle.BackgroundColor3 = Color3.fromRGB(31, 30, 46)
+FloatToggle.Image = "rbxassetid://3570695787"
+FloatToggle.ScaleType = Enum.ScaleType.Slice
+FloatToggle.SliceCenter = Rect.new(100, 100, 100, 100)
+FloatToggle.SliceScale = 0.15
+FloatCorner.CornerRadius = UDim.new(1, 0)
+FloatCorner.Parent = FloatToggle
+Library:Drag(FloatToggle)
+FloatToggle.MouseButton1Click:Connect(function()
+    Main.Visible = not Main.Visible
+end)
+FloatToggle.MouseEnter:Connect(function()
+    game:GetService("TweenService"):Create(FloatToggle, TweenInfo.new(0.1), {
+        Size = UDim2.new(0, 50, 0, 50),
+       BackgroundColor3 = Color3.fromRGB(40, 39, 56)
+    }):Play()
+end)
+FloatToggle.MouseLeave:Connect(function()
+    game:GetService("TweenService"):Create(FloatToggle, TweenInfo.new(0.1), {
+        Size = UDim2.new(0, 45, 0, 45),
+       BackgroundColor3 = Color3.fromRGB(31, 30, 46)
+    }):Play()
+end)
     local xTabs = {}
     
     function xTabs:Tab(Name,xVisible)
