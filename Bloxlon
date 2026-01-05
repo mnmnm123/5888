@@ -273,11 +273,11 @@ end)
 FloatToggle.MouseButton1Click:Connect(function()
     Main.Visible = not Main.Visible
     if Main.Visible then
-        FloatToggle.Text = "关"
+        FloatToggle.Text = ""
         FloatToggle.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
         FloatFrame.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
     else
-        FloatToggle.Text = "开"
+        FloatToggle.Text = ""
         FloatToggle.BackgroundColor3 = Color3.fromRGB(50, 150, 50)
         FloatFrame.BackgroundColor3 = Color3.fromRGB(50, 150, 50)
     end
