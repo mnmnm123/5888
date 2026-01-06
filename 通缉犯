@@ -8,17 +8,21 @@ local BlackList = {
     "alvzz_30",
     "cancan10165",
     "sean51299",
-    "truong2k142k14"
-    "twiryw2"
-    "Upwell48"
-    "hahahai_hahaha123"
-    "YagamiTzy11"
-    "mepmpm"
-    "rnxxsr"
-    "abak0412"
-    "kongkwan88"
-    "kjaqijdjcjwijd"
-    "CN_Noob1458"
+    "truong2k142k14",
+    "twiryw2",
+    "Upwell48",
+    "hahahai_hahaha123",
+    "YagamiTzy11",
+    "mepmpm",
+    "rnxxsr",
+    "abak0412",
+    "kongkwan88",
+    "kjaqijdjcjwijd",
+    "hhhhhoophg",
+    "any74125",
+    "iehsh878",
+    "kirito_Amv01",
+    "CarvingDreams"
 }
 
 local ScreenGui = Instance.new("ScreenGui")
