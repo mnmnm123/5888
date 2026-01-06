@@ -22,8 +22,9 @@ local BlackList = {
     "any74125",
     "iehsh878",
     "kirito_Amv01",
-    "CarvingDreams"
-}
+    "CarvingDreams",
+    "camiaonero",
+    "Ruhg728jdh5"5 }
 
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = "PlayerScanGui"
