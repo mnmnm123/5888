@@ -4,7 +4,9 @@ local LocalPlayer = Players.LocalPlayer
 local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
 
 local BlackList = {
-	"CN_Noob1458",
+	"robloxiannbwuen",
+    "alvzz_30",
+    "cancan10165"
 }
 
 local ScreenGui = Instance.new("ScreenGui")
