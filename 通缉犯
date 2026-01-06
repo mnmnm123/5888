@@ -1,0 +1,149 @@
+local Players = game:GetService("Players")
+local TweenService = game:GetService("TweenService")
+local LocalPlayer = Players.LocalPlayer
+local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
+
+local BlackList = {
+	"CN_Noob1458",
+}
+
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "PlayerScanGui"
+ScreenGui.Parent = PlayerGui
+
+local ActiveCount = 0
+local Shown = {}
+
+local function isBlack(name)
+	for _, v in ipairs(BlackList) do
+		if v == name then
+			return true
+		end
+	end
+	return false
+end
+
+local function addHeadDanger(player)
+	if not player.Character then return end
+	local head = player.Character:FindFirstChild("Head")
+	if not head then return end
+	if head:FindFirstChild("DangerTag") then return end
+
+	local bb = Instance.new("BillboardGui")
+	bb.Name = "DangerTag"
+	bb.Size = UDim2.new(0, 120, 0, 40)
+	bb.StudsOffset = Vector3.new(0, 2.6, 0)
+	bb.AlwaysOnTop = true
+	bb.Parent = head
+
+	local tl = Instance.new("TextLabel")
+	tl.Size = UDim2.new(1, 0, 1, 0)
+	tl.BackgroundTransparency = 1
+	tl.Text = "危险"
+	tl.TextColor3 = Color3.fromRGB(255, 233, 0)
+	tl.TextStrokeTransparency = 0
+	tl.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
+	tl.TextScaled = true
+	tl.Font = Enum.Font.GothamBold
+	tl.Parent = bb
+end
+
+local function showUI(player)
+	if Shown[player.Name] then return end
+	Shown[player.Name] = true
+	ActiveCount += 1
+
+	addHeadDanger(player)
+	player.CharacterAdded:Connect(function()
+		task.wait(0.5)
+		addHeadDanger(player)
+	end)
+
+	local yOffset = 20 + (ActiveCount - 1) * 80
+
+	local Border = Instance.new("Frame")
+	Border.Size = UDim2.new(0, 260, 0, 70)
+	Border.Position = UDim2.new(0.5, -130, 0, -120)
+	Border.BackgroundColor3 = Color3.fromRGB(200, 0, 0)
+	Border.BorderSizePixel = 0
+	Border.AnchorPoint = Vector2.new(0.5, 0)
+	Border.Parent = ScreenGui
+
+	local bc = Instance.new("UICorner")
+	bc.CornerRadius = UDim.new(0, 12)
+	bc.Parent = Border
+
+	local Frame = Instance.new("Frame")
+	Frame.Size = UDim2.new(1, -6, 1, -6)
+	Frame.Position = UDim2.new(0, 3, 0, 3)
+	Frame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+	Frame.BorderSizePixel = 0
+	Frame.Parent = Border
+
+	local fc = Instance.new("UICorner")
+	fc.CornerRadius = UDim.new(0, 10)
+	fc.Parent = Frame
+
+	local Avatar = Instance.new("ImageLabel")
+	Avatar.Size = UDim2.new(0, 48, 0, 48)
+	Avatar.Position = UDim2.new(0, 10, 0.5, -24)
+	Avatar.BackgroundTransparency = 1
+	Avatar.Parent = Frame
+
+	local thumb = Players:GetUserThumbnailAsync(
+		player.UserId,
+		Enum.ThumbnailType.HeadShot,
+		Enum.ThumbnailSize.Size180x180
+	)
+	Avatar.Image = thumb
+
+	local Name = Instance.new("TextLabel")
+	Name.Size = UDim2.new(1, -80, 0, 24)
+	Name.Position = UDim2.new(0, 70, 0, 14)
+	Name.BackgroundTransparency = 1
+	Name.Text = player.Name
+	Name.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Name.TextSize = 16
+	Name.Font = Enum.Font.GothamBold
+	Name.TextXAlignment = Enum.TextXAlignment.Left
+	Name.Parent = Frame
+
+	local Sub = Instance.new("TextLabel")
+	Sub.Size = UDim2.new(1, -80, 0, 18)
+	Sub.Position = UDim2.new(0, 70, 0, 38)
+	Sub.BackgroundTransparency = 1
+	Sub.Text = "危险人物已出现注意他"
+	Sub.TextColor3 = Color3.fromRGB(255, 80, 80)
+	Sub.TextSize = 16
+	Sub.Font = Enum.Font.Gotham
+	Sub.TextXAlignment = Enum.TextXAlignment.Left
+	Sub.Parent = Frame
+
+	TweenService:Create(
+		Border,
+		TweenInfo.new(0.35, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+		{Position = UDim2.new(0.5, -130, 0, yOffset)}
+	):Play()
+
+	task.delay(5, function()
+		TweenService:Create(
+			Border,
+			TweenInfo.new(0.35, Enum.EasingStyle.Quad, Enum.EasingDirection.In),
+			{Position = UDim2.new(0.5, -130, 0, -140)}
+		):Play()
+		task.wait(0.4)
+		Border:Destroy()
+	end)
+end
+
+for _, p in ipairs(Players:GetPlayers()) do
+	if isBlack(p.Name) then
+		showUI(p)
+	end
+end
+
+Players.PlayerAdded:Connect(function(p)
+	if isBlack(p.Name) then
+		showUI(p)
+	end
+end)
