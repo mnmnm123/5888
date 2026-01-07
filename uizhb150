@@ -1383,6 +1383,4 @@ end)
         end
         return tab
       end
-      return window
-    end
-return library
+      return windo      return library
