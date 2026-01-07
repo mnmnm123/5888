@@ -1382,5 +1382,4 @@ end)
           return section
         end
         return tab
-      end
-      return library
+      end 
