@@ -78,7 +78,7 @@ function Library:Create(xHubName,xGameName)
     MainStroke.Name = "MainStroke"
     MainStroke.Parent = Main
     MainStroke.Color = Color3.fromRGB(0, 255, 0)
-    MainStroke.Thickness = 2.5
+    MainStroke.Thickness = 1.5
     MainStroke.LineJoinMode = Enum.LineJoinMode.Round
     MainStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
     
