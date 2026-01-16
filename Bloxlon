@@ -55,12 +55,73 @@ function Library:Create(xHubName,xGameName)
     local xHubName = xHubName or "UI Library"
     local xGameName = xGameName or "By Mapple#3045"
     local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.DisplayOrder = 99999
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-local Main = Instance.new("Frame")
-    local Main = Instance.new("Frame")
+    ScreenGui.DisplayOrder = 99999
+    ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    
+    local MainContainer = Instance.new("Frame")
+    MainContainer.Name = "MainContainer"
+    MainContainer.Parent = ScreenGui
+    MainContainer.BackgroundColor3 = Color3.fromRGB(31, 30, 46)
+    MainContainer.Position = UDim2.new(0.5, -232, 0.5, -148)
+    MainContainer.Size = UDim2.new(0, 464, 0, 296)
+    
     local MainCorner = Instance.new("UICorner")
+    MainCorner.CornerRadius = UDim.new(0, 12)
+    MainCorner.Name = "MainCorner"
+    MainCorner.Parent = MainContainer
+    
     local MainStroke = Instance.new("UIStroke")
+    MainStroke.Name = "MainStroke"
+    MainStroke.Parent = MainContainer
+    MainStroke.Color = Color3.fromRGB(0, 255, 0)
+    MainStroke.Thickness = 3
+    MainStroke.LineJoinMode = Enum.LineJoinMode.Round
+    
+    local Main = Instance.new("Frame")
+    Main.Name = "Main"
+    Main.Parent = MainContainer
+    Main.BackgroundColor3 = Color3.fromRGB(31, 30, 46)
+    Main.Position = UDim2.new(0, 0, 0, 0)
+    Main.Size = UDim2.new(1, 0, 1, 0)
+    Main.BackgroundTransparency = 1.0
+    
+    ScreenGui.Parent = game.CoreGui
+    ScreenGui.ResetOnSpawn = false 
+    ScreenGui.Name = LibraryName
+
+    local CloseButton = Instance.new("TextButton")
+    local CloseButtonCorner = Instance.new("UICorner")
+
+    CloseButton.Name = "CloseButton"
+    CloseButton.Parent = MainContainer 
+    CloseButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0) 
+    CloseButton.Position = UDim2.new(0, 5, 0, 5) 
+    CloseButton.Size = UDim2.new(0, 25, 0, 25) 
+    CloseButton.Font = Enum.Font.Gotham
+    CloseButton.Text = "❌" 
+    CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255) 
+    CloseButton.TextSize = 14
+    CloseButton.ZIndex = 10 
+
+    CloseButtonCorner.CornerRadius = UDim.new(0, 6) 
+    CloseButtonCorner.Parent = CloseButton
+
+    CloseButton.MouseButton1Click:Connect(function()
+        game.CoreGui:FindFirstChild(LibraryName).Enabled = false
+    end)
+
+    local TweenService = game:GetService("TweenService")
+    CloseButton.MouseEnter:Connect(function()
+        TweenService:Create(CloseButton, TweenInfo.new(0.1), {
+            BackgroundColor3 = Color3.fromRGB(185, 28, 28)
+        }):Play()
+    end)
+    CloseButton.MouseLeave:Connect(function()
+        TweenService:Create(CloseButton, TweenInfo.new(0.1), {
+            BackgroundColor3 = Color3.fromRGB(220, 38, 38)
+        }):Play()
+    end)
+
     local Sidebar = Instance.new("Frame")
     local SidebarCorner = Instance.new("UICorner")
     local Filler = Instance.new("Frame")
@@ -76,59 +137,6 @@ local Main = Instance.new("Frame")
     function ScrollSize()
         ActualSide.CanvasSize = UDim2.new(0, 0, 0, ActualSideListLayout.AbsoluteContentSize.Y)
     end
-
-    ScreenGui.Parent = game.CoreGui
-    ScreenGui.ResetOnSpawn = false 
-    ScreenGui.Name = LibraryName
-
-    Main.Name = "Main"
-    Main.Parent = ScreenGui
-    Main.BackgroundColor3 = Color3.fromRGB(31, 30, 46)
-    Main.Position = UDim2.new(0.5, -232, 0.5, -148)
-    Main.Size = UDim2.new(0, 464, 0, 296)
-
-    MainCorner.CornerRadius = UDim.new(0, 12)
-    MainCorner.Name = "MainCorner"
-    MainCorner.Parent = Main
-    
-    MainStroke.Name = "MainStroke"
-    MainStroke.Parent = Main
-    MainStroke.Color = Color3.fromRGB(0, 255, 0)
-    MainStroke.Thickness = 3
-    MainStroke.LineJoinMode = Enum.LineJoinMode.Round
-    
-local CloseButton = Instance.new("TextButton")
-local CloseButtonCorner = Instance.new("UICorner")
-
-CloseButton.Name = "CloseButton"
-CloseButton.Parent = Main 
-CloseButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0) 
-CloseButton.Position = UDim2.new(0, 5, 0, 5) 
-CloseButton.Size = UDim2.new(0, 25, 0, 25) 
-CloseButton.Font = Enum.Font.Gotham
-CloseButton.Text = "❌" 
-CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255) 
-CloseButton.TextSize = 14
-CloseButton.ZIndex = 10 
-
-CloseButtonCorner.CornerRadius = UDim.new(0, 6) 
-CloseButtonCorner.Parent = CloseButton
-
-CloseButton.MouseButton1Click:Connect(function()
-    game.CoreGui:FindFirstChild(LibraryName).Enabled = false
-end)
-
-local TweenService = game:GetService("TweenService")
-CloseButton.MouseEnter:Connect(function()
-    TweenService:Create(CloseButton, TweenInfo.new(0.1), {
-        BackgroundColor3 = Color3.fromRGB(185, 28, 28)
-    }):Play()
-end)
-CloseButton.MouseLeave:Connect(function()
-    TweenService:Create(CloseButton, TweenInfo.new(0.1), {
-        BackgroundColor3 = Color3.fromRGB(220, 38, 38)
-    }):Play()
-end)
 
     Sidebar.Name = "Sidebar"
     Sidebar.Parent = Main
@@ -208,7 +216,7 @@ end)
     Tabs.Name = "Tabs"
     Tabs.Parent = TabHolder
 
-Library:Drag(Main)
+Library:Drag(MainContainer)
 
 local FloatToggle = Instance.new("TextButton")
 local FloatFrame = Instance.new("Frame")
@@ -278,8 +286,8 @@ game:GetService("UserInputService").InputChanged:Connect(function(input)
 end)
 
 FloatToggle.MouseButton1Click:Connect(function()
-    Main.Visible = not Main.Visible
-    if Main.Visible then
+    MainContainer.Visible = not MainContainer.Visible
+    if MainContainer.Visible then
         FloatToggle.Text = ""
         FloatToggle.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
         FloatFrame.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
@@ -291,7 +299,7 @@ FloatToggle.MouseButton1Click:Connect(function()
 end)
 
 FloatToggle.MouseEnter:Connect(function()
-    if Main.Visible then
+    if MainContainer.Visible then
         game:GetService("TweenService"):Create(FloatFrame, TweenInfo.new(0.1), {
             BackgroundColor3 = Color3.fromRGB(220, 70, 70),
             Size = UDim2.new(0, 63, 0, 63)
@@ -313,7 +321,7 @@ FloatToggle.MouseEnter:Connect(function()
 end)
 
 FloatToggle.MouseLeave:Connect(function()
-    if Main.Visible then
+    if MainContainer.Visible then
         game:GetService("TweenService"):Create(FloatFrame, TweenInfo.new(0.1), {
             BackgroundColor3 = Color3.fromRGB(200, 50, 50),
             Size = UDim2.new(0, 60, 0, 60)
