@@ -8,7 +8,7 @@ function Library:Toggle()
         game.CoreGui:FindFirstChild(LibraryName).Enabled = true
     end
 end
- 
+
 function Library:Drag(obj)
     local UserInputService = game:GetService("UserInputService")
     
@@ -57,57 +57,50 @@ function Library:Create(xHubName,xGameName)
     local ScreenGui = Instance.new("ScreenGui")
     ScreenGui.DisplayOrder = 99999
     ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-    
-    local MainContainer = Instance.new("Frame")
-    MainContainer.Name = "MainContainer"
-    MainContainer.Parent = ScreenGui
-    MainContainer.BackgroundColor3 = Color3.fromRGB(31, 30, 46)
-    MainContainer.Position = UDim2.new(0.5, -232, 0.5, -148)
-    MainContainer.Size = UDim2.new(0, 464, 0, 296)
-    
-    local MainCorner = Instance.new("UICorner")
-    MainCorner.CornerRadius = UDim.new(0, 12)
-    MainCorner.Name = "MainCorner"
-    MainCorner.Parent = MainContainer
-    
-    local MainStroke = Instance.new("UIStroke")
-    MainStroke.Name = "MainStroke"
-    MainStroke.Parent = MainContainer
-    MainStroke.Color = Color3.fromRGB(0, 255, 0)
-    MainStroke.Thickness = 3
-    MainStroke.LineJoinMode = Enum.LineJoinMode.Round
-    
-    local Main = Instance.new("Frame")
-    Main.Name = "Main"
-    Main.Parent = MainContainer
-    Main.BackgroundColor3 = Color3.fromRGB(31, 30, 46)
-    Main.Position = UDim2.new(0, 0, 0, 0)
-    Main.Size = UDim2.new(1, 0, 1, 0)
-    Main.BackgroundTransparency = 1.0
-    
     ScreenGui.Parent = game.CoreGui
     ScreenGui.ResetOnSpawn = false 
     ScreenGui.Name = LibraryName
 
+    local Main = Instance.new("Frame")
+    Main.Name = "Main"
+    Main.Parent = ScreenGui
+    Main.BackgroundColor3 = Color3.fromRGB(31, 30, 46)
+    Main.Position = UDim2.new(0.5, -232, 0.5, -148)
+    Main.Size = UDim2.new(0, 464, 0, 296)
+    Main.ClipsDescendants = false
+
+    local MainCorner = Instance.new("UICorner")
+    MainCorner.CornerRadius = UDim.new(0, 12)
+    MainCorner.Name = "MainCorner"
+    MainCorner.Parent = Main
+    
+    local MainStroke = Instance.new("UIStroke")
+    MainStroke.Name = "MainStroke"
+    MainStroke.Parent = Main
+    MainStroke.Color = Color3.fromRGB(0, 255, 0)
+    MainStroke.Thickness = 2.5
+    MainStroke.LineJoinMode = Enum.LineJoinMode.Round
+    MainStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+    
     local CloseButton = Instance.new("TextButton")
     local CloseButtonCorner = Instance.new("UICorner")
 
     CloseButton.Name = "CloseButton"
-    CloseButton.Parent = MainContainer 
-    CloseButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0) 
-    CloseButton.Position = UDim2.new(0, 5, 0, 5) 
-    CloseButton.Size = UDim2.new(0, 25, 0, 25) 
+    CloseButton.Parent = Main
+    CloseButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+    CloseButton.Position = UDim2.new(0, 5, 0, 5)
+    CloseButton.Size = UDim2.new(0, 25, 0, 25)
     CloseButton.Font = Enum.Font.Gotham
-    CloseButton.Text = "❌" 
-    CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255) 
+    CloseButton.Text = "❌"
+    CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
     CloseButton.TextSize = 14
-    CloseButton.ZIndex = 10 
+    CloseButton.ZIndex = 10
 
-    CloseButtonCorner.CornerRadius = UDim.new(0, 6) 
+    CloseButtonCorner.CornerRadius = UDim.new(0, 6)
     CloseButtonCorner.Parent = CloseButton
 
     CloseButton.MouseButton1Click:Connect(function()
-        game.CoreGui:FindFirstChild(LibraryName).Enabled = false
+        ScreenGui.Enabled = false
     end)
 
     local TweenService = game:GetService("TweenService")
@@ -141,8 +134,11 @@ function Library:Create(xHubName,xGameName)
     Sidebar.Name = "Sidebar"
     Sidebar.Parent = Main
     Sidebar.BackgroundColor3 = Color3.fromRGB(40, 42, 60)
-    Sidebar.Size = UDim2.new(0, 112, 0, 296)
+    Sidebar.Position = UDim2.new(0, 0, 0, 0)
+    Sidebar.Size = UDim2.new(0, 112, 1, 0)
+    Sidebar.ClipsDescendants = false
 
+    SidebarCorner.CornerRadius = UDim.new(0, 12)
     SidebarCorner.Name = "SidebarCorner"
     SidebarCorner.Parent = Sidebar
 
@@ -212,135 +208,136 @@ function Library:Create(xHubName,xGameName)
     TabHolder.BorderSizePixel = 0
     TabHolder.Position = UDim2.new(0.240, 0, 0.024324324, 0)
     TabHolder.Size = UDim2.new(0, 352, 0, 280)
+    TabHolder.ClipsDescendants = false
 
     Tabs.Name = "Tabs"
     Tabs.Parent = TabHolder
 
-Library:Drag(MainContainer)
+    Library:Drag(Main)
 
-local FloatToggle = Instance.new("TextButton")
-local FloatFrame = Instance.new("Frame")
-local FloatFrameCorner = Instance.new("UICorner")
-local FloatCorner = Instance.new("UICorner")
-local FloatStroke = Instance.new("UIStroke")
+    local FloatToggle = Instance.new("TextButton")
+    local FloatFrame = Instance.new("Frame")
+    local FloatFrameCorner = Instance.new("UICorner")
+    local FloatCorner = Instance.new("UICorner")
+    local FloatStroke = Instance.new("UIStroke")
 
-FloatFrame.Name = "FloatWindowToggleFrame"
-FloatFrame.Parent = ScreenGui
-FloatFrame.Position = UDim2.new(0.02, 0, 0.5, 0)
-FloatFrame.Size = UDim2.new(0, 60, 0, 60)
-FloatFrame.BackgroundColor3 = Color3.fromRGB(31, 30, 46)
+    FloatFrame.Name = "FloatWindowToggleFrame"
+    FloatFrame.Parent = ScreenGui
+    FloatFrame.Position = UDim2.new(0.02, 0, 0.5, 0)
+    FloatFrame.Size = UDim2.new(0, 60, 0, 60)
+    FloatFrame.BackgroundColor3 = Color3.fromRGB(31, 30, 46)
 
-FloatFrameCorner.CornerRadius = UDim.new(0.5, 0)
-FloatFrameCorner.Parent = FloatFrame
+    FloatFrameCorner.CornerRadius = UDim.new(0.5, 0)
+    FloatFrameCorner.Parent = FloatFrame
 
-FloatStroke.Name = "FloatStroke"
-FloatStroke.Parent = FloatFrame
-FloatStroke.Color = Color3.fromRGB(255, 255, 0)
-FloatStroke.Thickness = 2
-FloatStroke.LineJoinMode = Enum.LineJoinMode.Round
+    FloatStroke.Name = "FloatStroke"
+    FloatStroke.Parent = FloatFrame
+    FloatStroke.Color = Color3.fromRGB(255, 255, 0)
+    FloatStroke.Thickness = 2
+    FloatStroke.LineJoinMode = Enum.LineJoinMode.Round
 
-FloatToggle.Name = "FloatWindowToggle"
-FloatToggle.Parent = FloatFrame
-FloatToggle.Position = UDim2.new(0, 0, 0, 0)
-FloatToggle.Size = UDim2.new(0, 60, 0, 60)
-FloatToggle.BackgroundColor3 = Color3.fromRGB(31, 30, 46)
-FloatToggle.Text = ""
-FloatToggle.TextColor3 = Color3.fromRGB(255,255,255)
-FloatToggle.TextScaled = true
-FloatToggle.TextSize = 14
-FloatToggle.Font = Enum.Font.GothamBold
+    FloatToggle.Name = "FloatWindowToggle"
+    FloatToggle.Parent = FloatFrame
+    FloatToggle.Position = UDim2.new(0, 0, 0, 0)
+    FloatToggle.Size = UDim2.new(0, 60, 0, 60)
+    FloatToggle.BackgroundColor3 = Color3.fromRGB(31, 30, 46)
+    FloatToggle.Text = ""
+    FloatToggle.TextColor3 = Color3.fromRGB(255,255,255)
+    FloatToggle.TextScaled = true
+    FloatToggle.TextSize = 14
+    FloatToggle.Font = Enum.Font.GothamBold
 
-FloatCorner.CornerRadius = UDim.new(0.5, 0)
-FloatCorner.Parent = FloatToggle
+    FloatCorner.CornerRadius = UDim.new(0.5, 0)
+    FloatCorner.Parent = FloatToggle
 
-local FloatDragging
-local FloatDragInput
-local FloatDragStart
-local FloatStartPos
+    local FloatDragging
+    local FloatDragInput
+    local FloatDragStart
+    local FloatStartPos
 
-FloatToggle.InputBegan:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-        FloatDragging = true
-        FloatDragStart = input.Position
-        FloatStartPos = FloatFrame.Position
+    FloatToggle.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+            FloatDragging = true
+            FloatDragStart = input.Position
+            FloatStartPos = FloatFrame.Position
 
-        input.Changed:Connect(function()
-            if input.UserInputState == Enum.UserInputState.End then
-                FloatDragging = false
-            end
-        end)
-    end
-end)
+            input.Changed:Connect(function()
+                if input.UserInputState == Enum.UserInputState.End then
+                    FloatDragging = false
+                end
+            end)
+        end
+    end)
 
-FloatToggle.InputChanged:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-        FloatDragInput = input
-    end
-end)
+    FloatToggle.InputChanged:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+            FloatDragInput = input
+        end
+    end)
 
-game:GetService("UserInputService").InputChanged:Connect(function(input)
-    if input == FloatDragInput and FloatDragging then
-        local delta = input.Position - FloatDragStart
-        FloatFrame.Position = UDim2.new(FloatStartPos.X.Scale, FloatStartPos.X.Offset + delta.X, FloatStartPos.Y.Scale, FloatStartPos.Y.Offset + delta.Y)
-    end
-end)
+    game:GetService("UserInputService").InputChanged:Connect(function(input)
+        if input == FloatDragInput and FloatDragging then
+            local delta = input.Position - FloatDragStart
+            FloatFrame.Position = UDim2.new(FloatStartPos.X.Scale, FloatStartPos.X.Offset + delta.X, FloatStartPos.Y.Scale, FloatStartPos.Y.Offset + delta.Y)
+        end
+    end)
 
-FloatToggle.MouseButton1Click:Connect(function()
-    MainContainer.Visible = not MainContainer.Visible
-    if MainContainer.Visible then
-        FloatToggle.Text = ""
-        FloatToggle.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
-        FloatFrame.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
-    else
-        FloatToggle.Text = ""
-        FloatToggle.BackgroundColor3 = Color3.fromRGB(50, 150, 50)
-        FloatFrame.BackgroundColor3 = Color3.fromRGB(50, 150, 50)
-    end
-end)
+    FloatToggle.MouseButton1Click:Connect(function()
+        Main.Visible = not Main.Visible
+        if Main.Visible then
+            FloatToggle.Text = ""
+            FloatToggle.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
+            FloatFrame.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
+        else
+            FloatToggle.Text = ""
+            FloatToggle.BackgroundColor3 = Color3.fromRGB(50, 150, 50)
+            FloatFrame.BackgroundColor3 = Color3.fromRGB(50, 150, 50)
+        end
+    end)
 
-FloatToggle.MouseEnter:Connect(function()
-    if MainContainer.Visible then
-        game:GetService("TweenService"):Create(FloatFrame, TweenInfo.new(0.1), {
-            BackgroundColor3 = Color3.fromRGB(220, 70, 70),
-            Size = UDim2.new(0, 63, 0, 63)
-        }):Play()
-        game:GetService("TweenService"):Create(FloatToggle, TweenInfo.new(0.1), {
-            BackgroundColor3 = Color3.fromRGB(220, 70, 70),
-            Size = UDim2.new(0, 63, 0, 63)
-        }):Play()
-    else
-        game:GetService("TweenService"):Create(FloatFrame, TweenInfo.new(0.1), {
-            BackgroundColor3 = Color3.fromRGB(70, 170, 70),
-            Size = UDim2.new(0, 63, 0, 63)
-        }):Play()
-        game:GetService("TweenService"):Create(FloatToggle, TweenInfo.new(0.1), {
-            BackgroundColor3 = Color3.fromRGB(70, 170, 70),
-            Size = UDim2.new(0, 63, 0, 63)
-        }):Play()
-    end
-end)
+    FloatToggle.MouseEnter:Connect(function()
+        if Main.Visible then
+            game:GetService("TweenService"):Create(FloatFrame, TweenInfo.new(0.1), {
+                BackgroundColor3 = Color3.fromRGB(220, 70, 70),
+                Size = UDim2.new(0, 63, 0, 63)
+            }):Play()
+            game:GetService("TweenService"):Create(FloatToggle, TweenInfo.new(0.1), {
+                BackgroundColor3 = Color3.fromRGB(220, 70, 70),
+                Size = UDim2.new(0, 63, 0, 63)
+            }):Play()
+        else
+            game:GetService("TweenService"):Create(FloatFrame, TweenInfo.new(0.1), {
+                BackgroundColor3 = Color3.fromRGB(70, 170, 70),
+                Size = UDim2.new(0, 63, 0, 63)
+            }):Play()
+            game:GetService("TweenService"):Create(FloatToggle, TweenInfo.new(0.1), {
+                BackgroundColor3 = Color3.fromRGB(70, 170, 70),
+                Size = UDim2.new(0, 63, 0, 63)
+            }):Play()
+        end
+    end)
 
-FloatToggle.MouseLeave:Connect(function()
-    if MainContainer.Visible then
-        game:GetService("TweenService"):Create(FloatFrame, TweenInfo.new(0.1), {
-            BackgroundColor3 = Color3.fromRGB(200, 50, 50),
-            Size = UDim2.new(0, 60, 0, 60)
-        }):Play()
-        game:GetService("TweenService"):Create(FloatToggle, TweenInfo.new(0.1), {
-            BackgroundColor3 = Color3.fromRGB(200, 50, 50),
-            Size = UDim2.new(0, 60, 0, 60)
-        }):Play()
-    else
-        game:GetService("TweenService"):Create(FloatFrame, TweenInfo.new(0.1), {
-            BackgroundColor3 = Color3.fromRGB(50, 150, 50),
-            Size = UDim2.new(0, 60, 0, 60)
-        }):Play()
-        game:GetService("TweenService"):Create(FloatToggle, TweenInfo.new(0.1), {
-            BackgroundColor3 = Color3.fromRGB(50, 150, 50),
-            Size = UDim2.new(0, 60, 0, 60)
-        }):Play()
-    end
-end)
+    FloatToggle.MouseLeave:Connect(function()
+        if Main.Visible then
+            game:GetService("TweenService"):Create(FloatFrame, TweenInfo.new(0.1), {
+                BackgroundColor3 = Color3.fromRGB(200, 50, 50),
+                Size = UDim2.new(0, 60, 0, 60)
+            }):Play()
+            game:GetService("TweenService"):Create(FloatToggle, TweenInfo.new(0.1), {
+                BackgroundColor3 = Color3.fromRGB(200, 50, 50),
+                Size = UDim2.new(0, 60, 0, 60)
+            }):Play()
+        else
+            game:GetService("TweenService"):Create(FloatFrame, TweenInfo.new(0.1), {
+                BackgroundColor3 = Color3.fromRGB(50, 150, 50),
+                Size = UDim2.new(0, 60, 0, 60)
+            }):Play()
+            game:GetService("TweenService"):Create(FloatToggle, TweenInfo.new(0.1), {
+                BackgroundColor3 = Color3.fromRGB(50, 150, 50),
+                Size = UDim2.new(0, 60, 0, 60)
+            }):Play()
+        end
+    end)
 
     local xTabs = {}
     
