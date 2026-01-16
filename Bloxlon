@@ -8,7 +8,7 @@ function Library:Toggle()
         game.CoreGui:FindFirstChild(LibraryName).Enabled = true
     end
 end
-
+ 
 function Library:Drag(obj)
     local UserInputService = game:GetService("UserInputService")
     
@@ -227,7 +227,7 @@ FloatFrameCorner.Parent = FloatFrame
 
 FloatStroke.Name = "FloatStroke"
 FloatStroke.Parent = FloatFrame
-FloatStroke.Color = Color3.fromRGB(0, 255, 0)
+FloatStroke.Color = Color3.fromRGB(255, 255, 0)
 FloatStroke.Thickness = 2
 FloatStroke.LineJoinMode = Enum.LineJoinMode.Round
 
