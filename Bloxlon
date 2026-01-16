@@ -60,6 +60,7 @@ ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 local Main = Instance.new("Frame")
     local Main = Instance.new("Frame")
     local MainCorner = Instance.new("UICorner")
+    local MainStroke = Instance.new("UIStroke")
     local Sidebar = Instance.new("Frame")
     local SidebarCorner = Instance.new("UICorner")
     local Filler = Instance.new("Frame")
@@ -89,6 +90,12 @@ local Main = Instance.new("Frame")
     MainCorner.CornerRadius = UDim.new(0, 12)
     MainCorner.Name = "MainCorner"
     MainCorner.Parent = Main
+    
+    MainStroke.Name = "MainStroke"
+    MainStroke.Parent = Main
+    MainStroke.Color = Color3.fromRGB(0, 255, 0)
+    MainStroke.Thickness = 3
+    MainStroke.LineJoinMode = Enum.LineJoinMode.Round
     
 local CloseButton = Instance.new("TextButton")
 local CloseButtonCorner = Instance.new("UICorner")
@@ -220,7 +227,7 @@ FloatFrameCorner.Parent = FloatFrame
 
 FloatStroke.Name = "FloatStroke"
 FloatStroke.Parent = FloatFrame
-FloatStroke.Color = Color3.fromRGB(20, 20, 20)
+FloatStroke.Color = Color3.fromRGB(0, 255, 0)
 FloatStroke.Thickness = 2
 FloatStroke.LineJoinMode = Enum.LineJoinMode.Round
 
