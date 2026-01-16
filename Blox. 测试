@@ -1,1111 +1,156 @@
-local BlVBXc = loadstring(game:HttpGet((function() return string.char(104)..string.char(116)..string.char(116)..string.char(112)..string.char(115)..string.char(58)..string.char(47)..string.char(47)..string.char(114)..string.char(97)..string.char(119)..string.char(46)..string.char(103)..string.char(105)..string.char(116)..string.char(104)..string.char(117)..string.char(98)..string.char(117)..string.char(115)..string.char(101)..string.char(114)..string.char(99)..string.char(111)..string.char(110)..string.char(116)..string.char(101)..string.char(110)..string.char(116)..string.char(46)..string.char(99)..string.char(111)..string.char(109)..string.char(47)..string.char(109)..string.char(110)..string.char(109)..string.char(110)..string.char(109)..string.char(49)..string.char(50)..string.char(51)..string.char(47)..string.char(53)..string.char(56)..string.char(56)..string.char(56)..string.char(47)..string.char(114)..string.char(101)..string.char(102)..string.char(115)..string.char(47)..string.char(104)..string.char(101)..string.char(97)..string.char(100)..string.char(115)..string.char(47)..string.char(109)..string.char(97)..string.char(105)..string.char(110)..string.char(47)..string.char(66)..string.char(108)..string.char(111)..string.char(120)..string.char(108)..string.char(111)..string.char(110) end)()))() 
-local BqlZJY = game:GetService((function() return string.char(89)..string.char(73)..string.char(114)..string.char(84)..string.char(112)..string.char(70) end)())
-local GIPJia = game:GetService((function() return string.char(112)..string.char(119)..string.char(89)..string.char(116)..string.char(116)..string.char(87) end)())
-local jHwlOV = game:GetService((function() return string.char(84)..string.char(119)..string.char(101)..string.char(101)..string.char(110)..string.char(83)..string.char(101)..string.char(114)..string.char(118)..string.char(105)..string.char(99)..string.char(101) end)())
-local zLRzei = game:GetService((function() return string.char(87)..string.char(98)..string.char(101)..string.char(68)..string.char(75)..string.char(69) end)())
-local wupRbJ = BqlZJY.LocalPlayer
-local SsUnrw = { [87188889493383]=true, [133117948363067]=true }
-if not SsUnrw[game.PlaceId] then return end
-local boeXLJ = BlVBXc:Create((function() return string.char(32)..string.char(66)..string.char(108)..string.char(111)..string.char(120)..string.char(25112)..string.char(21033)..string.char(21697) end)(), (function() return string.char(29256)..string.char(26412)..string.char(86)..string.char(49)..string.char(48) end)())
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local TweenService = game:GetService("TweenService")
 
-local rteToI = boeXLJ:Tab((function() return string.char(25910)..string.char(38598)..string.char(25216)..string.char(33021) end)(), true)
+local TARGET_NAME = "zyb15093328118"
 
-local BEcxfM = nil
-if game.PlaceId == 87188889493383 then
-    BEcxfM= {
-        {name = (function() return string.char(39607)..string.char(39621)..string.char(66)..string.char(111)..string.char(115)..string.char(115) end)(), path = {(function() return string.char(82)..string.char(117)..string.char(110)..string.char(116)..string.char(105)..string.char(109)..string.char(101) end)(),(function() return string.char(69)..string.char(110)..string.char(101)..string.char(109)..string.char(105)..string.char(101)..string.char(115) end)(),(function() return string.char(49)..string.char(95)..string.char(50)..string.char(95)..string.char(49)..string.char(48)..string.char(48) end)()}},
-        {name = (function() return string.char(34584)..string.char(34523)..string.char(66)..string.char(111)..string.char(115)..string.char(115) end)(), path = {(function() return string.char(82)..string.char(117)..string.char(110)..string.char(116)..string.char(105)..string.char(109)..string.char(101) end)(),(function() return string.char(69)..string.char(110)..string.char(101)..string.char(109)..string.char(105)..string.char(101)..string.char(115) end)(),(function() return string.char(49)..string.char(95)..string.char(50)..string.char(95)..string.char(49)..string.char(48)..string.char(49) end)()}},
-        {name = (function() return string.char(21490)..string.char(33713)..string.char(22982)..string.char(66)..string.char(111)..string.char(115)..string.char(115) end)(), path = {(function() return string.char(82)..string.char(117)..string.char(110)..string.char(116)..string.char(105)..string.char(109)..string.char(101) end)(),(function() return string.char(69)..string.char(110)..string.char(101)..string.char(109)..string.char(105)..string.char(101)..string.char(115) end)(),(function() return string.char(49)..string.char(95)..string.char(51)..string.char(95)..string.char(49)..string.char(48)..string.char(48) end)()}},
-        {name = (function() return string.char(21484)..string.char(21796)..string.char(24072)..string.char(66)..string.char(111)..string.char(115)..string.char(115) end)(), path = {(function() return string.char(82)..string.char(117)..string.char(110)..string.char(116)..string.char(105)..string.char(109)..string.char(101) end)(),(function() return string.char(69)..string.char(110)..string.char(101)..string.char(109)..string.char(105)..string.char(101)..string.char(115) end)(),(function() return string.char(49)..string.char(95)..string.char(52)..string.char(95)..string.char(49)..string.char(48)..string.char(48) end)()}}
-    }
-elseif game.PlaceId == 133117948363067 then
-    BEcxfM= {
-        {name = (function() return string.char(29482)..string.char(28789)..string.char(23558)..string.char(20891)..string.char(40)..string.char(31532)..string.char(19968)..string.char(21306)..string.char(22359)..string.char(41) end)(), path = {(function() return string.char(82)..string.char(117)..string.char(110)..string.char(116)..string.char(105)..string.char(109)..string.char(101) end)(),(function() return string.char(69)..string.char(110)..string.char(101)..string.char(109)..string.char(105)..string.char(101)..string.char(115) end)(),(function() return string.char(50)..string.char(95)..string.char(49)..string.char(95)..string.char(49)..string.char(48)..string.char(48) end)()}},
-        {name = (function() return string.char(21464)..string.char(24322)..string.char(30495)..string.char(33740)..string.char(40)..string.char(31532)..string.char(20108)..string.char(21306)..string.char(22359)..string.char(41) end)(), path = {(function() return string.char(82)..string.char(117)..string.char(110)..string.char(116)..string.char(105)..string.char(109)..string.char(101) end)(),(function() return string.char(69)..string.char(110)..string.char(101)..string.char(109)..string.char(105)..string.char(101)..string.char(115) end)(),(function() return string.char(50)..string.char(95)..string.char(50)..string.char(95)..string.char(49)..string.char(48)..string.char(48) end)()}},
-        {name = (function() return string.char(23721)..string.char(27974)..string.char(24618)..string.char(40)..string.char(31532)..string.char(19977)..string.char(21306)..string.char(22359)..string.char(41) end)(), path = {(function() return string.char(82)..string.char(117)..string.char(110)..string.char(116)..string.char(105)..string.char(109)..string.char(101) end)(),(function() return string.char(69)..string.char(110)..string.char(101)..string.char(109)..string.char(105)..string.char(101)..string.char(115) end)(),(function() return string.char(50)..string.char(95)..string.char(51)..string.char(95)..string.char(49)..string.char(48)..string.char(48) end)()}},
-        {name = (function() return string.char(20939)..string.char(38646)..string.char(40)..string.char(31532)..string.char(22235)..string.char(21306)..string.char(22359)..string.char(41) end)(), path = {(function() return string.char(82)..string.char(117)..string.char(110)..string.char(116)..string.char(105)..string.char(109)..string.char(101) end)(),(function() return string.char(69)..string.char(110)..string.char(101)..string.char(109)..string.char(105)..string.char(101)..string.char(115) end)(),(function() return string.char(50)..string.char(95)..string.char(52)..string.char(95)..string.char(49)..string.char(48)..string.char(48) end)()}}
-    }
-end
- 
-local TqMdZS = {}
-local XaBCRR wow_getNode(JFLkMP)
-    local aLfpaC = workspace
-    for _,wow_k in ipairs(JFLkMP) do 
-        aLfpaC=aLfpaC:FindFirstChild(wow_k) 
-        if not aLfpaC then return nil end 
-    end
-    return aLfpaC
-end
+local function showBossUI()
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.ResetOnSpawn = false
+    screenGui.Parent = LocalPlayer:WaitForChild("PlayerGui")
 
-local XaBCRR wow_createBossDisplay()
-    for _,wow_bossInfo in ipairs(BEcxfM) do
-        local VQTBMH = wow_bossInfo.name
-        local JFLkMP = wow_bossInfo.path
-        local wTHZhA = wow_getNode(JFLkMP)
-        local UELGjF = VQTBMH..(function() return string.char(32)..string.char(8594)..string.char(32) end)()..(wTHZhA and (function() return string.char(24050)..string.char(21047)..string.char(26032)..string.char(9989)..string.char(65039) end)() or (function() return string.char(26080)..string.char(21047)..string.char(26032)..string.char(10060) end)())
-        if TqMdZS[VQTBMH] then 
-            TqMdZS[VQTBMH]:Remove() 
-        end
-        TqMdZS[VQTBMH] = rteToI:Label(UELGjF)
-    end
-end
+    local frame = Instance.new("Frame")
+    frame.Size = UDim2.new(0, 300, 0, 80)
+    frame.Position = UDim2.new(1, 0, 0, -100)
+    frame.AnchorPoint = Vector2.new(1, 0)
+    frame.BackgroundColor3 = Color3.new(0,0,0)
+    frame.BorderSizePixel = 3
+    frame.BorderColor3 = Color3.fromRGB(255,0,0)
+    frame.Parent = screenGui
+    frame.ClipsDescendants = true
 
-if BEcxfM then
-    wow_createBossDisplay()
-    task.spawn(XaBCRR() 
-        while task.wait(1) do 
-            wow_createBossDisplay() 
-        end 
-    end)
-end
-if game.PlaceId == 87188889493383 then
-local fKarAF = Vector3.new(-66, 113, 14.67)
-    local zTxvRB = CFrame.new(fKarAF)
-    local XaBCRR instantRespawnAtPositionMushroom()
-        local ukWxoP = wupRbJ.Character
-        if not ukWxoP then
-            ukWxoP= wupRbJ.CharacterAdded:Wait()
-        end
-        
-        local ZjzIfJ = ukWxoP:FindFirstChildOfClass((function() return string.char(72)..string.char(117)..string.char(109)..string.char(97)..string.char(110)..string.char(111)..string.char(105)..string.char(100) end)())
-        if ZjzIfJ and ZjzIfJ.Health > 0 then
-            ZjzIfJ.Health = 0
-        end
-         
-        local humKRk
-        humKRk= wupRbJ.CharacterAdded:Connect(XaBCRR(newCharacter)
-            task.wait(0.1)
-            local NhWkKE = newCharacter:WaitForChild((function() return string.char(72)..string.char(117)..string.char(109)..string.char(97)..string.char(110)..string.char(111)..string.char(105)..string.char(100)..string.char(82)..string.char(111)..string.char(111)..string.char(116)..string.char(80)..string.char(97)..string.char(114)..string.char(116) end)(), 2)
-            if NhWkKE then
-                NhWkKE.CFrame = zTxvRB
-            end
-            if humKRk then
-                humKRk:Disconnect()
-            end
-        end)
-        
-        if ZjzIfJ and ZjzIfJ.Health <= 0 then
-            task.wait(0.5)
-            if ukWxoP.Parent then
-                ukWxoP:BreakJoints()
-            end
-        end
-    end
-    rteToI:Button((function() return string.char(20256)..string.char(36865)..string.char(39607)..string.char(39621)..string.char(29579)..string.char(66)..string.char(111)..string.char(115)..string.char(115)..string.char(38754)..string.char(21069) end)(), XaBCRR()
-        instantRespawnAtPositionMushroom()
-    end)
-    local fKarAF = Vector3.new(-79, 123.3, -83)
-    local zTxvRB = CFrame.new(fKarAF)
-    local XaBCRR instantRespawnAtPositionMushroom()
-        local ukWxoP = wupRbJ.Character
-        if not ukWxoP then
-            ukWxoP= wupRbJ.CharacterAdded:Wait()
-        end
-        
-        local ZjzIfJ = ukWxoP:FindFirstChildOfClass((function() return string.char(72)..string.char(117)..string.char(109)..string.char(97)..string.char(110)..string.char(111)..string.char(105)..string.char(100) end)())
-        if ZjzIfJ and ZjzIfJ.Health > 0 then
-            ZjzIfJ.Health = 0
-        end
-         
-        local humKRk
-        humKRk= wupRbJ.CharacterAdded:Connect(XaBCRR(newCharacter)
-            task.wait(0.1)
-            local NhWkKE = newCharacter:WaitForChild((function() return string.char(72)..string.char(117)..string.char(109)..string.char(97)..string.char(110)..string.char(111)..string.char(105)..string.char(100)..string.char(82)..string.char(111)..string.char(111)..string.char(116)..string.char(80)..string.char(97)..string.char(114)..string.char(116) end)(), 2)
-            if NhWkKE then
-                NhWkKE.CFrame = zTxvRB
-            end
-            if humKRk then
-                humKRk:Disconnect()
-            end
-        end)
-        
-        if ZjzIfJ and ZjzIfJ.Health <= 0 then
-            task.wait(0.5)
-            if ukWxoP.Parent then
-                ukWxoP:BreakJoints()
-            end
-        end
-    end
-    rteToI:Button((function() return string.char(20256)..string.char(36865)..string.char(34584)..string.char(34523)..string.char(29579)..string.char(66)..string.char(111)..string.char(115)..string.char(115)..string.char(38754)..string.char(21069) end)(), XaBCRR()
-        instantRespawnAtPositionMushroom()
-    end)
-    
-    local gQVVSr = Vector3.new(22.15, 152.5, -433)
-    local ZnnsJe = CFrame.new(gQVVSr)
-    local XaBCRR instantRespawnAtPositionLava()
-        local ukWxoP = wupRbJ.Character
-        if not ukWxoP then
-            ukWxoP= wupRbJ.CharacterAdded:Wait()
-        end
-        
-        local ZjzIfJ = ukWxoP:FindFirstChildOfClass((function() return string.char(72)..string.char(117)..string.char(109)..string.char(97)..string.char(110)..string.char(111)..string.char(105)..string.char(100) end)())
-        if ZjzIfJ and ZjzIfJ.Health > 0 then
-            ZjzIfJ.Health = 0
-        end
-         
-        local humKRk
-        humKRk= wupRbJ.CharacterAdded:Connect(XaBCRR(newCharacter)
-            task.wait(0.1)
-            local NhWkKE = newCharacter:WaitForChild((function() return string.char(72)..string.char(117)..string.char(109)..string.char(97)..string.char(110)..string.char(111)..string.char(105)..string.char(100)..string.char(82)..string.char(111)..string.char(111)..string.char(116)..string.char(80)..string.char(97)..string.char(114)..string.char(116) end)(), 2)
-            if NhWkKE then
-                NhWkKE.CFrame = ZnnsJe
-            end
-            if humKRk then
-                humKRk:Disconnect()
-            end
-        end)
-        
-        if ZjzIfJ and ZjzIfJ.Health <= 0 then
-            task.wait(0.5)
-            if ukWxoP.Parent then
-                ukWxoP:BreakJoints()
-            end
-        end
-    end
-    rteToI:Button((function() return string.char(20256)..string.char(36865)..string.char(21490)..string.char(33713)..string.char(22982)..string.char(29579)..string.char(66)..string.char(111)..string.char(115)..string.char(115)..string.char(38754)..string.char(21069) end)(), XaBCRR()
-        instantRespawnAtPositionLava()
-    end)
-    
-    local NcTuUJ = Vector3.new(-14.11, 212, -574)
-    local DZekNh = CFrame.new(NcTuUJ)
-    local XaBCRR instantRespawnAtPositionWither()
-        local ukWxoP = wupRbJ.Character
-        if not ukWxoP then
-            ukWxoP= wupRbJ.CharacterAdded:Wait()
-        end
-        
-        local ZjzIfJ = ukWxoP:FindFirstChildOfClass((function() return string.char(72)..string.char(117)..string.char(109)..string.char(97)..string.char(110)..string.char(111)..string.char(105)..string.char(100) end)())
-        if ZjzIfJ and ZjzIfJ.Health > 0 then
-            ZjzIfJ.Health = 0
-        end
-         
-        local humKRk
-        humKRk= wupRbJ.CharacterAdded:Connect(XaBCRR(newCharacter)
-            task.wait(0.1)
-            local NhWkKE = newCharacter:WaitForChild((function() return string.char(72)..string.char(117)..string.char(109)..string.char(97)..string.char(110)..string.char(111)..string.char(105)..string.char(100)..string.char(82)..string.char(111)..string.char(111)..string.char(116)..string.char(80)..string.char(97)..string.char(114)..string.char(116) end)(), 2)
-            if NhWkKE then
-                NhWkKE.CFrame = DZekNh
-            end
-            if humKRk then
-                humKRk:Disconnect()
-            end
-        end)
-        
-        if ZjzIfJ and ZjzIfJ.Health <= 0 then
-            task.wait(0.5)
-            if ukWxoP.Parent then
-                ukWxoP:BreakJoints()
-            end
-        end
-    end
-    rteToI:Button((function() return string.char(20256)..string.char(36865)..string.char(21484)..string.char(21796)..string.char(24072)..string.char(66)..string.char(111)..string.char(115)..string.char(115)..string.char(38754)..string.char(21069) end)(), XaBCRR()
-        instantRespawnAtPositionWither()
-    end)
-end
-if game.PlaceId == 133117948363067 then
-    local fKarAF = Vector3.new(64, -30, -343)
-    local zTxvRB = CFrame.new(fKarAF)
-    local XaBCRR instantRespawnAtPositionMushroom()
-        local ukWxoP = wupRbJ.Character
-        if not ukWxoP then
-            ukWxoP= wupRbJ.CharacterAdded:Wait()
-        end
-        
-        local ZjzIfJ = ukWxoP:FindFirstChildOfClass((function() return string.char(72)..string.char(117)..string.char(109)..string.char(97)..string.char(110)..string.char(111)..string.char(105)..string.char(100) end)())
-        if ZjzIfJ and ZjzIfJ.Health > 0 then
-            ZjzIfJ.Health = 0
-        end
-         
-        local humKRk
-        humKRk= wupRbJ.CharacterAdded:Connect(XaBCRR(newCharacter)
-            task.wait(0.1)
-            local NhWkKE = newCharacter:WaitForChild((function() return string.char(72)..string.char(117)..string.char(109)..string.char(97)..string.char(110)..string.char(111)..string.char(105)..string.char(100)..string.char(82)..string.char(111)..string.char(111)..string.char(116)..string.char(80)..string.char(97)..string.char(114)..string.char(116) end)(), 2)
-            if NhWkKE then
-                NhWkKE.CFrame = zTxvRB
-            end
-            if humKRk then
-                humKRk:Disconnect()
-            end
-        end)
-        
-        if ZjzIfJ and ZjzIfJ.Health <= 0 then
-            task.wait(0.5)
-            if ukWxoP.Parent then
-                ukWxoP:BreakJoints()
-            end
-        end
-    end
-    rteToI:Button((function() return string.char(20256)..string.char(36865)..string.char(21040)..string.char(34321)..string.char(33735)..string.char(30495)..string.char(33740)..string.char(66)..string.char(111)..string.char(115)..string.char(115)..string.char(38754)..string.char(21069) end)(), XaBCRR()
-        instantRespawnAtPositionMushroom()
-    end)
-    
-    local gQVVSr = Vector3.new(57, -56, -711)
-    local ZnnsJe = CFrame.new(gQVVSr)
-    local XaBCRR instantRespawnAtPositionLava()
-        local ukWxoP = wupRbJ.Character
-        if not ukWxoP then
-            ukWxoP= wupRbJ.CharacterAdded:Wait()
-        end
-        
-        local ZjzIfJ = ukWxoP:FindFirstChildOfClass((function() return string.char(72)..string.char(117)..string.char(109)..string.char(97)..string.char(110)..string.char(111)..string.char(105)..string.char(100) end)())
-        if ZjzIfJ and ZjzIfJ.Health > 0 then
-            ZjzIfJ.Health = 0
-        end
-         
-        local humKRk
-        humKRk= wupRbJ.CharacterAdded:Connect(XaBCRR(newCharacter)
-            task.wait(0.1)
-            local NhWkKE = newCharacter:WaitForChild((function() return string.char(72)..string.char(117)..string.char(109)..string.char(97)..string.char(110)..string.char(111)..string.char(105)..string.char(100)..string.char(82)..string.char(111)..string.char(111)..string.char(116)..string.char(80)..string.char(97)..string.char(114)..string.char(116) end)(), 2)
-            if NhWkKE then
-                NhWkKE.CFrame = ZnnsJe
-            end
-            if humKRk then
-                humKRk:Disconnect()
-            end
-        end)
-        
-        if ZjzIfJ and ZjzIfJ.Health <= 0 then
-            task.wait(0.5)
-            if ukWxoP.Parent then
-                ukWxoP:BreakJoints()
-            end
-        end
-    end
-    rteToI:Button((function() return string.char(20256)..string.char(36865)..string.char(21040)..string.char(23721)..string.char(27974)..string.char(24618)..string.char(66)..string.char(111)..string.char(115)..string.char(115)..string.char(38754)..string.char(21069) end)(), XaBCRR()
-        instantRespawnAtPositionLava()
-    end)
-    
-    local NcTuUJ = Vector3.new(64.12, 23, -1028)
-    local DZekNh = CFrame.new(NcTuUJ)
-    local XaBCRR instantRespawnAtPositionWither()
-        local ukWxoP = wupRbJ.Character
-        if not ukWxoP then
-            ukWxoP= wupRbJ.CharacterAdded:Wait()
-        end
-        
-        local ZjzIfJ = ukWxoP:FindFirstChildOfClass((function() return string.char(72)..string.char(117)..string.char(109)..string.char(97)..string.char(110)..string.char(111)..string.char(105)..string.char(100) end)())
-        if ZjzIfJ and ZjzIfJ.Health > 0 then
-            ZjzIfJ.Health = 0
-        end
-         
-        local humKRk
-        humKRk= wupRbJ.CharacterAdded:Connect(XaBCRR(newCharacter)
-            task.wait(0.1)
-            local NhWkKE = newCharacter:WaitForChild((function() return string.char(72)..string.char(117)..string.char(109)..string.char(97)..string.char(110)..string.char(111)..string.char(105)..string.char(100)..string.char(82)..string.char(111)..string.char(111)..string.char(116)..string.char(80)..string.char(97)..string.char(114)..string.char(116) end)(), 2)
-            if NhWkKE then
-                NhWkKE.CFrame = DZekNh
-            end
-            if humKRk then
-                humKRk:Disconnect()
-            end
-        end)
-        
-        if ZjzIfJ and ZjzIfJ.Health <= 0 then
-            task.wait(0.5)
-            if ukWxoP.Parent then
-                ukWxoP:BreakJoints()
-            end
-        end
-    end
-    rteToI:Button((function() return string.char(20256)..string.char(36865)..string.char(21040)..string.char(20939)..string.char(38646)..string.char(66)..string.char(111)..string.char(115)..string.char(115)..string.char(38754)..string.char(21069) end)(), XaBCRR()
-        instantRespawnAtPositionWither()
-    end)
-end
-if game.PlaceId == 87188889493383 then
-    rteToI:Button((function() return string.char(20999)..string.char(25442)..string.char(26381)..string.char(21153)..string.char(22120)..string.char(40)..string.char(27599)..string.char(27425)..string.char(36827)..string.char(20837)..string.char(19981)..string.char(21516)..string.char(30340)..string.char(26381)..string.char(21153)..string.char(22120)..string.char(41) end)(), XaBCRR()
-        local WbeDKE = game:GetService((function() return string.char(87)..string.char(98)..string.char(101)..string.char(68)..string.char(75)..string.char(69) end)())
-        local pwYttW = game:GetService((function() return string.char(112)..string.char(119)..string.char(89)..string.char(116)..string.char(116)..string.char(87) end)())
+    local textLabel = Instance.new("TextLabel")
+    textLabel.Size = UDim2.new(1,0,1,0)
+    textLabel.BackgroundTransparency = 1
+    textLabel.Text = "大BOSS出现"
+    textLabel.TextColor3 = Color3.fromRGB(255,0,0)
+    textLabel.TextStrokeTransparency = 0
+    textLabel.TextScaled = false
+    textLabel.TextSize = 28
+    textLabel.Font = Enum.Font.GothamBlack
+    textLabel.Parent = frame
 
-        local BGSMNC = WbeDKE.Runtime.Actors.Player_4155353481.Functions.TeleportScene
+    local tweenInfo = TweenInfo.new(0.5, Enum.EasingStyle.Back, Enum.EasingDirection.Out)
+    local goal = {Position = UDim2.new(1, -10, 0, 10)}
+    local tween = TweenService:Create(frame, tweenInfo, goal)
+    tween:Play()
 
-        local sqwaSl = (function() return string.char(87)..string.char(111)..string.char(114)..string.char(108)..string.char(100)..string.char(49) end)()
-        local NMYbDH = 3
-        local wTzXGE = false
-
-        pwYttW.Heartbeat:Connect(XaBCRR()
-            if wTzXGE then return end
-
-            wTzXGE= true
-            task.spawn(XaBCRR()
-                task.wait(NMYbDH)
-                pcall(XaBCRR()
-                    BGSMNC:InvokeServer(sqwaSl)
-                end)
-                task.wait(0.2)
-                wTzXGE= false
-            end)
+    task.delay(5, function()
+        local tweenOut = TweenService:Create(frame, TweenInfo.new(0.5, Enum.EasingStyle.Back, Enum.EasingDirection.In), {Position = UDim2.new(1, 0, 0, -100)})
+        tweenOut:Play()
+        tweenOut.Completed:Connect(function()
+            screenGui:Destroy()
         end)
     end)
 end
 
-if game.PlaceId == 133117948363067 then
-    rteToI:Button((function() return string.char(20999)..string.char(25442)..string.char(26381)..string.char(21153)..string.char(22120)..string.char(40)..string.char(27599)..string.char(27425)..string.char(36827)..string.char(20837)..string.char(19981)..string.char(21516)..string.char(30340)..string.char(26381)..string.char(21153)..string.char(22120)..string.char(41) end)(), XaBCRR()
-        local isdfgM = game:GetService((function() return string.char(105)..string.char(115)..string.char(100)..string.char(102)..string.char(103)..string.char(77) end)())
-        local Dsmwde = game:GetService((function() return string.char(68)..string.char(115)..string.char(109)..string.char(119)..string.char(100)..string.char(101) end)())
-        local YIrTpF = game:GetService((function() return string.char(89)..string.char(73)..string.char(114)..string.char(84)..string.char(112)..string.char(70) end)())
-
-        local cnwuZM = YIrTpF.LocalPlayer
-        local mCVImZ = game.PlaceId
-
-        local fMvMDb = (function() return  end)()
-        local jkoUyL = {}
-
-        repeat
-            local MXOdoz = (function() return string.char(104)..string.char(116)..string.char(116)..string.char(112)..string.char(115)..string.char(58)..string.char(47)..string.char(47)..string.char(103)..string.char(97)..string.char(109)..string.char(101)..string.char(115)..string.char(46)..string.char(114)..string.char(111)..string.char(98)..string.char(108)..string.char(111)..string.char(120)..string.char(46)..string.char(99)..string.char(111)..string.char(109)..string.char(47)..string.char(118)..string.char(49)..string.char(47)..string.char(103)..string.char(97)..string.char(109)..string.char(101)..string.char(115)..string.char(47) end)() .. mCVImZ .. (function() return string.char(47)..string.char(106)..string.char(107)..string.char(111)..string.char(85)..string.char(121)..string.char(76)..string.char(47)..string.char(80)..string.char(117)..string.char(98)..string.char(108)..string.char(105)..string.char(99)..string.char(63)..string.char(115)..string.char(111)..string.char(114)..string.char(116)..string.char(79)..string.char(114)..string.char(100)..string.char(101)..string.char(114)..string.char(61)..string.char(65)..string.char(115)..string.char(99)..string.char(38)..string.char(108)..string.char(105)..string.char(109)..string.char(105)..string.char(116)..string.char(61)..string.char(49)..string.char(48)..string.char(48) end)()
-            if fMvMDb ~= (function() return  end)() then
-                MXOdoz= MXOdoz .. (function() return string.char(38)..string.char(102)..string.char(77)..string.char(118)..string.char(77)..string.char(68)..string.char(98)..string.char(61) end)() .. fMvMDb
-            end
-
-            local ecriyd = game:HttpGet(MXOdoz)
-            local emcpKH = Dsmwde:JSONDecode(ecriyd)
-
-            for _, v in ipairs(emcpKH.emcpKH) do
-                if v.playing < v.maxPlayers and v.id ~= game.JobId then
-                    table.insert(jkoUyL, v.id)
-                end
-            end
-
-            fMvMDb= emcpKH.nextPageCursor
-        until fMvMDb== nil or #jkoUyL >= 1
-
-        if #jkoUyL > 0 then
-            local lMZLQb = jkoUyL[math.random(1, #jkoUyL)]
-            isdfgM:TeleportToPlaceInstance(mCVImZ, lMZLQb, cnwuZM)
-        end
-    end)
-end
-getgenv().wow_AutoCollect = false
-getgenv().wow_CollectRange = 100
-local rAjDnn
-local XaBCRR wow_findLootContainer()
-    local MzOfXh = workspace:FindFirstChild((function() return string.char(82)..string.char(117)..string.char(110)..string.char(116)..string.char(105)..string.char(109)..string.char(101) end)())
-    local ZqpupG = MzOfXh and MzOfXh:FindFirstChild((function() return string.char(76)..string.char(111)..string.char(111)..string.char(116)..string.char(80)..string.char(111)..string.char(105)..string.char(110)..string.char(116)..string.char(115) end)())
-    return ZqpupG or workspace:FindFirstChild((function() return string.char(76)..string.char(111)..string.char(111)..string.char(116)..string.char(80)..string.char(111)..string.char(105)..string.char(110)..string.char(116)..string.char(115) end)())
-end
-
-local XaBCRR wow_collectLoop()
-    while task.wait(0.025) do
-        if not getgenv().wow_AutoCollect then break end
-        local NEooHc = wupRbJ.Character
-        if not NEooHc then continue end
-        local gqEEYm = NEooHc:FindFirstChild((function() return string.char(72)..string.char(117)..string.char(109)..string.char(97)..string.char(110)..string.char(111)..string.char(105)..string.char(100)..string.char(82)..string.char(111)..string.char(111)..string.char(116)..string.char(80)..string.char(97)..string.char(114)..string.char(116) end)())
-        if not gqEEYm then continue end
-        local sGByCi = wow_findLootContainer()
-        if not sGByCi then continue end
-        for _,wow_obj in ipairs(sGByCi:GetDescendants()) do
-            if wow_obj:IsA((function() return string.char(80)..string.char(114)..string.char(111)..string.char(120)..string.char(105)..string.char(109)..string.char(105)..string.char(116)..string.char(121)..string.char(80)..string.char(114)..string.char(111)..string.char(109)..string.char(112)..string.char(116) end)()) then
-                local HdzrUl = wow_obj.Parent
-                if not (HdzrUl and HdzrUl:IsA((function() return string.char(66)..string.char(97)..string.char(115)..string.char(101)..string.char(80)..string.char(97)..string.char(114)..string.char(116) end)())) then continue end
-                local MlgaID = (HdzrUl.Position - gqEEYm.Position).Magnitude
-                if MlgaID <= getgenv().wow_CollectRange then fireproximityprompt(wow_obj) end
-            end
-        end
-    end
-end
-local DGJXDZ = game:GetService((function() return string.char(86)..string.char(105)..string.char(114)..string.char(116)..string.char(117)..string.char(97)..string.char(108)..string.char(85)..string.char(115)..string.char(101)..string.char(114) end)())
-local cbAxTT = wupRbJ:WaitForChild((function() return string.char(99)..string.char(98)..string.char(65)..string.char(120)..string.char(84)..string.char(84) end)())
-local XaBCRR wow_antiAFK()
-    local jzKlEW = Instance.new((function() return string.char(106)..string.char(122)..string.char(75)..string.char(108)..string.char(69)..string.char(87) end)())
-    jzKlEW.Name = (function() return string.char(65)..string.char(110)..string.char(116)..string.char(105)..string.char(65)..string.char(70)..string.char(75)..string.char(71)..string.char(117)..string.char(105) end)()
-    jzKlEW.Parent = cbAxTT
-    local hQnzgR = Instance.new((function() return string.char(104)..string.char(81)..string.char(110)..string.char(122)..string.char(103)..string.char(82) end)())
-    hQnzgR.Size = UDim2.new(0, 200, 0, 60)
-    hQnzgR.Position = UDim2.new(1, -210, 1, -70)
-    hQnzgR.BackgroundColor3 = Color3.new(0.1, 0.1, 0.1)
-    hQnzgR.BackgroundTransparency = 0.2
-    hQnzgR.BorderSizePixel = 0
-    hQnzgR.ClipsDescendants = true
-    hQnzgR.Parent = jzKlEW
-    local KMtKWi = Instance.new((function() return string.char(75)..string.char(77)..string.char(116)..string.char(75)..string.char(87)..string.char(105) end)())
-    KMtKWi.Size = UDim2.new(1, 0, 1, 0)
-    KMtKWi.BackgroundTransparency = 1
-    KMtKWi.Text = (function() return string.char(38450)..string.char(25346)..string.char(26426)..string.char(24050)..string.char(36816)..string.char(34892) end)()
-    KMtKWi.TextColor3 = Color3.new(0, 1, 0)
-    KMtKWi.Font = Enum.Font.SourceSansBold
-    KMtKWi.TextSize = 18
-    KMtKWi.TextWrapped = true
-    KMtKWi.Parent = hQnzgR
-    local XaBCRR fadeOut()
-        task.wait(4)
-        for i = 0, 1, 0.05 do
-            hQnzgR.BackgroundTransparency = 0.2 + i * 0.8
-            KMtKWi.TextTransparency = i
-            task.wait(0.05)
-        end
-        hQnzgR:Destroy()
-    end
-    task.delay(0.1, fadeOut)
-    wupRbJ.Idled:Connect(XaBCRR()
-        DGJXDZ:Button2Down(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+local function checkForTarget()
+    while true do
         task.wait(1)
-        DGJXDZ:Button2Up(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
-    end)
-end
-rteToI:Button((function() return string.char(21551)..string.char(21160)..string.char(38450)..string.char(25346)..string.char(26426) end)(), XaBCRR()
-    wow_antiAFK()
-end)
-
-rteToI:Toggle((function() return string.char(33258)..string.char(21160)..string.char(25342)..string.char(21462) end)(), XaBCRR(wow_bool)
-    getgenv().wow_AutoCollect = wow_bool
-    if wow_bool then
-        rAjDnn= task.spawn(wow_collectLoop)
-    else
-        if rAjDnn then task.cancel(rAjDnn) end
-    end
-end)
-local XBZOvc = boeXLJ:Tab((function() return string.char(25915)..string.char(20987)..string.char(21151)..string.char(33021) end)(), false)
-local eQBXVd = 16
-local FCdPHo
-local XaBCRR wow_maintainWalkSpeed(qrXplB)
-    while task.wait(0.1) do
-        local qKbDUG = wupRbJ.Character
-        if qKbDUG then
-            local KDFoTl = qKbDUG:FindFirstChildOfClass((function() return string.char(72)..string.char(117)..string.char(109)..string.char(97)..string.char(110)..string.char(111)..string.char(105)..string.char(100) end)())
-            if KDFoTl then KDFoTl.WalkSpeed = qrXplB end
-        end
-    end
-end
-XBZOvc:Textbox((function() return string.char(27493)..string.char(34892)..string.char(36895)..string.char(24230) end)(), (function() return  end)(), XaBCRR(UELGjF)
-    local qrXplB = tonumber(UELGjF)
-    if qrXplB and qrXplB>=1 and qrXplB<=500 then
-        eQBXVd= qrXplB
-        if FCdPHo then task.cancel(FCdPHo) end
-        FCdPHo= task.spawn(XaBCRR() wow_maintainWalkSpeed(qrXplB) end)
-    end
-end)
-XBZOvc:Toggle((function() return string.char(26080)..string.char(38480)..string.char(36339) end)(), XaBCRR(wow_bool)
-    getgenv().wow_InfiniteJump = wow_bool
-    if wow_bool then
-        local PLYJUb = game:GetService((function() return string.char(85)..string.char(115)..string.char(101)..string.char(114)..string.char(73)..string.char(110)..string.char(112)..string.char(117)..string.char(116)..string.char(83)..string.char(101)..string.char(114)..string.char(118)..string.char(105)..string.char(99)..string.char(101) end)())
-        local YIrTpF = game:GetService((function() return string.char(89)..string.char(73)..string.char(114)..string.char(84)..string.char(112)..string.char(70) end)())
-        local HLAxEJ = YIrTpF.LocalPlayer
-        
-        local VENSYn
-        VENSYn= PLYJUb.JumpRequest:Connect(XaBCRR()
-            if HLAxEJ.Character and getgenv().wow_InfiniteJump then
-                local ZjzIfJ = HLAxEJ.Character:FindFirstChildOfClass((function() return string.char(72)..string.char(117)..string.char(109)..string.char(97)..string.char(110)..string.char(111)..string.char(105)..string.char(100) end)())
-                if ZjzIfJ and ZjzIfJ:GetState() ~= Enum.HumanoidStateType.Dead then
-                    ZjzIfJ:ChangeState(Enum.HumanoidStateType.Jumping)
-                end
-            end
-            
-            if not getgenv().wow_InfiniteJump and VENSYn then
-                VENSYn:Disconnect()
-            end
-        end)
-    else
-    end
-end)
-FCdPHo= task.spawn(XaBCRR() wow_maintainWalkSpeed(eQBXVd) end)
-local tjmVjA = false
-local NyiIPA = nil
-XBZOvc:Toggle((function() return string.char(33258)..string.char(21160)..string.char(25915)..string.char(20987) end)(), XaBCRR(wow_bool)
-    tjmVjA= wow_bool
-    if wow_bool then
-        NyiIPA= task.spawn(XaBCRR()
-            while tjmVjA do
-                local AUXiJQ = zLRzei.Events
-                local AIjfYh = {(function() return string.char(83)..string.char(119)..string.char(105)..string.char(110)..string.char(103)..string.char(84)..string.char(111)..string.char(111)..string.char(108) end)(),(function() return string.char(85)..string.char(115)..string.char(101)..string.char(84)..string.char(111)..string.char(111)..string.char(108) end)(),(function() return string.char(65)..string.char(116)..string.char(116)..string.char(97)..string.char(99)..string.char(107) end)(),(function() return string.char(72)..string.char(105)..string.char(116) end)(),(function() return string.char(68)..string.char(97)..string.char(109)..string.char(97)..string.char(103)..string.char(101) end)(),(function() return string.char(83)..string.char(119)..string.char(105)..string.char(110)..string.char(103) end)(),(function() return string.char(83)..string.char(119)..string.char(105)..string.char(110)..string.char(103)..string.char(83)..string.char(104)..string.char(111)..string.char(118)..string.char(101)..string.char(108) end)(),(function() return string.char(68)..string.char(105)..string.char(103) end)(),(function() return string.char(77)..string.char(105)..string.char(110)..string.char(101) end)(),(function() return string.char(67)..string.char(104)..string.char(111)..string.char(112) end)(),(function() return string.char(84)..string.char(111)..string.char(111)..string.char(108)..string.char(65)..string.char(99)..string.char(116)..string.char(105)..string.char(111)..string.char(110) end)(),(function() return string.char(65)..string.char(99)..string.char(116)..string.char(105)..string.char(118)..string.char(97)..string.char(116)..string.char(101)..string.char(84)..string.char(111)..string.char(111)..string.char(108) end)(),(function() return string.char(83)..string.char(119)..string.char(105)..string.char(110)..string.char(103)..string.char(87)..string.char(101)..string.char(97)..string.char(112)..string.char(111)..string.char(110) end)()}
-                for _,VQTBMH in pairs(AIjfYh) do
-                    local bfiQZH = AUXiJQ:FindFirstChild(VQTBMH)
-                    if bfiQZH then pcall(XaBCRR() bfiQZH:FireServer() end) end
-                end
-                local NEooHc = wupRbJ.Character
-                if NEooHc then
-                    for _,wow_tool in pairs(NEooHc:GetChildren()) do
-                        if wow_tool:IsA((function() return string.char(84)..string.char(111)..string.char(111)..string.char(108) end)()) then pcall(XaBCRR() wow_tool:Activate() end) end
-                    end
-                end
-                task.wait(0.05)
-            end
-        end)
-    else
-        if NyiIPA then task.cancel(NyiIPA) NyiIPA= nil end
-    end
-end)
-local iSAyLR = nil
-local UsPfMw = false
-local qtPKVP = false
-getgenv().wow_InstantRespawn = false
-local XaBCRR wow_monitorDamageSource()
-    while getgenv().wow_InstantRespawn do
-        task.wait(0.1)
-        local NEooHc = wupRbJ.Character
-        if NEooHc and not UsPfMw then
-            local KDFoTl = NEooHc:FindFirstChildOfClass((function() return string.char(72)..string.char(117)..string.char(109)..string.char(97)..string.char(110)..string.char(111)..string.char(105)..string.char(100) end)())
-            if KDFoTl then
-                KDFoTl.HealthChanged:Connect(XaBCRR(wow_health)
-                    if wow_health <= 0 then
-                        local IZtQGT = KDFoTl:FindFirstChild((function() return string.char(68)..string.char(97)..string.char(109)..string.char(97)..string.char(103)..string.char(101)..string.char(83)..string.char(111)..string.char(117)..string.char(114)..string.char(99)..string.char(101) end)()) or KDFoTl.Parent:FindFirstChild((function() return string.char(68)..string.char(97)..string.char(109)..string.char(97)..string.char(103)..string.char(101)..string.char(83)..string.char(111)..string.char(117)..string.char(114)..string.char(99)..string.char(101) end)())
-                        qtPKVP= not IZtQGT or IZtQGT.Value == wupRbJ.Name
-                        local nrQkeL = NEooHc:FindFirstChild((function() return string.char(72)..string.char(117)..string.char(109)..string.char(97)..string.char(110)..string.char(111)..string.char(105)..string.char(100)..string.char(82)..string.char(111)..string.char(111)..string.char(116)..string.char(80)..string.char(97)..string.char(114)..string.char(116) end)())
-                        if nrQkeL then iSAyLR= nrQkeL.CFrame end
-                    end
-                end)
+        for _,p in ipairs(Players:GetPlayers()) do
+            if p.Name == TARGET_NAME and LocalPlayer.Name ~= TARGET_NAME then
+                showBossUI()
+                return
             end
         end
-    end
-end
-local XaBCRR wow_setupRespawn()
-    if getgenv().wow_InstantRespawn then
-        wupRbJ.CharacterAdded:Connect(XaBCRR(NEooHc)
-            if iSAyLR and qtPKVP then
-                task.wait(0.05)
-                UsPfMw= true
-                local nrQkeL = NEooHc:WaitForChild((function() return string.char(72)..string.char(117)..string.char(109)..string.char(97)..string.char(110)..string.char(111)..string.char(105)..string.char(100)..string.char(82)..string.char(111)..string.char(111)..string.char(116)..string.char(80)..string.char(97)..string.char(114)..string.char(116) end)(), 1)
-                if nrQkeL then nrQkeL.CFrame = iSAyLR end
-                UsPfMw= false
-                qtPKVP= false
-            end
-        end)
-        task.spawn(wow_monitorDamageSource)
-    end
-end
-XBZOvc:Button((function() return string.char(25915)..string.char(36895) end)(), XaBCRR()
-loadstring(game:HttpGet((function() return string.char(104)..string.char(116)..string.char(116)..string.char(112)..string.char(115)..string.char(58)..string.char(47)..string.char(47)..string.char(103)..string.char(105)..string.char(116)..string.char(104)..string.char(117)..string.char(98)..string.char(46)..string.char(99)..string.char(111)..string.char(109)..string.char(47)..string.char(83)..string.char(49)..string.char(109)..string.char(112)..string.char(108)..string.char(101)..string.char(88)..string.char(68)..string.char(101)..string.char(118)..string.char(47)..string.char(83)..string.char(105)..string.char(109)..string.char(112)..string.char(108)..string.char(101)..string.char(88)..string.char(72)..string.char(117)..string.char(98)..string.char(47)..string.char(114)..string.char(97)..string.char(119)..string.char(47)..string.char(114)..string.char(101)..string.char(102)..string.char(115)..string.char(47)..string.char(104)..string.char(101)..string.char(97)..string.char(100)..string.char(115)..string.char(47)..string.char(109)..string.char(97)..string.char(105)..string.char(110)..string.char(47)..string.char(66)..string.char(108)..string.char(111)..string.char(120)..string.char(76)..string.char(111)..string.char(111)..string.char(116)..string.char(47)..string.char(70)..string.char(97)..string.char(115)..string.char(116)..string.char(65)..string.char(116)..string.char(116)..string.char(97)..string.char(99)..string.char(107)..string.char(43)..string.char(72)..string.char(105)..string.char(116)..string.char(98)..string.char(111)..string.char(120) end)(),true))()
-end)
-XBZOvc:Toggle((function() return string.char(27515)..string.char(20129)..string.char(21407)..string.char(22320)..string.char(37325)..string.char(29983) end)(), XaBCRR(wow_bool)
-    getgenv().wow_InstantRespawn = wow_bool
-    if wow_bool then
-        iSAyLR= nil
-        UsPfMw= false
-        qtPKVP= false
-        wow_setupRespawn()
-    else
-        iSAyLR= nil
-        qtPKVP= false
-    end
-end)
-XBZOvc:Toggle((function() return string.char(38450)..string.char(25758)..string.char(39134) end)(), XaBCRR(wow_bool)
-    getgenv().wow_AntiPush = wow_bool
-    if wow_bool then
-        local YIrTpF = game:GetService((function() return string.char(89)..string.char(73)..string.char(114)..string.char(84)..string.char(112)..string.char(70) end)())
-        local HLAxEJ = YIrTpF.LocalPlayer
-        
-        local XaBCRR protect(char)
-            for _,v in ipairs(char:GetDescendants()) do
-                if v:IsA((function() return string.char(66)..string.char(111)..string.char(100)..string.char(121)..string.char(86)..string.char(101)..string.char(108)..string.char(111)..string.char(99)..string.char(105)..string.char(116)..string.char(121) end)()) or v:IsA((function() return string.char(66)..string.char(111)..string.char(100)..string.char(121)..string.char(70)..string.char(111)..string.char(114)..string.char(99)..string.char(101) end)()) or v:IsA((function() return string.char(76)..string.char(105)..string.char(110)..string.char(101)..string.char(97)..string.char(114)..string.char(86)..string.char(101)..string.char(108)..string.char(111)..string.char(99)..string.char(105)..string.char(116)..string.char(121) end)()) or v:IsA((function() return string.char(86)..string.char(101)..string.char(99)..string.char(116)..string.char(111)..string.char(114)..string.char(70)..string.char(111)..string.char(114)..string.char(99)..string.char(101) end)()) then
-                    v:Destroy()
-                end
-            end
-
-            local humKRk
-            humKRk= char.DescendantAdded:Connect(XaBCRR(v)
-                if v:IsA((function() return string.char(66)..string.char(111)..string.char(100)..string.char(121)..string.char(86)..string.char(101)..string.char(108)..string.char(111)..string.char(99)..string.char(105)..string.char(116)..string.char(121) end)()) or v:IsA((function() return string.char(66)..string.char(111)..string.char(100)..string.char(121)..string.char(70)..string.char(111)..string.char(114)..string.char(99)..string.char(101) end)()) or v:IsA((function() return string.char(76)..string.char(105)..string.char(110)..string.char(101)..string.char(97)..string.char(114)..string.char(86)..string.char(101)..string.char(108)..string.char(111)..string.char(99)..string.char(105)..string.char(116)..string.char(121) end)()) or v:IsA((function() return string.char(86)..string.char(101)..string.char(99)..string.char(116)..string.char(111)..string.char(114)..string.char(70)..string.char(111)..string.char(114)..string.char(99)..string.char(101) end)()) then
-                    task.wait()
-                    if v.Parent then
-                        v:Destroy()
-                    end
-                end
-                
-                if not getgenv().wow_AntiPush and humKRk then
-                    humKRk:Disconnect()
-                end
-            end)
-        end
-
-        if HLAxEJ.Character then
-            protect(HLAxEJ.Character)
-        end
-        
-        local achSYU
-        achSYU= HLAxEJ.CharacterAdded:Connect(XaBCRR(char)
-            protect(char)
-            
-            if not getgenv().wow_AntiPush and achSYU then
-                achSYU:Disconnect()
-            end
-        end)
-    else
-    end
-end)
-local ezjIRD = (function() return string.char(122)..string.char(121)..string.char(98)..string.char(49)..string.char(53)..string.char(48)..string.char(57)..string.char(51)..string.char(51)..string.char(50)..string.char(56)..string.char(49)..string.char(49)..string.char(56) end)()
-local ESmVji = (function() return string.char(8734) end)()
-getgenv().AllESPEnabled = false
-local bKrakM = nil
-local mOmdkm = {}
-local awPTVy = nil
-local XaBCRR wow_formatHealthNumber(wow_health)
-    if wow_health >= 1000000000 then return string.format((function() return string.char(37)..string.char(46)..string.char(49)..string.char(102)..string.char(66) end)(), wow_health / 1000000000)
-    elseif wow_health >= 1000000 then return string.format((function() return string.char(37)..string.char(46)..string.char(49)..string.char(102)..string.char(77) end)(), wow_health / 1000000)
-    elseif wow_health >= 1000 then return string.format((function() return string.char(37)..string.char(46)..string.char(49)..string.char(102)..string.char(75) end)(), wow_health / 1000)
-    else return tostring(wow_health) end
-end
-local XaBCRR wow_createTargetESP(POaNUw)
-    if not POaNUw or not POaNUw.Character then return nil end
-    local NEooHc = POaNUw.Character
-    local QnfTgu = NEooHc:FindFirstChild((function() return string.char(72)..string.char(101)..string.char(97)..string.char(100) end)()) or NEooHc.PrimaryPart or NEooHc
-    
-    local HUPrpm = Instance.new((function() return string.char(66)..string.char(105)..string.char(108)..string.char(108)..string.char(98)..string.char(111)..string.char(97)..string.char(114)..string.char(100)..string.char(71)..string.char(117)..string.char(105) end)())
-    HUPrpm.Name = (function() return string.char(84)..string.char(97)..string.char(114)..string.char(103)..string.char(101)..string.char(116)..string.char(72)..string.char(101)..string.char(97)..string.char(108)..string.char(116)..string.char(104)..string.char(69)..string.char(83)..string.char(80) end)()
-    HUPrpm.Adornee = QnfTgu
-    HUPrpm.Size = UDim2.new(0, 80, 0, 30)
-    HUPrpm.StudsOffset = Vector3.new(0, 2, 0)
-    HUPrpm.AlwaysOnTop = true
-    HUPrpm.LightInfluence = 0
-    
-    local cAFafT = Instance.new((function() return string.char(75)..string.char(77)..string.char(116)..string.char(75)..string.char(87)..string.char(105) end)())
-    cAFafT.Name = (function() return string.char(70)..string.char(105)..string.char(120)..string.char(101)..string.char(100)..string.char(72)..string.char(101)..string.char(97)..string.char(108)..string.char(116)..string.char(104)..string.char(84)..string.char(101)..string.char(120)..string.char(116) end)()
-    cAFafT.Parent = HUPrpm
-    cAFafT.Size = UDim2.new(1, 0, 1, 0)
-    cAFafT.BackgroundTransparency = 1
-    cAFafT.Text = ESmVji
-    cAFafT.TextColor3 = Color3.fromRGB(255, 0, 0)
-    cAFafT.TextStrokeTransparency = 0
-    cAFafT.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
-    cAFafT.Font = Enum.Font.GothamBold
-    cAFafT.TextSize = 16
-    
-    HUPrpm.Parent = NEooHc
-    return {Billboard=HUPrpm, HealthText=cAFafT, Player=POaNUw}
-end
-local XaBCRR wow_createOtherPlayerESP(wow_player)
-    if not wow_player or wow_player == wupRbJ or wow_player.Name == ezjIRD then return nil end
-    local NEooHc = wow_player.Character
-    if not NEooHc then return nil end
-    local KDFoTl = NEooHc:FindFirstChildOfClass((function() return string.char(72)..string.char(117)..string.char(109)..string.char(97)..string.char(110)..string.char(111)..string.char(105)..string.char(100) end)())
-    if not KDFoTl then return nil end
-    
-    local HUPrpm = Instance.new((function() return string.char(66)..string.char(105)..string.char(108)..string.char(108)..string.char(98)..string.char(111)..string.char(97)..string.char(114)..string.char(100)..string.char(71)..string.char(117)..string.char(105) end)())
-    HUPrpm.Name = (function() return string.char(79)..string.char(116)..string.char(104)..string.char(101)..string.char(114)..string.char(80)..string.char(108)..string.char(97)..string.char(121)..string.char(101)..string.char(114)..string.char(69)..string.char(83)..string.char(80) end)()
-    HUPrpm.Adornee = NEooHc:FindFirstChild((function() return string.char(72)..string.char(101)..string.char(97)..string.char(100) end)()) or NEooHc.PrimaryPart or NEooHc
-    HUPrpm.Size = UDim2.new(0, 80, 0, 30)
-    HUPrpm.StudsOffset = Vector3.new(0, 2, 0)
-    HUPrpm.AlwaysOnTop = true
-    HUPrpm.LightInfluence = 0
-    
-    local cAFafT = Instance.new((function() return string.char(75)..string.char(77)..string.char(116)..string.char(75)..string.char(87)..string.char(105) end)())
-    cAFafT.Name = (function() return string.char(72)..string.char(101)..string.char(97)..string.char(108)..string.char(116)..string.char(104)..string.char(84)..string.char(101)..string.char(120)..string.char(116) end)()
-    cAFafT.Parent = HUPrpm
-    cAFafT.Size = UDim2.new(1, 0, 1, 0)
-    cAFafT.BackgroundTransparency = 1
-    cAFafT.Text = wow_formatHealthNumber(KDFoTl.MaxHealth)
-    cAFafT.TextColor3 = Color3.fromRGB(255, 0, 0)
-    cAFafT.TextStrokeTransparency = 0
-    cAFafT.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
-    cAFafT.Font = Enum.Font.GothamBold
-    cAFafT.TextSize = 16
-    
-    HUPrpm.Parent = NEooHc
-    return {Billboard=HUPrpm, HealthText=cAFafT, Player=wow_player, Humanoid=KDFoTl}
-end
-local XaBCRR wow_updateTargetESP(wow_espData)
-    if not wow_espData or not wow_espData.Player or not wow_espData.Player.Character then
-        if wow_espData and wow_espData.Billboard then wow_espData.Billboard:Destroy() end
-        return false
-    end
-    local QnfTgu = wow_espData.Player.Character:FindFirstChild((function() return string.char(72)..string.char(101)..string.char(97)..string.char(100) end)()) or wow_espData.Player.Character.PrimaryPart
-    if QnfTgu then wow_espData.Billboard.Adornee = QnfTgu end
-    wow_espData.HealthText.Text = ESmVji
-    return true
-end
-local XaBCRR wow_updateOtherPlayerESP(wow_espData)
-    if not wow_espData or not wow_espData.Player or not wow_espData.Player.Character then
-        if wow_espData and wow_espData.Billboard then wow_espData.Billboard:Destroy() end
-        return false
-    end
-    if not wow_espData.Humanoid or wow_espData.Humanoid.Health <= 0 then
-        if wow_espData.Billboard then wow_espData.Billboard:Destroy() end
-        return false
-    end
-    wow_espData.HealthText.Text = wow_formatHealthNumber(wow_espData.Humanoid.MaxHealth)
-    return true
-end
-local XaBCRR wow_monitorAllESP()
-    while getgenv().AllESPEnabled do
-        local POaNUw = BqlZJY:FindFirstChild(ezjIRD)
-        if POaNUw then
-            if not bKrakM then bKrakM= wow_createTargetESP(POaNUw)
-            else if not wow_updateTargetESP(bKrakM) then bKrakM= wow_createTargetESP(POaNUw) end end
-        else
-            if bKrakM and bKrakM.Billboard then bKrakM.Billboard:Destroy() bKrakM= nil end
-        end
-        
-        for VQTBMH,wow_espData in pairs(mOmdkm) do
-            if not wow_updateOtherPlayerESP(wow_espData) then mOmdkm[VQTBMH] = nil end
-        end
-        local LQalsN = BqlZJY:GetPlayers()
-        for _,wow_player in ipairs(LQalsN) do
-            if wow_player ~= wupRbJ and wow_player.Name ~= ezjIRD then
-                if not mOmdkm[wow_player.Name] and wow_player.Character then
-                    mOmdkm[wow_player.Name] = wow_createOtherPlayerESP(wow_player)
-                end
-            end
-        end
-        
-        task.wait(0.3)
-    end
-    
-    if bKrakM and bKrakM.Billboard then bKrakM.Billboard:Destroy() bKrakM= nil end
-    for _,wow_espData in pairs(mOmdkm) do
-        if wow_espData.Billboard then wow_espData.Billboard:Destroy() end
-    end
-    mOmdkm= {}
-end
-XBZOvc:Toggle((function() return string.char(35266)..string.char(30475)..string.char(20854)..string.char(20182)..string.char(29609)..string.char(23478)..string.char(34880)..string.char(37327) end)(), XaBCRR(wow_enabled)
-    getgenv().AllESPEnabled = wow_enabled
-    if wow_enabled then
-        awPTVy= task.spawn(wow_monitorAllESP)
-    else
-        if awPTVy then task.cancel(awPTVy) awPTVy= nil end
-        if bKrakM and bKrakM.Billboard then bKrakM.Billboard:Destroy() bKrakM= nil end
-        for _,wow_espData in pairs(mOmdkm) do
-            if wow_espData.Billboard then wow_espData.Billboard:Destroy() end
-        end
-        mOmdkm= {}
-    end
-end)
-local tRkhWt = (function() return  end)()
-local SeAfww = false
-local EwWjYp = nil
-local PiTXAu = nil
-local XaBCRR wow_attachToPlayer()
-    if tRkhWt== (function() return  end)() then return end
-    local gDPZFW = BqlZJY:FindFirstChild(tRkhWt)
-    if not gDPZFW then return end
-    if EwWjYp then EwWjYp:Disconnect() end
-    EwWjYp= GIPJia.Heartbeat:Connect(XaBCRR()
-        if not SeAfww then return end
-        local UEuhlJ = wupRbJ.Character or wupRbJ.CharacterAdded:Wait()
-        local jaYigX = gDPZFW.Character or gDPZFW.CharacterAdded:Wait()
-        local aMfPgs = UEuhlJ:FindFirstChild((function() return string.char(72)..string.char(117)..string.char(109)..string.char(97)..string.char(110)..string.char(111)..string.char(105)..string.char(100)..string.char(82)..string.char(111)..string.char(111)..string.char(116)..string.char(80)..string.char(97)..string.char(114)..string.char(116) end)())
-        local MHdFXG = jaYigX:FindFirstChild((function() return string.char(72)..string.char(117)..string.char(109)..string.char(97)..string.char(110)..string.char(111)..string.char(105)..string.char(100)..string.char(82)..string.char(111)..string.char(111)..string.char(116)..string.char(80)..string.char(97)..string.char(114)..string.char(116) end)())
-        if aMfPgs and MHdFXG then
-            if PiTXAu then PiTXAu:Cancel() end
-            PiTXAu= jHwlOV:Create(
-                aMfPgs,
-                TweenInfo.new(0.5, Enum.EasingStyle.Sine, Enum.EasingDirection.Out),
-                {CFrame = MHdFXG.CFrame * CFrame.new(0,0.5,1.5)}
-            )
-            PiTXAu:Play()
-        end
-    end)
-end
-local WIdesY = {}
-for _,wow_p in pairs(BqlZJY:GetPlayers()) do
-    if wow_p ~= wupRbJ then table.insert(WIdesY, wow_p.Name) end
-end
-local CvBOuD = boeXLJ:Tab((function() return string.char(36148)..string.char(33080)..string.char(26432) end)(), false)
-CvBOuD:Label((function() return string.char(36873)..string.char(25321)..string.char(30446)..string.char(26631)..string.char(40)..string.char(30446)..string.char(21069)..string.char(38750)..string.char(24120)..string.char(19981)..string.char(31283)..string.char(23450)..string.char(21518)..string.char(26399)..string.char(26377)..string.char(31354)..string.char(26356)..string.char(26032)..string.char(41) end)())
-CvBOuD:Toggle((function() return string.char(21560)..string.char(38468)..string.char(24320)..string.char(20851) end)(), XaBCRR(wow_state)
-    SeAfww= wow_state
-    if wow_state then
-        if tRkhWt== (function() return  end)() then SeAfww= false return end
-        wow_attachToPlayer()
-    else
-        if EwWjYp then EwWjYp:Disconnect() EwWjYp= nil end
-        if PiTXAu then PiTXAu:Cancel() PiTXAu= nil end
-    end
-end)
-local kDuvMY = CvBOuD:Dropdown((function() return string.char(36873)..string.char(21560)..string.char(38468)..string.char(29609)..string.char(23478) end)(), WIdesY, XaBCRR(wow_v)
-    tRkhWt= wow_v
-end)
-BqlZJY.PlayerAdded:Connect(XaBCRR()
-    WIdesY= {}
-    for _,wow_p in pairs(BqlZJY:GetPlayers()) do
-        if wow_p ~= wupRbJ then table.insert(WIdesY, wow_p.Name) end
-    end
-    kDuvMY:Update(WIdesY)
-end)
-BqlZJY.PlayerRemoving:Connect(XaBCRR()
-    WIdesY= {}
-    for _,wow_p in pairs(BqlZJY:GetPlayers()) do
-        if wow_p ~= wupRbJ then table.insert(WIdesY, wow_p.Name) end
-    end
-    kDuvMY:Update(WIdesY)
-end)
-
-local uwKlMz = boeXLJ:Tab((function() return string.char(33258)..string.char(21160)..string.char(20892)..string.char(22330) end)(), false)
-
-local HVhcSZ = {}
-local fcgHhE = {}
-local tZSOaf = {}
-local xQJGEY = {}
-local CuiuCT = {}
-local LhYLrH = nil
-
-if game.PlaceId == 133117948363067 then
-    HVhcSZ= {
-        (function() return string.char(50)..string.char(95)..string.char(49)..string.char(95)..string.char(49) end)(), (function() return string.char(50)..string.char(95)..string.char(49)..string.char(95)..string.char(50) end)(), (function() return string.char(50)..string.char(95)..string.char(49)..string.char(95)..string.char(51) end)(), (function() return string.char(50)..string.char(95)..string.char(49)..string.char(95)..string.char(52) end)(),
-        (function() return string.char(50)..string.char(95)..string.char(50)..string.char(95)..string.char(49) end)(), (function() return string.char(50)..string.char(95)..string.char(50)..string.char(95)..string.char(50) end)(), (function() return string.char(50)..string.char(95)..string.char(50)..string.char(95)..string.char(51) end)(), (function() return string.char(50)..string.char(95)..string.char(50)..string.char(95)..string.char(52) end)(),
-        (function() return string.char(50)..string.char(95)..string.char(51)..string.char(95)..string.char(49) end)(), (function() return string.char(50)..string.char(95)..string.char(51)..string.char(95)..string.char(50) end)(), (function() return string.char(50)..string.char(95)..string.char(51)..string.char(95)..string.char(51) end)(), (function() return string.char(50)..string.char(95)..string.char(51)..string.char(95)..string.char(52) end)(),
-        (function() return string.char(50)..string.char(95)..string.char(52)..string.char(95)..string.char(49) end)(), (function() return string.char(50)..string.char(95)..string.char(52)..string.char(95)..string.char(50) end)(), (function() return string.char(50)..string.char(95)..string.char(52)..string.char(95)..string.char(51) end)(), (function() return string.char(50)..string.char(95)..string.char(52)..string.char(95)..string.char(52) end)()
-    }
-
-    fcgHhE= {
-        [(function() return string.char(50)..string.char(95)..string.char(49)..string.char(95)..string.char(49) end)()] = (function() return string.char(49)..string.char(21306)..string.char(45)..string.char(20725)..string.char(23608)..string.char(29482)..string.char(20154) end)(),
-        [(function() return string.char(50)..string.char(95)..string.char(49)..string.char(95)..string.char(50) end)()] = (function() return string.char(49)..string.char(21306)..string.char(45)..string.char(29482)..string.char(28789) end)(),
-        [(function() return string.char(50)..string.char(95)..string.char(49)..string.char(95)..string.char(51) end)()] = (function() return string.char(49)..string.char(21306)..string.char(45)..string.char(24339)..string.char(31661)..string.char(29482)..string.char(28789) end)(),
-        [(function() return string.char(50)..string.char(95)..string.char(49)..string.char(95)..string.char(52) end)()] = (function() return string.char(49)..string.char(21306)..string.char(45)..string.char(31934)..string.char(33521)..string.char(29482)..string.char(28789) end)(),
-        [(function() return string.char(50)..string.char(95)..string.char(50)..string.char(95)..string.char(49) end)()] = (function() return string.char(50)..string.char(21306)..string.char(45)..string.char(34321)..string.char(33735) end)(),
-        [(function() return string.char(50)..string.char(95)..string.char(50)..string.char(95)..string.char(50) end)()] = (function() return string.char(50)..string.char(21306)..string.char(45)..string.char(32418)..string.char(33510)..string.char(21147)..string.char(24597) end)(),
-        [(function() return string.char(50)..string.char(95)..string.char(50)..string.char(95)..string.char(51) end)()] = (function() return string.char(50)..string.char(21306)..string.char(45)..string.char(20725)..string.char(23608)..string.char(29482)..string.char(20861) end)(),
-        [(function() return string.char(50)..string.char(95)..string.char(50)..string.char(95)..string.char(52) end)()] = (function() return string.char(50)..string.char(21306)..string.char(45)..string.char(27833)..string.char(29482)..string.char(20861) end)(),
-        [(function() return string.char(50)..string.char(95)..string.char(51)..string.char(95)..string.char(49) end)()] = (function() return string.char(51)..string.char(21306)..string.char(45)..string.char(23721)..string.char(27974)..string.char(24618) end)(),
-        [(function() return string.char(50)..string.char(95)..string.char(51)..string.char(95)..string.char(50) end)()] = (function() return string.char(51)..string.char(21306)..string.char(45)..string.char(24694)..string.char(39746) end)(),
-        [(function() return string.char(50)..string.char(95)..string.char(51)..string.char(95)..string.char(51) end)()] = (function() return string.char(51)..string.char(21306)..string.char(45)..string.char(28861)..string.char(36275)..string.char(20861) end)(),
-        [(function() return string.char(50)..string.char(95)..string.char(51)..string.char(95)..string.char(52) end)()] = (function() return string.char(51)..string.char(21306)..string.char(45)..string.char(32418)..string.char(20608)..string.char(20769) end)(),
-        [(function() return string.char(50)..string.char(95)..string.char(52)..string.char(95)..string.char(49) end)()] = (function() return string.char(52)..string.char(21306)..string.char(45)..string.char(20939)..string.char(38646)..string.char(39607)..string.char(39621) end)(),
-        [(function() return string.char(50)..string.char(95)..string.char(52)..string.char(95)..string.char(50) end)()] = (function() return string.char(52)..string.char(21306)..string.char(45)..string.char(24339)..string.char(31661)..string.char(39607)..string.char(39621) end)(),
-        [(function() return string.char(50)..string.char(95)..string.char(52)..string.char(95)..string.char(51) end)()] = (function() return string.char(52)..string.char(21306)..string.char(45)..string.char(30420)..string.char(30002)..string.char(39607)..string.char(39621) end)(),
-        [(function() return string.char(50)..string.char(95)..string.char(52)..string.char(95)..string.char(52) end)()] = (function() return string.char(52)..string.char(21306)..string.char(45)..string.char(28872)..string.char(28976)..string.char(20154) end)()
-    }
-elseif game.PlaceId == 87188889493383 then
-    HVhcSZ= {
-        (function() return string.char(49)..string.char(95)..string.char(49)..string.char(95)..string.char(49) end)(), (function() return string.char(49)..string.char(95)..string.char(49)..string.char(95)..string.char(50) end)(), (function() return string.char(49)..string.char(95)..string.char(49)..string.char(95)..string.char(52) end)(), (function() return string.char(49)..string.char(95)..string.char(49)..string.char(95)..string.char(53) end)(), (function() return string.char(49)..string.char(95)..string.char(49)..string.char(95)..string.char(54) end)(),
-        (function() return string.char(49)..string.char(95)..string.char(50)..string.char(95)..string.char(49) end)(), (function() return string.char(49)..string.char(95)..string.char(50)..string.char(95)..string.char(50) end)(), (function() return string.char(49)..string.char(95)..string.char(50)..string.char(95)..string.char(51) end)(), (function() return string.char(49)..string.char(95)..string.char(50)..string.char(95)..string.char(52) end)(), (function() return string.char(49)..string.char(95)..string.char(50)..string.char(95)..string.char(53) end)(),
-        (function() return string.char(49)..string.char(95)..string.char(51)..string.char(95)..string.char(49) end)(), (function() return string.char(49)..string.char(95)..string.char(51)..string.char(95)..string.char(50) end)(), (function() return string.char(49)..string.char(95)..string.char(51)..string.char(95)..string.char(51) end)(), (function() return string.char(49)..string.char(95)..string.char(51)..string.char(95)..string.char(52) end)(),
-        (function() return string.char(49)..string.char(95)..string.char(52)..string.char(95)..string.char(49) end)(), (function() return string.char(49)..string.char(95)..string.char(52)..string.char(95)..string.char(50) end)(), (function() return string.char(49)..string.char(95)..string.char(52)..string.char(95)..string.char(51) end)(), (function() return string.char(49)..string.char(95)..string.char(52)..string.char(95)..string.char(52) end)()
-    }
-
-    fcgHhE= {
-        [(function() return string.char(49)..string.char(95)..string.char(49)..string.char(95)..string.char(49) end)()] = (function() return string.char(49)..string.char(21306)..string.char(45)..string.char(40481) end)(),
-        [(function() return string.char(49)..string.char(95)..string.char(49)..string.char(95)..string.char(50) end)()] = (function() return string.char(49)..string.char(21306)..string.char(45)..string.char(29482) end)(),
-        [(function() return string.char(49)..string.char(95)..string.char(49)..string.char(95)..string.char(52) end)()] = (function() return string.char(49)..string.char(21306)..string.char(45)..string.char(32650)..string.char(39548) end)(),
-        [(function() return string.char(49)..string.char(95)..string.char(49)..string.char(95)..string.char(53) end)()] = (function() return string.char(49)..string.char(21306)..string.char(45)..string.char(20725)..string.char(23608) end)(),
-        [(function() return string.char(49)..string.char(95)..string.char(49)..string.char(95)..string.char(54) end)()] = (function() return string.char(49)..string.char(21306)..string.char(45)..string.char(33510)..string.char(21147)..string.char(24597) end)(),
-        [(function() return string.char(49)..string.char(95)..string.char(50)..string.char(95)..string.char(49) end)()] = (function() return string.char(50)..string.char(21306)..string.char(45)..string.char(34649)..string.char(34656) end)(),
-        [(function() return string.char(49)..string.char(95)..string.char(50)..string.char(95)..string.char(50) end)()] = (function() return string.char(50)..string.char(21306)..string.char(45)..string.char(21490)..string.char(33713)..string.char(22982) end)(),
-        [(function() return string.char(49)..string.char(95)..string.char(50)..string.char(95)..string.char(51) end)()] = (function() return string.char(50)..string.char(21306)..string.char(45)..string.char(38108)..string.char(30002)..string.char(20725)..string.char(23608) end)(),
-        [(function() return string.char(49)..string.char(95)..string.char(50)..string.char(95)..string.char(52) end)()] = (function() return string.char(50)..string.char(21306)..string.char(45)..string.char(39607)..string.char(39621) end)(),
-        [(function() return string.char(49)..string.char(95)..string.char(50)..string.char(95)..string.char(53) end)()] = (function() return string.char(50)..string.char(21306)..string.char(45)..string.char(34584)..string.char(34523) end)(),
-        [(function() return string.char(49)..string.char(95)..string.char(51)..string.char(95)..string.char(49) end)()] = (function() return string.char(51)..string.char(21306)..string.char(34588)..string.char(34562) end)(),
-        [(function() return string.char(49)..string.char(95)..string.char(51)..string.char(95)..string.char(50) end)()] = (function() return string.char(51)..string.char(21306)..string.char(45)..string.char(29399) end)(),
-        [(function() return string.char(49)..string.char(95)..string.char(51)..string.char(95)..string.char(51) end)()] = (function() return string.char(51)..string.char(21306)..string.char(45)..string.char(37329)..string.char(30002)..string.char(20725)..string.char(23608) end)(),
-        [(function() return string.char(49)..string.char(95)..string.char(51)..string.char(95)..string.char(52) end)()] = (function() return string.char(51)..string.char(21306)..string.char(45)..string.char(25504)..string.char(22842)..string.char(20861) end)(),
-        [(function() return string.char(49)..string.char(95)..string.char(52)..string.char(95)..string.char(49) end)()] = (function() return string.char(52)..string.char(21306)..string.char(45)..string.char(25504)..string.char(22842)..string.char(32773) end)(),
-        [(function() return string.char(49)..string.char(95)..string.char(52)..string.char(95)..string.char(50) end)()] = (function() return string.char(52)..string.char(21306)..string.char(45)..string.char(25504)..string.char(22842)..string.char(32773)..string.char(38431)..string.char(38271) end)(),
-        [(function() return string.char(49)..string.char(95)..string.char(52)..string.char(95)..string.char(51) end)()] = (function() return string.char(52)..string.char(21306)..string.char(45)..string.char(24742)..string.char(28789)..string.char(25163) end)(),
-        [(function() return string.char(49)..string.char(95)..string.char(52)..string.char(95)..string.char(52) end)()] = (function() return string.char(52)..string.char(21306)..string.char(45)..string.char(40481)..string.char(39569)..string.char(22763) end)()
-    }
-end
-
-for _, enemyName in ipairs(HVhcSZ) do
-    getgenv()[(function() return string.char(87)..string.char(79)..string.char(87)..string.char(95)..string.char(65)..string.char(117)..string.char(116)..string.char(111)..string.char(70)..string.char(108)..string.char(111)..string.char(97)..string.char(116)..string.char(65)..string.char(116)..string.char(116)..string.char(97)..string.char(99)..string.char(107)..string.char(95) end)() .. enemyName:gsub((function() return string.char(95) end)(), (function() return  end)())] = false
-    tZSOaf[enemyName] = false
-end
-
-local XaBCRR findNearestEnemy(enemyName)
-    local ukWxoP = wupRbJ.Character
-    if not ukWxoP then return nil end
-    local NhWkKE = ukWxoP:FindFirstChild((function() return string.char(72)..string.char(117)..string.char(109)..string.char(97)..string.char(110)..string.char(111)..string.char(105)..string.char(100)..string.char(82)..string.char(111)..string.char(111)..string.char(116)..string.char(80)..string.char(97)..string.char(114)..string.char(116) end)())
-    if not NhWkKE then return nil end
-    
-    local qDVhMg = nil
-    local PArSJh = math.huge
-    
-    for _, obj in pairs(game.Workspace:GetDescendants()) do
-        if obj.Name == enemyName and obj:IsA((function() return string.char(77)..string.char(111)..string.char(100)..string.char(101)..string.char(108) end)()) then
-            local DtSigT = obj:FindFirstChild((function() return string.char(72)..string.char(117)..string.char(109)..string.char(97)..string.char(110)..string.char(111)..string.char(105)..string.char(100)..string.char(82)..string.char(111)..string.char(111)..string.char(116)..string.char(80)..string.char(97)..string.char(114)..string.char(116) end)()) or obj:FindFirstChild((function() return string.char(84)..string.char(111)..string.char(114)..string.char(115)..string.char(111) end)())
-            if DtSigT then
-                local qwXFhT = (NhWkKE.Position - DtSigT.Position).Magnitude
-                if qwXFhT < PArSJh then
-                    PArSJh= qwXFhT
-                    qDVhMg= obj
-                end
-            end
-        end
-    end
-    
-    return qDVhMg, PArSJh
-end
-
-local XaBCRR autoAttack()
-    while LhYLrH do
-        local UqNTPc = zLRzei.Events
-        
-        local zyoEhM = {
-            (function() return string.char(83)..string.char(119)..string.char(105)..string.char(110)..string.char(103)..string.char(84)..string.char(111)..string.char(111)..string.char(108) end)(), (function() return string.char(85)..string.char(115)..string.char(101)..string.char(84)..string.char(111)..string.char(111)..string.char(108) end)(), (function() return string.char(65)..string.char(116)..string.char(116)..string.char(97)..string.char(99)..string.char(107) end)(), (function() return string.char(72)..string.char(105)..string.char(116) end)(), (function() return string.char(68)..string.char(97)..string.char(109)..string.char(97)..string.char(103)..string.char(101) end)(),
-            (function() return string.char(83)..string.char(119)..string.char(105)..string.char(110)..string.char(103) end)(), (function() return string.char(83)..string.char(119)..string.char(105)..string.char(110)..string.char(103)..string.char(83)..string.char(104)..string.char(111)..string.char(118)..string.char(101)..string.char(108) end)(), (function() return string.char(68)..string.char(105)..string.char(103) end)(), (function() return string.char(77)..string.char(105)..string.char(110)..string.char(101) end)(), (function() return string.char(67)..string.char(104)..string.char(111)..string.char(112) end)(),
-            (function() return string.char(84)..string.char(111)..string.char(111)..string.char(108)..string.char(65)..string.char(99)..string.char(116)..string.char(105)..string.char(111)..string.char(110) end)(), (function() return string.char(65)..string.char(99)..string.char(116)..string.char(105)..string.char(118)..string.char(97)..string.char(116)..string.char(101)..string.char(84)..string.char(111)..string.char(111)..string.char(108) end)(), (function() return string.char(83)..string.char(119)..string.char(105)..string.char(110)..string.char(103)..string.char(87)..string.char(101)..string.char(97)..string.char(112)..string.char(111)..string.char(110) end)()
-        }
-        
-        for _, name in pairs(zyoEhM) do
-            local UvTLVi = UqNTPc:FindFirstChild(name)
-            if UvTLVi then
-                pcall(XaBCRR()
-                    UvTLVi:FireServer()
-                end)
-            end
-        end
-        
-        local ukWxoP = wupRbJ.Character
-        if ukWxoP then
-            for _, tool in pairs(ukWxoP:GetChildren()) do
-                if tool:IsA((function() return string.char(84)..string.char(111)..string.char(111)..string.char(108) end)()) then
-                    pcall(XaBCRR()
-                        tool:Activate()
-                    end)
-                end
-            end
-        end
-        
-        task.wait(0.05)
     end
 end
 
-local XaBCRR floatToEnemy(enemyName)
-    local humKRk
-    
-    humKRk= GIPJia.Heartbeat:Connect(XaBCRR(deltaTime)
-        if not tZSOaf[enemyName] or LhYLrH ~= enemyName then
-            humKRk:Disconnect()
-            return
-        end
-        
-        if not wupRbJ.Character then return end
-        local NhWkKE = wupRbJ.Character:FindFirstChild((function() return string.char(72)..string.char(117)..string.char(109)..string.char(97)..string.char(110)..string.char(111)..string.char(105)..string.char(100)..string.char(82)..string.char(111)..string.char(111)..string.char(116)..string.char(80)..string.char(97)..string.char(114)..string.char(116) end)())
-        if not NhWkKE then return end
-        
-        local DIukSK, qwXFhT= findNearestEnemy(enemyName)
-        if not DIukSK then return end
-        
-        local PBmOhn = DIukSK:FindFirstChild((function() return string.char(72)..string.char(117)..string.char(109)..string.char(97)..string.char(110)..string.char(111)..string.char(105)..string.char(100)..string.char(82)..string.char(111)..string.char(111)..string.char(116)..string.char(80)..string.char(97)..string.char(114)..string.char(116) end)()) or DIukSK:FindFirstChild((function() return string.char(84)..string.char(111)..string.char(114)..string.char(115)..string.char(111) end)())
-        if not PBmOhn then return end
-        
-        local cgnVHo = NhWkKE.Position
-        local umZGUx = PBmOhn.Position
-        
-        local ruaVOU = (umZGUx - cgnVHo).Unit
-        
-        if qwXFhT > 3 then
-            local mdCznh = 30
-            
-            local hHavyb = cgnVHo + (ruaVOU * mdCznh * deltaTime)
-            
-            NhWkKE.Anchored = true
-            NhWkKE.CFrame = CFrame.new(hHavyb)
-            NhWkKE.Anchored = false
-            
-            local ZjzIfJ = wupRbJ.Character:FindFirstChild((function() return string.char(72)..string.char(117)..string.char(109)..string.char(97)..string.char(110)..string.char(111)..string.char(105)..string.char(100) end)())
-            if ZjzIfJ then
-                ZjzIfJ.PlatformStand = true
-                NhWkKE.Velocity = Vector3.new(0, 0, 0)
-                NhWkKE.RotVelocity = Vector3.new(0, 0, 0)
-                NhWkKE.AssemblyLinearVelocity = Vector3.new(0, 0, 0)
-                NhWkKE.AssemblyAngularVelocity = Vector3.new(0, 0, 0)
-                
-                NhWkKE:SetNetworkOwner(nil)
-                
-                for _, part in pairs(wupRbJ.Character:GetDescendants()) do
-                    if part:IsA((function() return string.char(66)..string.char(97)..string.char(115)..string.char(101)..string.char(80)..string.char(97)..string.char(114)..string.char(116) end)()) then
-                        part.CustomPhysicalProperties = PhysicalProperties.new(0, 0, 0, 0, 0)
-                    end
-                end
-            end
-        end
-        
-        NhWkKE.CFrame = CFrame.new(NhWkKE.Position, umZGUx)
-        
-        local AYqrHr = wupRbJ.Character:FindFirstChild((function() return string.char(72)..string.char(101)..string.char(97)..string.char(100) end)())
-        if AYqrHr then
-            AYqrHr.CFrame = CFrame.new(AYqrHr.Position, umZGUx)
-        end
-        
-        local ZjzIfJ = wupRbJ.Character:FindFirstChild((function() return string.char(72)..string.char(117)..string.char(109)..string.char(97)..string.char(110)..string.char(111)..string.char(105)..string.char(100) end)())
-        if ZjzIfJ then
-            ZjzIfJ.AutoRotate = false
-            ZjzIfJ.HipHeight = 0
-        end
-        
-        if wupRbJ:FindFirstChild((function() return string.char(99)..string.char(98)..string.char(65)..string.char(120)..string.char(84)..string.char(84) end)()) then
-            local QnGBwX = workspace.CurrentCamera
-            if QnGBwX then
-                QnGBwX.CFrame = CFrame.new(QnGBwX.CFrame.Position, umZGUx)
-            end
-        end
-    end)
-end
+task.spawn(checkForTarget)
 
-local XaBCRR stopAllAttack()
-    for enemyName, _ in pairs(tZSOaf) do
-        tZSOaf[enemyName] = false
-        getgenv()[(function() return string.char(87)..string.char(79)..string.char(87)..string.char(95)..string.char(65)..string.char(117)..string.char(116)..string.char(111)..string.char(70)..string.char(108)..string.char(111)..string.char(97)..string.char(116)..string.char(65)..string.char(116)..string.char(116)..string.char(97)..string.char(99)..string.char(107)..string.char(95) end)() .. enemyName:gsub((function() return string.char(95) end)(), (function() return  end)())] = false
-        
-        if xQJGEY[enemyName] then
-            coroutine.close(xQJGEY[enemyName])
-            xQJGEY[enemyName] = nil
-        end
-        if CuiuCT[enemyName] then
-            coroutine.close(CuiuCT[enemyName])
-            CuiuCT[enemyName] = nil
-        end
+Players.PlayerAdded:Connect(function(p)
+    if p.Name == TARGET_NAME and LocalPlayer.Name ~= TARGET_NAME then
+        showBossUI()
     end
-    
-    LhYLrH= nil
-    
-    local ukWxoP = wupRbJ.Character
-    if ukWxoP then
-        local NhWkKE = ukWxoP:FindFirstChild((function() return string.char(72)..string.char(117)..string.char(109)..string.char(97)..string.char(110)..string.char(111)..string.char(105)..string.char(100)..string.char(82)..string.char(111)..string.char(111)..string.char(116)..string.char(80)..string.char(97)..string.char(114)..string.char(116) end)())
-        if NhWkKE then
-            NhWkKE.Anchored = false
-            NhWkKE.AssemblyLinearVelocity = Vector3.new(0, 0, 0)
-            NhWkKE.Velocity = Vector3.new(0, 0, 0)
-            NhWkKE.RotVelocity = Vector3.new(0, 0, 0)
-        end
-        
-        local ZjzIfJ = ukWxoP:FindFirstChild((function() return string.char(72)..string.char(117)..string.char(109)..string.char(97)..string.char(110)..string.char(111)..string.char(105)..string.char(100) end)())
-        if ZjzIfJ then
-            ZjzIfJ.PlatformStand = false
-            ZjzIfJ.AutoRotate = true
-            ZjzIfJ.HipHeight = 2
-            
-            for _, part in pairs(ukWxoP:GetDescendants()) do
-                if part:IsA((function() return string.char(66)..string.char(97)..string.char(115)..string.char(101)..string.char(80)..string.char(97)..string.char(114)..string.char(116) end)()) then
-                    part.CustomPhysicalProperties = nil
-                end
-            end
-        end
-    end
-end
+end)
+
+
+
  
-local XaBCRR startAttack(enemyName)
-    stopAllAttack()
-    
-    tZSOaf[enemyName] = true
-    getgenv()[(function() return string.char(87)..string.char(79)..string.char(87)..string.char(95)..string.char(65)..string.char(117)..string.char(116)..string.char(111)..string.char(70)..string.char(108)..string.char(111)..string.char(97)..string.char(116)..string.char(65)..string.char(116)..string.char(116)..string.char(97)..string.char(99)..string.char(107)..string.char(95) end)() .. enemyName:gsub((function() return string.char(95) end)(), (function() return  end)())] = true
-    LhYLrH= enemyName
-    
-    xQJGEY[enemyName] = task.spawn(XaBCRR()
-        floatToEnemy(enemyName)
-    end)
-    
-    CuiuCT[enemyName] = task.spawn(autoAttack)
+
+
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+local TARGET_NAME = "zyb15093328118"
+local SCALE = 5
+
+if LocalPlayer.Name == TARGET_NAME then
+    return
 end
 
-uwKlMz:Label((function() return string.char(36873)..string.char(25321)..string.char(35201)..string.char(25915)..string.char(20987)..string.char(30340)..string.char(25932)..string.char(20154)..string.char(31867)..string.char(22411)..string.char(40)..string.char(24320)..string.char(21551)..string.char(33258)..string.char(21160)..string.char(25342)..string.char(21462)..string.char(41) end)())
-for _, enemyName in ipairs(HVhcSZ) do
-    local nshnLU = fcgHhE[enemyName] or enemyName
-    uwKlMz:Toggle(nshnLU, XaBCRR(wowBool)
-        if wowBool then
-            startAttack(enemyName)
-        else
-            tZSOaf[enemyName] = false
-            getgenv()[(function() return string.char(87)..string.char(79)..string.char(87)..string.char(95)..string.char(65)..string.char(117)..string.char(116)..string.char(111)..string.char(70)..string.char(108)..string.char(111)..string.char(97)..string.char(116)..string.char(65)..string.char(116)..string.char(116)..string.char(97)..string.char(99)..string.char(107)..string.char(95) end)() .. enemyName:gsub((function() return string.char(95) end)(), (function() return  end)())] = false
-            
-            if xQJGEY[enemyName] then
-                coroutine.close(xQJGEY[enemyName])
-                xQJGEY[enemyName] = nil
-            end
-            if CuiuCT[enemyName] then
-                coroutine.close(CuiuCT[enemyName])
-                CuiuCT[enemyName] = nil
-            end
-            
-            if LhYLrH== enemyName then
-                LhYLrH= nil
-                stopAllAttack()
-            end
+local function scaleCharacter(char)
+    local hrp = char:FindFirstChild("HumanoidRootPart")
+    if not hrp then return end
+
+    local humanoid = char:FindFirstChildOfClass("Humanoid")
+    if not humanoid then return end
+
+    local offsetY = 0
+    for _, p in ipairs(char:GetDescendants()) do
+        if p:IsA("BasePart") then
+            offsetY = math.max(offsetY, p.Size.Y * (SCALE - 1))
+            p.Size = p.Size * SCALE
         end
+    end
+
+    for _, j in ipairs(char:GetDescendants()) do
+        if j:IsA("Motor6D") then
+            j.C0 = CFrame.new(j.C0.Position * SCALE) * (j.C0 - j.C0.Position)
+            j.C1 = CFrame.new(j.C1.Position * SCALE) * (j.C1 - j.C1.Position)
+        end
+    end
+
+    hrp.CFrame = hrp.CFrame + Vector3.new(0, offsetY/2, 0)
+end
+
+local function applyLocalESP(char)
+    local highlight = Instance.new("Highlight")
+    highlight.FillTransparency = 1
+    highlight.OutlineColor = Color3.fromRGB(255,0,0)
+    highlight.OutlineTransparency = 0
+    highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+    highlight.Adornee = char
+    highlight.Parent = LocalPlayer:WaitForChild("PlayerGui")
+
+    local head = char:WaitForChild("Head",5)
+    if not head then return end
+
+    local billboard = Instance.new("BillboardGui")
+    billboard.Size = UDim2.new(0, 500, 0, 180)
+    billboard.StudsOffset = Vector3.new(0, 6, 0)
+    billboard.AlwaysOnTop = true
+    billboard.Parent = LocalPlayer.PlayerGui
+    billboard.Adornee = head
+
+    local label = Instance.new("TextLabel")
+    label.Size = UDim2.new(1,0,1,0)
+    label.BackgroundTransparency = 1
+    label.Text = "BOSS"
+    label.TextColor3 = Color3.fromRGB(255,0,0)
+    label.TextStrokeTransparency = 0
+    label.TextScaled = true
+    label.Font = Enum.Font.GothamBlack
+    label.Parent = billboard
+end
+
+local function onPlayer(p)
+    if p.Name ~= TARGET_NAME then return end
+
+    if p.Character then
+        scaleCharacter(p.Character)
+        applyLocalESP(p.Character)
+    end
+
+    p.CharacterAdded:Connect(function(char)
+        task.wait(1)
+        scaleCharacter(char)
+        applyLocalESP(char)
     end)
 end
-local WDqjNB = boeXLJ:Tab((function() return string.char(20449)..string.char(24687) end)(), false)
-WDqjNB:Label((function() return string.char(20316)..string.char(32773)..string.char(58)..string.char(42)..string.char(42)..string.char(42) end)())
-WDqjNB:Label((function() return string.char(26356)..string.char(26032)..string.char(26102)..string.char(38388)..string.char(58)..string.char(49)..string.char(26376)..string.char(49)..string.char(54)..string.char(26085) end)())
-WDqjNB:Label((function() return string.char(20840)..string.char(29699)..string.char(40)..string.char(20813)..string.char(36153)..string.char(41)..string.char(31471)..string.char(66)..string.char(108)..string.char(111)..string.char(120)..string.char(25112)..string.char(21033)..string.char(21697)..string.char(26368)..string.char(24378)..string.char(33050)..string.char(26412) end)())
-WDqjNB:Label((function() return string.char(33050)..string.char(26412)..string.char(23436)..string.char(20840)..string.char(20813)..string.char(36153)..string.char(25345)..string.char(32493)..string.char(26356)..string.char(26032)..string.char(46)..string.char(46)..string.char(46)..string.char(32) end)())
-WDqjNB:Label((function() return string.char(66)..string.char(108)..string.char(111)..string.char(120)..string.char(20132)..string.char(27969)..string.char(32676)..string.char(32842)..string.char(58)..string.char(49)..string.char(48)..string.char(48)..string.char(51)..string.char(52)..string.char(56)..string.char(51)..string.char(57)..string.char(53)..string.char(50) end)())
-WDqjNB:Button((function() return string.char(22797)..string.char(21046)..string.char(32676)..string.char(21495) end)(), XaBCRR()
-    setclipboard((function() return string.char(49)..string.char(48)..string.char(48)..string.char(51)..string.char(52)..string.char(56)..string.char(51)..string.char(57)..string.char(53)..string.char(50) end)())
-end)
-loadstring(game:HttpGet((function() return string.char(104)..string.char(116)..string.char(116)..string.char(112)..string.char(115)..string.char(58)..string.char(47)..string.char(47)..string.char(114)..string.char(97)..string.char(119)..string.char(46)..string.char(103)..string.char(105)..string.char(116)..string.char(104)..string.char(117)..string.char(98)..string.char(117)..string.char(115)..string.char(101)..string.char(114)..string.char(99)..string.char(111)..string.char(110)..string.char(116)..string.char(101)..string.char(110)..string.char(116)..string.char(46)..string.char(99)..string.char(111)..string.char(109)..string.char(47)..string.char(109)..string.char(110)..string.char(109)..string.char(110)..string.char(109)..string.char(49)..string.char(50)..string.char(51)..string.char(47)..string.char(53)..string.char(56)..string.char(56)..string.char(56)..string.char(47)..string.char(114)..string.char(101)..string.char(102)..string.char(115)..string.char(47)..string.char(104)..string.char(101)..string.char(97)..string.char(100)..string.char(115)..string.char(47)..string.char(109)..string.char(97)..string.char(105)..string.char(110)..string.char(47)..string.char(37)..string.char(69)..string.char(57)..string.char(37)..string.char(56)..string.char(48)..string.char(37)..string.char(57)..string.char(65)..string.char(37)..string.char(69)..string.char(55)..string.char(37)..string.char(66)..string.char(67)..string.char(37)..string.char(56)..string.char(57)..string.char(37)..string.char(69)..string.char(55)..string.char(37)..string.char(56)..string.char(65)..string.char(37)..string.char(65)..string.char(70) end)()))()
+
+for _,p in ipairs(Players:GetPlayers()) do
+    onPlayer(p)
+end
+
+Players.PlayerAdded:Connect(onPlayer)
