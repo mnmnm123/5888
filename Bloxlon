@@ -78,7 +78,7 @@ function Library:Create(xHubName,xGameName)
     MainStroke.Name = "MainStroke"
     MainStroke.Parent = Main
     MainStroke.Color = Color3.fromRGB(0, 255, 0)
-    MainStroke.Thickness = 1.5
+    MainStroke.Thickness = 1.3
     MainStroke.LineJoinMode = Enum.LineJoinMode.Round
     MainStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
     
@@ -232,7 +232,7 @@ function Library:Create(xHubName,xGameName)
 
     FloatStroke.Name = "FloatStroke"
     FloatStroke.Parent = FloatFrame
-    FloatStroke.Color = Color3.fromRGB(255, 255, 0)
+    FloatStroke.Color = Color3.fromRGB(0, 0, 0)
     FloatStroke.Thickness = 2
     FloatStroke.LineJoinMode = Enum.LineJoinMode.Round
 
