@@ -220,7 +220,7 @@ FloatFrame.Name = "FloatWindowToggleFrame"
 FloatFrame.Parent = ScreenGui
 FloatFrame.Position = UDim2.new(0.02, 0, 0.5, 0)
 FloatFrame.Size = UDim2.new(0, 60, 0, 60)
-FloatFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+FloatFrame.BackgroundColor3 = Color3.fromRGB(50, 150, 50)
 
 FloatFrameCorner.CornerRadius = UDim.new(0.5, 0)
 FloatFrameCorner.Parent = FloatFrame
@@ -231,63 +231,50 @@ FloatStroke.Color = Color3.fromRGB(0, 0, 0)
 FloatStroke.Thickness = 2
 FloatStroke.LineJoinMode = Enum.LineJoinMode.Round
 
-local FloatBg = Instance.new("Frame")
-FloatBg.Name = "FloatBg"
-FloatBg.Parent = FloatFrame
-FloatBg.BackgroundColor3 = Color3.fromRGB(31, 30, 46)
-FloatBg.BackgroundTransparency = 0
-FloatBg.BorderSizePixel = 0
-FloatBg.Size = UDim2.new(1, 0, 1, 0)
-FloatBg.ZIndex = 0
-
-local FloatBgCorner = Instance.new("UICorner")
-FloatBgCorner.CornerRadius = UDim.new(0.5, 0)
-FloatBgCorner.Parent = FloatBg
-
-local FloatBgLines = Instance.new("Frame")
-FloatBgLines.Name = "FloatBgLines"
-FloatBgLines.Parent = FloatBg
-FloatBgLines.BackgroundTransparency = 1
-FloatBgLines.Size = UDim2.new(1, 0, 1, 0)
-FloatBgLines.ZIndex = 1
-
-local nodes = {}
+local particles = {}
 local connections = {}
-local nodeCount = 12
-local maxDist = 40
+local nodeCount = 15
+local maxDist = 35
 
-for i = 1, nodeCount do
-    local node = Instance.new("Frame")
-    node.Name = "Node"..i
-    node.Parent = FloatBgLines
-    node.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    node.BorderSizePixel = 0
-    node.Size = UDim2.new(0, 2, 0, 2)
-    node.ZIndex = 2
+local function createParticles(parentBgColor)
+    for _, particle in ipairs(particles) do
+        particle.frame:Destroy()
+    end
+    particles = {}
     
-    local startX = math.random(10, 50)
-    local startY = math.random(10, 50)
-    local speedX = math.random(-20, 20) / 100
-    local speedY = math.random(-20, 20) / 100
-    
-    node.Position = UDim2.new(0, startX, 0, startY)
-    nodes[i] = {
-        frame = node,
-        x = startX,
-        y = startY,
-        speedX = speedX,
-        speedY = speedY
-    }
+    for i = 1, nodeCount do
+        local particle = Instance.new("Frame")
+        particle.Name = "Particle"..i
+        particle.Parent = FloatFrame
+        particle.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+        particle.BorderSizePixel = 0
+        particle.Size = UDim2.new(0, 2, 0, 2)
+        particle.ZIndex = 5
+        
+        local startX = math.random(8, 52)
+        local startY = math.random(8, 52)
+        local speedX = (math.random() * 0.3 - 0.15)
+        local speedY = (math.random() * 0.3 - 0.15)
+        
+        particle.Position = UDim2.new(0, startX, 0, startY)
+        particles[i] = {
+            frame = particle,
+            x = startX,
+            y = startY,
+            speedX = speedX,
+            speedY = speedY
+        }
+    end
 end
 
-local function drawConnection(x1, y1, x2, y2, distance)
+local function drawConnection(x1, y1, x2, y2, distance, parentBgColor)
     local connection = Instance.new("Frame")
     connection.Name = "Connection"
-    connection.Parent = FloatBgLines
-    connection.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    connection.BackgroundTransparency = 1 - (distance / maxDist)
+    connection.Parent = FloatFrame
+    connection.BackgroundColor3 = parentBgColor == Color3.fromRGB(200, 50, 50) and Color3.fromRGB(230, 100, 100) or Color3.fromRGB(80, 180, 80)
+    connection.BackgroundTransparency = 0.7 - (distance / maxDist) * 0.7
     connection.BorderSizePixel = 0
-    connection.ZIndex = 1
+    connection.ZIndex = 4
     
     local centerX = (x1 + x2) / 2
     local centerY = (y1 + y2) / 2
@@ -308,42 +295,44 @@ spawn(function()
         end
         connections = {}
         
-        for i = 1, #nodes do
-            local node = nodes[i]
+        local parentBgColor = FloatFrame.BackgroundColor3
+        
+        for i = 1, #particles do
+            local particle = particles[i]
             
-            node.x = node.x + node.speedX
-            node.y = node.y + node.speedY
+            particle.x = particle.x + particle.speedX
+            particle.y = particle.y + particle.speedY
             
-            if node.x <= 5 then
-                node.x = 5
-                node.speedX = math.abs(node.speedX)
-            elseif node.x >= 55 then
-                node.x = 55
-                node.speedX = -math.abs(node.speedX)
+            if particle.x <= 8 then
+                particle.x = 8
+                particle.speedX = math.abs(particle.speedX)
+            elseif particle.x >= 52 then
+                particle.x = 52
+                particle.speedX = -math.abs(particle.speedX)
             end
             
-            if node.y <= 5 then
-                node.y = 5
-                node.speedY = math.abs(node.speedY)
-            elseif node.y >= 55 then
-                node.y = 55
-                node.speedY = -math.abs(node.speedY)
+            if particle.y <= 8 then
+                particle.y = 8
+                particle.speedY = math.abs(particle.speedY)
+            elseif particle.y >= 52 then
+                particle.y = 52
+                particle.speedY = -math.abs(particle.speedY)
             end
             
-            node.frame.Position = UDim2.new(0, node.x, 0, node.y)
+            particle.frame.Position = UDim2.new(0, particle.x, 0, particle.y)
             
-            for j = i + 1, #nodes do
-                local otherNode = nodes[j]
-                local dx = node.x - otherNode.x
-                local dy = node.y - otherNode.y
+            for j = i + 1, #particles do
+                local otherParticle = particles[j]
+                local dx = particle.x - otherParticle.x
+                local dy = particle.y - otherParticle.y
                 local distance = math.sqrt(dx*dx + dy*dy)
                 
                 if distance < maxDist then
-                    drawConnection(node.x, node.y, otherNode.x, otherNode.y, distance)
+                    drawConnection(particle.x, particle.y, otherParticle.x, otherParticle.y, distance, parentBgColor)
                 end
             end
         end
-        wait(0.1)
+        wait(0.08)
     end
 end)
 
@@ -351,13 +340,13 @@ FloatToggle.Name = "FloatWindowToggle"
 FloatToggle.Parent = FloatFrame
 FloatToggle.Position = UDim2.new(0, 0, 0, 0)
 FloatToggle.Size = UDim2.new(0, 60, 0, 60)
-FloatToggle.BackgroundColor3 = Color3.fromRGB(31, 30, 46)
+FloatToggle.BackgroundColor3 = Color3.fromRGB(50, 150, 50)
 FloatToggle.Text = ""
 FloatToggle.TextColor3 = Color3.fromRGB(255,255,255)
 FloatToggle.TextScaled = true
 FloatToggle.TextSize = 14
 FloatToggle.Font = Enum.Font.GothamBold
-FloatToggle.ZIndex = 2
+FloatToggle.ZIndex = 6
 
 FloatCorner.CornerRadius = UDim.new(0.5, 0)
 FloatCorner.Parent = FloatToggle
@@ -396,31 +385,62 @@ end)
 
 FloatToggle.MouseButton1Click:Connect(function()
     Main.Visible = not Main.Visible
+    if Main.Visible then
+        FloatToggle.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
+        FloatFrame.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
+        createParticles(FloatFrame.BackgroundColor3)
+    else
+        FloatToggle.BackgroundColor3 = Color3.fromRGB(50, 150, 50)
+        FloatFrame.BackgroundColor3 = Color3.fromRGB(50, 150, 50)
+        createParticles(FloatFrame.BackgroundColor3)
+    end
 end)
 
 FloatToggle.MouseEnter:Connect(function()
-    game:GetService("TweenService"):Create(FloatFrame, TweenInfo.new(0.1), {
-        Size = UDim2.new(0, 63, 0, 63)
-    }):Play()
-    game:GetService("TweenService"):Create(FloatToggle, TweenInfo.new(0.1), {
-        Size = UDim2.new(0, 63, 0, 63)
-    }):Play()
-    game:GetService("TweenService"):Create(FloatBg, TweenInfo.new(0.1), {
-        Size = UDim2.new(0, 63, 0, 63)
-    }):Play()
+    if Main.Visible then
+        game:GetService("TweenService"):Create(FloatFrame, TweenInfo.new(0.1), {
+            BackgroundColor3 = Color3.fromRGB(220, 70, 70),
+            Size = UDim2.new(0, 63, 0, 63)
+        }):Play()
+        game:GetService("TweenService"):Create(FloatToggle, TweenInfo.new(0.1), {
+            BackgroundColor3 = Color3.fromRGB(220, 70, 70),
+            Size = UDim2.new(0, 63, 0, 63)
+        }):Play()
+    else
+        game:GetService("TweenService"):Create(FloatFrame, TweenInfo.new(0.1), {
+            BackgroundColor3 = Color3.fromRGB(70, 170, 70),
+            Size = UDim2.new(0, 63, 0, 63)
+        }):Play()
+        game:GetService("TweenService"):Create(FloatToggle, TweenInfo.new(0.1), {
+            BackgroundColor3 = Color3.fromRGB(70, 170, 70),
+            Size = UDim2.new(0, 63, 0, 63)
+        }):Play()
+    end
 end)
 
 FloatToggle.MouseLeave:Connect(function()
-    game:GetService("TweenService"):Create(FloatFrame, TweenInfo.new(0.1), {
-        Size = UDim2.new(0, 60, 0, 60)
-    }):Play()
-    game:GetService("TweenService"):Create(FloatToggle, TweenInfo.new(0.1), {
-        Size = UDim2.new(0, 60, 0, 60)
-    }):Play()
-    game:GetService("TweenService"):Create(FloatBg, TweenInfo.new(0.1), {
-        Size = UDim2.new(0, 60, 0, 60)
-    }):Play()
+    if Main.Visible then
+        game:GetService("TweenService"):Create(FloatFrame, TweenInfo.new(0.1), {
+            BackgroundColor3 = Color3.fromRGB(200, 50, 50),
+            Size = UDim2.new(0, 60, 0, 60)
+        }):Play()
+        game:GetService("TweenService"):Create(FloatToggle, TweenInfo.new(0.1), {
+            BackgroundColor3 = Color3.fromRGB(200, 50, 50),
+            Size = UDim2.new(0, 60, 0, 60)
+        }):Play()
+    else
+        game:GetService("TweenService"):Create(FloatFrame, TweenInfo.new(0.1), {
+            BackgroundColor3 = Color3.fromRGB(50, 150, 50),
+            Size = UDim2.new(0, 60, 0, 60)
+        }):Play()
+        game:GetService("TweenService"):Create(FloatToggle, TweenInfo.new(0.1), {
+            BackgroundColor3 = Color3.fromRGB(50, 150, 50),
+            Size = UDim2.new(0, 60, 0, 60)
+        }):Play()
+    end
 end)
+
+createParticles(FloatFrame.BackgroundColor3)
 
     local xTabs = {}
     
