@@ -220,21 +220,21 @@ FloatFrame.Name = "FloatWindowToggleFrame"
 FloatFrame.Parent = ScreenGui
 FloatFrame.Position = UDim2.new(0.02, 0, 0.5, 0)
 FloatFrame.Size = UDim2.new(0, 60, 0, 60)
-FloatFrame.BackgroundColor3 = Color3.fromRGB(15, 15, 20)
+FloatFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
 
 FloatFrameCorner.CornerRadius = UDim.new(0.5, 0)
 FloatFrameCorner.Parent = FloatFrame
 
 FloatStroke.Name = "FloatStroke"
 FloatStroke.Parent = FloatFrame
-FloatStroke.Color = Color3.fromRGB(0, 255, 0)
+FloatStroke.Color = Color3.fromRGB(0, 0, 0)
 FloatStroke.Thickness = 2
 FloatStroke.LineJoinMode = Enum.LineJoinMode.Round
 
 local FloatBg = Instance.new("Frame")
 FloatBg.Name = "FloatBg"
 FloatBg.Parent = FloatFrame
-FloatBg.BackgroundColor3 = Color3.fromRGB(15, 15, 20)
+FloatBg.BackgroundColor3 = Color3.fromRGB(31, 30, 46)
 FloatBg.BackgroundTransparency = 0
 FloatBg.BorderSizePixel = 0
 FloatBg.Size = UDim2.new(1, 0, 1, 0)
@@ -251,61 +251,99 @@ FloatBgLines.BackgroundTransparency = 1
 FloatBgLines.Size = UDim2.new(1, 0, 1, 0)
 FloatBgLines.ZIndex = 1
 
-local movingDots = {}
-local dotPositions = {}
+local nodes = {}
+local connections = {}
+local nodeCount = 12
+local maxDist = 40
 
-for i = 1, 8 do
-    local dot = Instance.new("Frame")
-    dot.Name = "Dot"..i
-    dot.Parent = FloatBgLines
-    dot.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-    dot.BorderSizePixel = 0
-    dot.Size = UDim2.new(0, 2, 0, 2)
-    dot.ZIndex = 1
+for i = 1, nodeCount do
+    local node = Instance.new("Frame")
+    node.Name = "Node"..i
+    node.Parent = FloatBgLines
+    node.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    node.BorderSizePixel = 0
+    node.Size = UDim2.new(0, 2, 0, 2)
+    node.ZIndex = 2
     
-    local startX = math.random(5, 55)
-    local startY = math.random(5, 55)
-    local speedX = math.random(-10, 10) / 100
-    local speedY = math.random(-10, 10) / 100
+    local startX = math.random(10, 50)
+    local startY = math.random(10, 50)
+    local speedX = math.random(-20, 20) / 100
+    local speedY = math.random(-20, 20) / 100
     
-    dot.Position = UDim2.new(0, startX, 0, startY)
-    table.insert(movingDots, dot)
-    table.insert(dotPositions, {x = startX, y = startY, speedX = speedX, speedY = speedY})
+    node.Position = UDim2.new(0, startX, 0, startY)
+    nodes[i] = {
+        frame = node,
+        x = startX,
+        y = startY,
+        speedX = speedX,
+        speedY = speedY
+    }
+end
+
+local function drawConnection(x1, y1, x2, y2, distance)
+    local connection = Instance.new("Frame")
+    connection.Name = "Connection"
+    connection.Parent = FloatBgLines
+    connection.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    connection.BackgroundTransparency = 1 - (distance / maxDist)
+    connection.BorderSizePixel = 0
+    connection.ZIndex = 1
+    
+    local centerX = (x1 + x2) / 2
+    local centerY = (y1 + y2) / 2
+    local length = math.sqrt((x2 - x1)^2 + (y2 - y1)^2)
+    local angle = math.atan2(y2 - y1, x2 - x1)
+    
+    connection.Position = UDim2.new(0, centerX - length/2, 0, centerY)
+    connection.Size = UDim2.new(0, length, 0, 1)
+    connection.Rotation = math.deg(angle)
+    
+    table.insert(connections, connection)
 end
 
 spawn(function()
     while true do
-        for i, dot in ipairs(movingDots) do
-            local pos = dotPositions[i]
-            
-            pos.x = pos.x + pos.speedX
-            pos.y = pos.y + pos.speedY
-            
-            if pos.x <= 5 then
-                pos.x = 5
-                pos.speedX = math.abs(pos.speedX)
-            elseif pos.x >= 55 then
-                pos.x = 55
-                pos.speedX = -math.abs(pos.speedX)
-            end
-            
-            if pos.y <= 5 then
-                pos.y = 5
-                pos.speedY = math.abs(pos.speedY)
-            elseif pos.y >= 55 then
-                pos.y = 55
-                pos.speedY = -math.abs(pos.speedY)
-            end
-            
-            dot.Position = UDim2.new(0, pos.x, 0, pos.y)
-            
-            dotPositions[i].speedX = dotPositions[i].speedX + (math.random(-5, 5) / 1000)
-            dotPositions[i].speedY = dotPositions[i].speedY + (math.random(-5, 5) / 1000)
-            
-            dotPositions[i].speedX = math.clamp(dotPositions[i].speedX, -0.3, 0.3)
-            dotPositions[i].speedY = math.clamp(dotPositions[i].speedY, -0.3, 0.3)
+        for _, conn in ipairs(connections) do
+            conn:Destroy()
         end
-        wait(0.03)
+        connections = {}
+        
+        for i = 1, #nodes do
+            local node = nodes[i]
+            
+            node.x = node.x + node.speedX
+            node.y = node.y + node.speedY
+            
+            if node.x <= 5 then
+                node.x = 5
+                node.speedX = math.abs(node.speedX)
+            elseif node.x >= 55 then
+                node.x = 55
+                node.speedX = -math.abs(node.speedX)
+            end
+            
+            if node.y <= 5 then
+                node.y = 5
+                node.speedY = math.abs(node.speedY)
+            elseif node.y >= 55 then
+                node.y = 55
+                node.speedY = -math.abs(node.speedY)
+            end
+            
+            node.frame.Position = UDim2.new(0, node.x, 0, node.y)
+            
+            for j = i + 1, #nodes do
+                local otherNode = nodes[j]
+                local dx = node.x - otherNode.x
+                local dy = node.y - otherNode.y
+                local distance = math.sqrt(dx*dx + dy*dy)
+                
+                if distance < maxDist then
+                    drawConnection(node.x, node.y, otherNode.x, otherNode.y, distance)
+                end
+            end
+        end
+        wait(0.1)
     end
 end)
 
@@ -313,7 +351,7 @@ FloatToggle.Name = "FloatWindowToggle"
 FloatToggle.Parent = FloatFrame
 FloatToggle.Position = UDim2.new(0, 0, 0, 0)
 FloatToggle.Size = UDim2.new(0, 60, 0, 60)
-FloatToggle.BackgroundColor3 = Color3.fromRGB(15, 15, 20)
+FloatToggle.BackgroundColor3 = Color3.fromRGB(31, 30, 46)
 FloatToggle.Text = ""
 FloatToggle.TextColor3 = Color3.fromRGB(255,255,255)
 FloatToggle.TextScaled = true
@@ -358,77 +396,30 @@ end)
 
 FloatToggle.MouseButton1Click:Connect(function()
     Main.Visible = not Main.Visible
-    if Main.Visible then
-        FloatToggle.Text = ""
-        FloatToggle.BackgroundColor3 = Color3.fromRGB(15, 15, 20)
-        FloatFrame.BackgroundColor3 = Color3.fromRGB(15, 15, 20)
-        FloatBg.BackgroundColor3 = Color3.fromRGB(15, 15, 20)
-    else
-        FloatToggle.Text = ""
-        FloatToggle.BackgroundColor3 = Color3.fromRGB(15, 15, 20)
-        FloatFrame.BackgroundColor3 = Color3.fromRGB(15, 15, 20)
-        FloatBg.BackgroundColor3 = Color3.fromRGB(15, 15, 20)
-    end
 end)
 
 FloatToggle.MouseEnter:Connect(function()
-    if Main.Visible then
-        game:GetService("TweenService"):Create(FloatFrame, TweenInfo.new(0.1), {
-            BackgroundColor3 = Color3.fromRGB(20, 20, 25),
-            Size = UDim2.new(0, 63, 0, 63)
-        }):Play()
-        game:GetService("TweenService"):Create(FloatToggle, TweenInfo.new(0.1), {
-            BackgroundColor3 = Color3.fromRGB(20, 20, 25),
-            Size = UDim2.new(0, 63, 0, 63)
-        }):Play()
-        game:GetService("TweenService"):Create(FloatBg, TweenInfo.new(0.1), {
-            BackgroundColor3 = Color3.fromRGB(20, 20, 25),
-            Size = UDim2.new(0, 63, 0, 63)
-        }):Play()
-    else
-        game:GetService("TweenService"):Create(FloatFrame, TweenInfo.new(0.1), {
-            BackgroundColor3 = Color3.fromRGB(20, 20, 25),
-            Size = UDim2.new(0, 63, 0, 63)
-        }):Play()
-        game:GetService("TweenService"):Create(FloatToggle, TweenInfo.new(0.1), {
-            BackgroundColor3 = Color3.fromRGB(20, 20, 25),
-            Size = UDim2.new(0, 63, 0, 63)
-        }):Play()
-        game:GetService("TweenService"):Create(FloatBg, TweenInfo.new(0.1), {
-            BackgroundColor3 = Color3.fromRGB(20, 20, 25),
-            Size = UDim2.new(0, 63, 0, 63)
-        }):Play()
-    end
+    game:GetService("TweenService"):Create(FloatFrame, TweenInfo.new(0.1), {
+        Size = UDim2.new(0, 63, 0, 63)
+    }):Play()
+    game:GetService("TweenService"):Create(FloatToggle, TweenInfo.new(0.1), {
+        Size = UDim2.new(0, 63, 0, 63)
+    }):Play()
+    game:GetService("TweenService"):Create(FloatBg, TweenInfo.new(0.1), {
+        Size = UDim2.new(0, 63, 0, 63)
+    }):Play()
 end)
 
 FloatToggle.MouseLeave:Connect(function()
-    if Main.Visible then
-        game:GetService("TweenService"):Create(FloatFrame, TweenInfo.new(0.1), {
-            BackgroundColor3 = Color3.fromRGB(15, 15, 20),
-            Size = UDim2.new(0, 60, 0, 60)
-        }):Play()
-        game:GetService("TweenService"):Create(FloatToggle, TweenInfo.new(0.1), {
-            BackgroundColor3 = Color3.fromRGB(15, 15, 20),
-            Size = UDim2.new(0, 60, 0, 60)
-        }):Play()
-        game:GetService("TweenService"):Create(FloatBg, TweenInfo.new(0.1), {
-            BackgroundColor3 = Color3.fromRGB(15, 15, 20),
-            Size = UDim2.new(0, 60, 0, 60)
-        }):Play()
-    else
-        game:GetService("TweenService"):Create(FloatFrame, TweenInfo.new(0.1), {
-            BackgroundColor3 = Color3.fromRGB(15, 15, 20),
-            Size = UDim2.new(0, 60, 0, 60)
-        }):Play()
-        game:GetService("TweenService"):Create(FloatToggle, TweenInfo.new(0.1), {
-            BackgroundColor3 = Color3.fromRGB(15, 15, 20),
-            Size = UDim2.new(0, 60, 0, 60)
-        }):Play()
-        game:GetService("TweenService"):Create(FloatBg, TweenInfo.new(0.1), {
-            BackgroundColor3 = Color3.fromRGB(15, 15, 20),
-            Size = UDim2.new(0, 60, 0, 60)
-        }):Play()
-    end
+    game:GetService("TweenService"):Create(FloatFrame, TweenInfo.new(0.1), {
+        Size = UDim2.new(0, 60, 0, 60)
+    }):Play()
+    game:GetService("TweenService"):Create(FloatToggle, TweenInfo.new(0.1), {
+        Size = UDim2.new(0, 60, 0, 60)
+    }):Play()
+    game:GetService("TweenService"):Create(FloatBg, TweenInfo.new(0.1), {
+        Size = UDim2.new(0, 60, 0, 60)
+    }):Play()
 end)
 
     local xTabs = {}
