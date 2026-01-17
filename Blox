@@ -87,7 +87,7 @@ function Library:Create(xHubName,xGameName)
     InnerStroke.Parent = Main
     InnerStroke.Color = Color3.fromRGB(0, 0, 0)
     InnerStroke.Transparency = 0.7
-    InnerStroke.Thickness = 4
+    InnerStroke.Thickness = 8
     InnerStroke.LineJoinMode = Enum.LineJoinMode.Round
     InnerStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
     
