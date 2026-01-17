@@ -74,22 +74,22 @@ function Library:Create(xHubName,xGameName)
     MainCorner.Name = "MainCorner"
     MainCorner.Parent = Main
     
-    local MainStroke = Instance.new("UIStroke")
-    MainStroke.Name = "MainStroke"
-    MainStroke.Parent = Main
-    MainStroke.Color = Color3.fromRGB(0, 255, 0)
-    MainStroke.Thickness = 3.5
-    MainStroke.LineJoinMode = Enum.LineJoinMode.Round
-    MainStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+    local OuterStroke = Instance.new("UIStroke")
+    OuterStroke.Name = "OuterStroke"
+    OuterStroke.Parent = Main
+    OuterStroke.Color = Color3.fromRGB(0, 255, 0)
+    OuterStroke.Thickness = 2.5
+    OuterStroke.LineJoinMode = Enum.LineJoinMode.Round
+    OuterStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
     
     local InnerStroke = Instance.new("UIStroke")
     InnerStroke.Name = "InnerStroke"
     InnerStroke.Parent = Main
     InnerStroke.Color = Color3.fromRGB(0, 0, 0)
-    InnerStroke.Thickness = 2.5
+    InnerStroke.Transparency = 0.7
+    InnerStroke.Thickness = 4
     InnerStroke.LineJoinMode = Enum.LineJoinMode.Round
     InnerStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-    InnerStroke.Transparency = 0.3
     
     local CloseButton = Instance.new("TextButton")
     local CloseButtonCorner = Instance.new("UICorner")
@@ -241,17 +241,9 @@ function Library:Create(xHubName,xGameName)
 
     FloatStroke.Name = "FloatStroke"
     FloatStroke.Parent = FloatFrame
-    FloatStroke.Color = Color3.fromRGB(0, 255, 0)
-    FloatStroke.Thickness = 3.5
+    FloatStroke.Color = Color3.fromRGB(0, 0, 0)
+    FloatStroke.Thickness = 2
     FloatStroke.LineJoinMode = Enum.LineJoinMode.Round
-
-    local FloatInnerStroke = Instance.new("UIStroke")
-    FloatInnerStroke.Name = "FloatInnerStroke"
-    FloatInnerStroke.Parent = FloatFrame
-    FloatInnerStroke.Color = Color3.fromRGB(0, 0, 0)
-    FloatInnerStroke.Thickness = 2.5
-    FloatInnerStroke.LineJoinMode = Enum.LineJoinMode.Round
-    FloatInnerStroke.Transparency = 0.3
 
     FloatToggle.Name = "FloatWindowToggle"
     FloatToggle.Parent = FloatFrame
@@ -438,8 +430,6 @@ function Library:Create(xHubName,xGameName)
             local LabelFrame = Instance.new("Frame")
             local LabelFrameCorner = Instance.new("UICorner")
             local Label = Instance.new("TextLabel")
-            local LabelStroke = Instance.new("UIStroke")
-            local LabelInnerStroke = Instance.new("UIStroke")
 
             LabelFrame.Name = tostring(Name).."_Label"
             LabelFrame.Parent = Tab
@@ -449,19 +439,6 @@ function Library:Create(xHubName,xGameName)
 
             LabelFrameCorner.Name = "LabelFrameCorner"
             LabelFrameCorner.Parent = LabelFrame
-
-            LabelStroke.Name = "LabelStroke"
-            LabelStroke.Parent = LabelFrame
-            LabelStroke.Color = Color3.fromRGB(0, 255, 0)
-            LabelStroke.Thickness = 2.5
-            LabelStroke.LineJoinMode = Enum.LineJoinMode.Round
-
-            LabelInnerStroke.Name = "LabelInnerStroke"
-            LabelInnerStroke.Parent = LabelFrame
-            LabelInnerStroke.Color = Color3.fromRGB(0, 0, 0)
-            LabelInnerStroke.Thickness = 1.8
-            LabelInnerStroke.LineJoinMode = Enum.LineJoinMode.Round
-            LabelInnerStroke.Transparency = 0.3
 
             Label.Name = "Label"
             Label.Parent = LabelFrame
@@ -501,8 +478,6 @@ function Library:Create(xHubName,xGameName)
             local Button = Instance.new("TextButton")
             local ButtonCorner = Instance.new("UICorner")
             local ButtonPadding = Instance.new("UIPadding")
-            local ButtonStroke = Instance.new("UIStroke")
-            local ButtonInnerStroke = Instance.new("UIStroke")
 
             ButtonFrame.Name = tostring(Name).."_Button"
             ButtonFrame.Parent = Tab
@@ -511,19 +486,6 @@ function Library:Create(xHubName,xGameName)
             
             ButtonFrameCorner.Name = "ButtonFrameCorner"
             ButtonFrameCorner.Parent = ButtonFrame
-            
-            ButtonStroke.Name = "ButtonStroke"
-            ButtonStroke.Parent = ButtonFrame
-            ButtonStroke.Color = Color3.fromRGB(0, 255, 0)
-            ButtonStroke.Thickness = 2.5
-            ButtonStroke.LineJoinMode = Enum.LineJoinMode.Round
-
-            ButtonInnerStroke.Name = "ButtonInnerStroke"
-            ButtonInnerStroke.Parent = ButtonFrame
-            ButtonInnerStroke.Color = Color3.fromRGB(0, 0, 0)
-            ButtonInnerStroke.Thickness = 1.8
-            ButtonInnerStroke.LineJoinMode = Enum.LineJoinMode.Round
-            ButtonInnerStroke.Transparency = 0.3
             
             Button.Name = "Button"
             Button.Parent = ButtonFrame
@@ -584,27 +546,12 @@ function Library:Create(xHubName,xGameName)
             local ToggleCircle = Instance.new("ImageLabel")
             local ToggleButton = Instance.new("TextButton")
             local ToggleF = Instance.new("Frame")
-            local ToggleStroke = Instance.new("UIStroke")
-            local ToggleInnerStroke = Instance.new("UIStroke")
 
             ToggleFrame.Name = tostring(Name).."_Toggle"
             ToggleFrame.Parent = Tab
             ToggleFrame.BackgroundColor3 = Color3.fromRGB(40, 42, 60)
             ToggleFrame.BorderSizePixel = 0
             ToggleFrame.Size = UDim2.new(0, 326, 0, 28)
-
-            ToggleStroke.Name = "ToggleStroke"
-            ToggleStroke.Parent = ToggleFrame
-            ToggleStroke.Color = Color3.fromRGB(0, 255, 0)
-            ToggleStroke.Thickness = 2.5
-            ToggleStroke.LineJoinMode = Enum.LineJoinMode.Round
-
-            ToggleInnerStroke.Name = "ToggleInnerStroke"
-            ToggleInnerStroke.Parent = ToggleFrame
-            ToggleInnerStroke.Color = Color3.fromRGB(0, 0, 0)
-            ToggleInnerStroke.Thickness = 1.8
-            ToggleInnerStroke.LineJoinMode = Enum.LineJoinMode.Round
-            ToggleInnerStroke.Transparency = 0.3
 
             ToggleName.Name = "ToggleName"
             ToggleName.Parent = ToggleFrame
@@ -687,26 +634,11 @@ function Library:Create(xHubName,xGameName)
             local SliderNamePadding = Instance.new("UIPadding")
             local SliderValue = Instance.new("TextLabel")
             local SliderValuePadding = Instance.new("UIPadding")
-            local SliderStroke = Instance.new("UIStroke")
-            local SliderInnerStroke = Instance.new("UIStroke")
 
             SliderFrame.Name = tostring(Name).."_Slider"
             SliderFrame.Parent = Tab
             SliderFrame.BackgroundColor3 = Color3.fromRGB(40, 42, 60)
             SliderFrame.Size = UDim2.new(0, 326, 0, 40)
-
-            SliderStroke.Name = "SliderStroke"
-            SliderStroke.Parent = SliderFrame
-            SliderStroke.Color = Color3.fromRGB(0, 255, 0)
-            SliderStroke.Thickness = 2.5
-            SliderStroke.LineJoinMode = Enum.LineJoinMode.Round
-
-            SliderInnerStroke.Name = "SliderInnerStroke"
-            SliderInnerStroke.Parent = SliderFrame
-            SliderInnerStroke.Color = Color3.fromRGB(0, 0, 0)
-            SliderInnerStroke.Thickness = 1.8
-            SliderInnerStroke.LineJoinMode = Enum.LineJoinMode.Round
-            SliderInnerStroke.Transparency = 0.3
 
             SliderFrameCorner.Name = "SliderFrameCorner"
             SliderFrameCorner.Parent = SliderFrame
@@ -818,26 +750,11 @@ function Library:Create(xHubName,xGameName)
             local TextboxNamePadding = Instance.new("UIPadding")
             local Textbox = Instance.new("TextBox")
             local TextboxCorner = Instance.new("UICorner")
-            local TextboxStroke = Instance.new("UIStroke")
-            local TextboxInnerStroke = Instance.new("UIStroke")
 
             TextboxFrame.Name = tostring(Name).."_Textbox"
             TextboxFrame.Parent = Tab
             TextboxFrame.BackgroundColor3 = Color3.fromRGB(40, 42, 60)
             TextboxFrame.Size = UDim2.new(0, 326, 0, 28)
-
-            TextboxStroke.Name = "TextboxStroke"
-            TextboxStroke.Parent = TextboxFrame
-            TextboxStroke.Color = Color3.fromRGB(0, 255, 0)
-            TextboxStroke.Thickness = 2.5
-            TextboxStroke.LineJoinMode = Enum.LineJoinMode.Round
-
-            TextboxInnerStroke.Name = "TextboxInnerStroke"
-            TextboxInnerStroke.Parent = TextboxFrame
-            TextboxInnerStroke.Color = Color3.fromRGB(0, 0, 0)
-            TextboxInnerStroke.Thickness = 1.8
-            TextboxInnerStroke.LineJoinMode = Enum.LineJoinMode.Round
-            TextboxInnerStroke.Transparency = 0.3
 
             TextboxFrameCorner.Name = "TextboxFrameCorner"
             TextboxFrameCorner.Parent = TextboxFrame
@@ -898,27 +815,12 @@ function Library:Create(xHubName,xGameName)
             local KeybindNamePadding = Instance.new("UIPadding")
             local KeybindButton = Instance.new("TextButton")
             local KeybindButtonCorner = Instance.new("UICorner")
-            local KeybindStroke = Instance.new("UIStroke")
-            local KeybindInnerStroke = Instance.new("UIStroke")
 
             KeybindFrame.Name = tostring(Name).."_Keybind"
             KeybindFrame.Parent = Tab
             KeybindFrame.BackgroundColor3 = Color3.fromRGB(40, 42, 60)
             KeybindFrame.BorderSizePixel = 0
             KeybindFrame.Size = UDim2.new(0, 326, 0, 28)
-            
-            KeybindStroke.Name = "KeybindStroke"
-            KeybindStroke.Parent = KeybindFrame
-            KeybindStroke.Color = Color3.fromRGB(0, 255, 0)
-            KeybindStroke.Thickness = 2.5
-            KeybindStroke.LineJoinMode = Enum.LineJoinMode.Round
-
-            KeybindInnerStroke.Name = "KeybindInnerStroke"
-            KeybindInnerStroke.Parent = KeybindFrame
-            KeybindInnerStroke.Color = Color3.fromRGB(0, 0, 0)
-            KeybindInnerStroke.Thickness = 1.8
-            KeybindInnerStroke.LineJoinMode = Enum.LineJoinMode.Round
-            KeybindInnerStroke.Transparency = 0.3
             
             KeybindFrameCorner.Name = "KeybindFrameCorner"
             KeybindFrameCorner.Parent = KeybindFrame
@@ -992,27 +894,12 @@ function Library:Create(xHubName,xGameName)
             local DropdownButton = Instance.new("TextButton")
             local DropList = Instance.new("Frame")
             local DropListLayout = Instance.new("UIListLayout")
-            local DropdownStroke = Instance.new("UIStroke")
-            local DropdownInnerStroke = Instance.new("UIStroke")
 
             DropdownFrame.Name = tostring(Name).."_Dropdown"
             DropdownFrame.Parent = Tab
             DropdownFrame.BackgroundColor3 = Color3.fromRGB(40, 42, 60)
             DropdownFrame.BorderSizePixel = 0
             DropdownFrame.Size = UDim2.new(0, 326, 0, 28)
-
-            DropdownStroke.Name = "DropdownStroke"
-            DropdownStroke.Parent = DropdownFrame
-            DropdownStroke.Color = Color3.fromRGB(0, 255, 0)
-            DropdownStroke.Thickness = 2.5
-            DropdownStroke.LineJoinMode = Enum.LineJoinMode.Round
-
-            DropdownInnerStroke.Name = "DropdownInnerStroke"
-            DropdownInnerStroke.Parent = DropdownFrame
-            DropdownInnerStroke.Color = Color3.fromRGB(0, 0, 0)
-            DropdownInnerStroke.Thickness = 1.8
-            DropdownInnerStroke.LineJoinMode = Enum.LineJoinMode.Round
-            DropdownInnerStroke.Transparency = 0.3
 
             DropdownFrameCorner.Name = "DropdownFrameCorner"
             DropdownFrameCorner.Parent = DropdownFrame
@@ -1121,8 +1008,6 @@ function Library:Create(xHubName,xGameName)
             for i,v in pairs(Listx) do 
                 local Option = Instance.new("TextButton")
                 local OptionCorner = Instance.new("UICorner")
-                local OptionStroke = Instance.new("UIStroke")
-                local OptionInnerStroke = Instance.new("UIStroke")
                 
                 Option.Name = tostring(v).."_Option"
                 Option.Parent = DropList
@@ -1132,19 +1017,6 @@ function Library:Create(xHubName,xGameName)
                 Option.Text = v
                 Option.TextColor3 = Color3.fromRGB(255, 255, 255)
                 Option.TextSize = 13
-
-                OptionStroke.Name = "OptionStroke"
-                OptionStroke.Parent = Option
-                OptionStroke.Color = Color3.fromRGB(0, 255, 0)
-                OptionStroke.Thickness = 2.5
-                OptionStroke.LineJoinMode = Enum.LineJoinMode.Round
-
-                OptionInnerStroke.Name = "OptionInnerStroke"
-                OptionInnerStroke.Parent = Option
-                OptionInnerStroke.Color = Color3.fromRGB(0, 0, 0)
-                OptionInnerStroke.Thickness = 1.8
-                OptionInnerStroke.LineJoinMode = Enum.LineJoinMode.Round
-                OptionInnerStroke.Transparency = 0.3
 
                 OptionCorner.Name = "OptionCorner"
                 OptionCorner.Parent = Option
@@ -1187,8 +1059,6 @@ function Library:Create(xHubName,xGameName)
                 for i,v in pairs(List) do 
                     local Option = Instance.new("TextButton")
                     local OptionCorner = Instance.new("UICorner")
-                    local OptionStroke = Instance.new("UIStroke")
-                    local OptionInnerStroke = Instance.new("UIStroke")
     
                     DropSize = DropSize + 35
     
@@ -1200,19 +1070,6 @@ function Library:Create(xHubName,xGameName)
                     Option.Text = v
                     Option.TextColor3 = Color3.fromRGB(255, 255, 255)
                     Option.TextSize = 16.000
-
-                    OptionStroke.Name = "OptionStroke"
-                    OptionStroke.Parent = Option
-                    OptionStroke.Color = Color3.fromRGB(0, 255, 0)
-                    OptionStroke.Thickness = 2.5
-                    OptionStroke.LineJoinMode = Enum.LineJoinMode.Round
-
-                    OptionInnerStroke.Name = "OptionInnerStroke"
-                    OptionInnerStroke.Parent = Option
-                    OptionInnerStroke.Color = Color3.fromRGB(0, 0, 0)
-                    OptionInnerStroke.Thickness = 1.8
-                    OptionInnerStroke.LineJoinMode = Enum.LineJoinMode.Round
-                    OptionInnerStroke.Transparency = 0.3
     
                     OptionCorner.Name = "OptionCorner"
                     OptionCorner.Parent = Option
