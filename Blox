@@ -259,7 +259,7 @@ function Library:Create(xHubName,xGameName)
     PlayerInfoFrame.Name = "PlayerInfoFrame"
     PlayerInfoFrame.Parent = Sidebar
     PlayerInfoFrame.BackgroundTransparency = 1
-    PlayerInfoFrame.Position = UDim2.new(0, 6, 1, -40)
+    PlayerInfoFrame.Position = UDim2.new(0, 6, 1, -35)
     PlayerInfoFrame.Size = UDim2.new(0, 100, 0, 30)
 
     PlayerAvatar.Name = "PlayerAvatar"
