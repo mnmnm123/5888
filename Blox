@@ -8,7 +8,7 @@ function Library:Toggle()
         game.CoreGui:FindFirstChild(LibraryName).Enabled = true
     end
 end
-
+ 
 function Library:Drag(obj)
     local UserInputService = game:GetService("UserInputService")
     
@@ -250,6 +250,68 @@ function Library:Create(xHubName,xGameName)
     Tabs.Name = "Tabs"
     Tabs.Parent = TabHolder
 
+    local PlayerInfoFrame = Instance.new("Frame")
+    local PlayerInfoCorner = Instance.new("UICorner")
+    local PlayerAvatar = Instance.new("ImageLabel")
+    local PlayerAvatarCorner = Instance.new("UICorner")
+    local PlayerDisplayName = Instance.new("TextLabel")
+    local PlayerUsername = Instance.new("TextLabel")
+    local PlayerInfoDivider = Instance.new("Frame")
+
+    PlayerInfoFrame.Name = "PlayerInfoFrame"
+    PlayerInfoFrame.Parent = Sidebar
+    PlayerInfoFrame.BackgroundColor3 = Color3.fromRGB(40, 42, 60)
+    PlayerInfoFrame.Position = UDim2.new(0, 6, 1, -60)
+    PlayerInfoFrame.Size = UDim2.new(0, 100, 0, 50)
+
+    PlayerInfoCorner.CornerRadius = UDim.new(0, 6)
+    PlayerInfoCorner.Name = "PlayerInfoCorner"
+    PlayerInfoCorner.Parent = PlayerInfoFrame
+
+    PlayerAvatar.Name = "PlayerAvatar"
+    PlayerAvatar.Parent = PlayerInfoFrame
+    PlayerAvatar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    PlayerAvatar.Position = UDim2.new(0, 5, 0, 5)
+    PlayerAvatar.Size = UDim2.new(0, 40, 0, 40)
+    PlayerAvatar.Image = "https://www.roblox.com/headshot-thumbnail/image?userId="..tostring(game.Players.LocalPlayer.UserId).."&width=420&height=420&format=png"
+
+    PlayerAvatarCorner.CornerRadius = UDim.new(0, 6)
+    PlayerAvatarCorner.Name = "PlayerAvatarCorner"
+    PlayerAvatarCorner.Parent = PlayerAvatar
+
+    PlayerDisplayName.Name = "PlayerDisplayName"
+    PlayerDisplayName.Parent = PlayerInfoFrame
+    PlayerDisplayName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    PlayerDisplayName.BackgroundTransparency = 1.000
+    PlayerDisplayName.Position = UDim2.new(0, 50, 0, 5)
+    PlayerDisplayName.Size = UDim2.new(0, 45, 0, 18)
+    PlayerDisplayName.Font = Enum.Font.Gotham
+    PlayerDisplayName.Text = game.Players.LocalPlayer.DisplayName
+    PlayerDisplayName.TextColor3 = Color3.fromRGB(255, 255, 255)
+    PlayerDisplayName.TextSize = 11
+    PlayerDisplayName.TextXAlignment = Enum.TextXAlignment.Left
+    PlayerDisplayName.TextTruncate = Enum.TextTruncate.AtEnd
+
+    PlayerUsername.Name = "PlayerUsername"
+    PlayerUsername.Parent = PlayerInfoFrame
+    PlayerUsername.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    PlayerUsername.BackgroundTransparency = 1.000
+    PlayerUsername.Position = UDim2.new(0, 50, 0, 25)
+    PlayerUsername.Size = UDim2.new(0, 45, 0, 18)
+    PlayerUsername.Font = Enum.Font.Gotham
+    PlayerUsername.Text = "@"..game.Players.LocalPlayer.Name
+    PlayerUsername.TextColor3 = Color3.fromRGB(190, 190, 190)
+    PlayerUsername.TextSize = 10
+    PlayerUsername.TextXAlignment = Enum.TextXAlignment.Left
+    PlayerUsername.TextTruncate = Enum.TextTruncate.AtEnd
+
+    PlayerInfoDivider.Name = "PlayerInfoDivider"
+    PlayerInfoDivider.Parent = PlayerInfoFrame
+    PlayerInfoDivider.BackgroundColor3 = Color3.fromRGB(75, 75, 75)
+    PlayerInfoDivider.BorderSizePixel = 0
+    PlayerInfoDivider.Position = UDim2.new(0, 45, 0, 0)
+    PlayerInfoDivider.Size = UDim2.new(0, 1, 0, 50)
+
     Library:Drag(Main)
 
     local FloatToggle = Instance.new("TextButton")
@@ -261,7 +323,7 @@ function Library:Create(xHubName,xGameName)
     FloatFrame.Name = "FloatWindowToggleFrame"
     FloatFrame.Parent = ScreenGui
     FloatFrame.Position = UDim2.new(0.02, 0, 0.5, 0)
-    FloatFrame.Size = UDim2.new(0, 40, 0, 40)
+    FloatFrame.Size = UDim2.new(0, 60, 0, 60)
     FloatFrame.BackgroundColor3 = Color3.fromRGB(31, 30, 46)
 
     FloatFrameCorner.CornerRadius = UDim.new(0.5, 0)
@@ -276,7 +338,7 @@ function Library:Create(xHubName,xGameName)
     FloatToggle.Name = "FloatWindowToggle"
     FloatToggle.Parent = FloatFrame
     FloatToggle.Position = UDim2.new(0, 0, 0, 0)
-    FloatToggle.Size = UDim2.new(0, 40, 0, 40)
+    FloatToggle.Size = UDim2.new(0, 60, 0, 60)
     FloatToggle.BackgroundColor3 = Color3.fromRGB(31, 30, 46)
     FloatToggle.Text = ""
     FloatToggle.TextColor3 = Color3.fromRGB(255,255,255)
@@ -336,20 +398,20 @@ function Library:Create(xHubName,xGameName)
         if Main.Visible then
             game:GetService("TweenService"):Create(FloatFrame, TweenInfo.new(0.1), {
                 BackgroundColor3 = Color3.fromRGB(220, 70, 70),
-                Size = UDim2.new(0, 43, 0, 43)
+                Size = UDim2.new(0, 63, 0, 63)
             }):Play()
             game:GetService("TweenService"):Create(FloatToggle, TweenInfo.new(0.1), {
                 BackgroundColor3 = Color3.fromRGB(220, 70, 70),
-                Size = UDim2.new(0, 43, 0, 43)
+                Size = UDim2.new(0, 63, 0, 63)
             }):Play()
         else
             game:GetService("TweenService"):Create(FloatFrame, TweenInfo.new(0.1), {
                 BackgroundColor3 = Color3.fromRGB(70, 170, 70),
-                Size = UDim2.new(0, 43, 0, 43)
+                Size = UDim2.new(0, 63, 0, 63)
             }):Play()
             game:GetService("TweenService"):Create(FloatToggle, TweenInfo.new(0.1), {
                 BackgroundColor3 = Color3.fromRGB(70, 170, 70),
-                Size = UDim2.new(0, 43, 0, 43)
+                Size = UDim2.new(0, 63, 0, 63)
             }):Play()
         end
     end)
@@ -358,20 +420,20 @@ function Library:Create(xHubName,xGameName)
         if Main.Visible then
             game:GetService("TweenService"):Create(FloatFrame, TweenInfo.new(0.1), {
                 BackgroundColor3 = Color3.fromRGB(200, 50, 50),
-                Size = UDim2.new(0, 40, 0, 40)
+                Size = UDim2.new(0, 60, 0, 60)
             }):Play()
             game:GetService("TweenService"):Create(FloatToggle, TweenInfo.new(0.1), {
                 BackgroundColor3 = Color3.fromRGB(200, 50, 50),
-                Size = UDim2.new(0, 40, 0, 40)
+                Size = UDim2.new(0, 60, 0, 60)
             }):Play()
         else
             game:GetService("TweenService"):Create(FloatFrame, TweenInfo.new(0.1), {
                 BackgroundColor3 = Color3.fromRGB(50, 150, 50),
-                Size = UDim2.new(0, 40, 0, 40)
+                Size = UDim2.new(0, 60, 0, 60)
             }):Play()
             game:GetService("TweenService"):Create(FloatToggle, TweenInfo.new(0.1), {
                 BackgroundColor3 = Color3.fromRGB(50, 150, 50),
-                Size = UDim2.new(0, 40, 0, 40)
+                Size = UDim2.new(0, 60, 0, 60)
             }):Play()
         end
     end)
