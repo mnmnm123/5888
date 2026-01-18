@@ -234,7 +234,7 @@ function Library:Create(xHubName,xGameName)
     FloatFrame.Name = "FloatWindowToggleFrame"
     FloatFrame.Parent = ScreenGui
     FloatFrame.Position = UDim2.new(0.02, 0, 0.5, 0)
-    FloatFrame.Size = UDim2.new(0, 60, 0, 60)
+    FloatFrame.Size = UDim2.new(0, 30, 0, 30)
     FloatFrame.BackgroundColor3 = Color3.fromRGB(31, 30, 46)
 
     FloatFrameCorner.CornerRadius = UDim.new(0.5, 0)
@@ -249,7 +249,7 @@ function Library:Create(xHubName,xGameName)
     FloatToggle.Name = "FloatWindowToggle"
     FloatToggle.Parent = FloatFrame
     FloatToggle.Position = UDim2.new(0, 0, 0, 0)
-    FloatToggle.Size = UDim2.new(0, 60, 0, 60)
+    FloatToggle.Size = UDim2.new(0, 30, 0, 30)
     FloatToggle.BackgroundColor3 = Color3.fromRGB(31, 30, 46)
     FloatToggle.Text = ""
     FloatToggle.TextColor3 = Color3.fromRGB(255,255,255)
