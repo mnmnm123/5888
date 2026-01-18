@@ -251,31 +251,25 @@ function Library:Create(xHubName,xGameName)
     Tabs.Parent = TabHolder
 
     local PlayerInfoFrame = Instance.new("Frame")
-    local PlayerInfoCorner = Instance.new("UICorner")
     local PlayerAvatar = Instance.new("ImageLabel")
     local PlayerAvatarCorner = Instance.new("UICorner")
     local PlayerDisplayName = Instance.new("TextLabel")
     local PlayerUsername = Instance.new("TextLabel")
-    local PlayerInfoDivider = Instance.new("Frame")
 
     PlayerInfoFrame.Name = "PlayerInfoFrame"
     PlayerInfoFrame.Parent = Sidebar
-    PlayerInfoFrame.BackgroundColor3 = Color3.fromRGB(40, 42, 60)
-    PlayerInfoFrame.Position = UDim2.new(0, 6, 1, -60)
-    PlayerInfoFrame.Size = UDim2.new(0, 100, 0, 50)
-
-    PlayerInfoCorner.CornerRadius = UDim.new(0, 6)
-    PlayerInfoCorner.Name = "PlayerInfoCorner"
-    PlayerInfoCorner.Parent = PlayerInfoFrame
+    PlayerInfoFrame.BackgroundTransparency = 1
+    PlayerInfoFrame.Position = UDim2.new(0, 6, 1, -40)
+    PlayerInfoFrame.Size = UDim2.new(0, 100, 0, 30)
 
     PlayerAvatar.Name = "PlayerAvatar"
     PlayerAvatar.Parent = PlayerInfoFrame
     PlayerAvatar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    PlayerAvatar.Position = UDim2.new(0, 5, 0, 5)
-    PlayerAvatar.Size = UDim2.new(0, 40, 0, 40)
-    PlayerAvatar.Image = "https://www.roblox.com/headshot-thumbnail/image?userId="..tostring(game.Players.LocalPlayer.UserId).."&width=420&height=420&format=png"
+    PlayerAvatar.Position = UDim2.new(0, 0, 0, 0)
+    PlayerAvatar.Size = UDim2.new(0, 30, 0, 30)
+    PlayerAvatar.Image = "https://www.roblox.com/headshot-thumbnail/image?userId="..tostring(game.Players.LocalPlayer.UserId).."&width=150&height=150&format=png"
 
-    PlayerAvatarCorner.CornerRadius = UDim.new(0, 6)
+    PlayerAvatarCorner.CornerRadius = UDim.new(1, 0)
     PlayerAvatarCorner.Name = "PlayerAvatarCorner"
     PlayerAvatarCorner.Parent = PlayerAvatar
 
@@ -283,12 +277,12 @@ function Library:Create(xHubName,xGameName)
     PlayerDisplayName.Parent = PlayerInfoFrame
     PlayerDisplayName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     PlayerDisplayName.BackgroundTransparency = 1.000
-    PlayerDisplayName.Position = UDim2.new(0, 50, 0, 5)
-    PlayerDisplayName.Size = UDim2.new(0, 45, 0, 18)
+    PlayerDisplayName.Position = UDim2.new(0, 35, 0, 2)
+    PlayerDisplayName.Size = UDim2.new(0, 60, 0, 12)
     PlayerDisplayName.Font = Enum.Font.Gotham
     PlayerDisplayName.Text = game.Players.LocalPlayer.DisplayName
     PlayerDisplayName.TextColor3 = Color3.fromRGB(255, 255, 255)
-    PlayerDisplayName.TextSize = 11
+    PlayerDisplayName.TextSize = 10
     PlayerDisplayName.TextXAlignment = Enum.TextXAlignment.Left
     PlayerDisplayName.TextTruncate = Enum.TextTruncate.AtEnd
 
@@ -296,21 +290,14 @@ function Library:Create(xHubName,xGameName)
     PlayerUsername.Parent = PlayerInfoFrame
     PlayerUsername.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     PlayerUsername.BackgroundTransparency = 1.000
-    PlayerUsername.Position = UDim2.new(0, 50, 0, 25)
-    PlayerUsername.Size = UDim2.new(0, 45, 0, 18)
+    PlayerUsername.Position = UDim2.new(0, 35, 0, 16)
+    PlayerUsername.Size = UDim2.new(0, 60, 0, 12)
     PlayerUsername.Font = Enum.Font.Gotham
     PlayerUsername.Text = "@"..game.Players.LocalPlayer.Name
     PlayerUsername.TextColor3 = Color3.fromRGB(190, 190, 190)
-    PlayerUsername.TextSize = 10
+    PlayerUsername.TextSize = 9
     PlayerUsername.TextXAlignment = Enum.TextXAlignment.Left
     PlayerUsername.TextTruncate = Enum.TextTruncate.AtEnd
-
-    PlayerInfoDivider.Name = "PlayerInfoDivider"
-    PlayerInfoDivider.Parent = PlayerInfoFrame
-    PlayerInfoDivider.BackgroundColor3 = Color3.fromRGB(75, 75, 75)
-    PlayerInfoDivider.BorderSizePixel = 0
-    PlayerInfoDivider.Position = UDim2.new(0, 45, 0, 0)
-    PlayerInfoDivider.Size = UDim2.new(0, 1, 0, 50)
 
     Library:Drag(Main)
 
