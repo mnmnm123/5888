@@ -8,7 +8,7 @@ function Library:Toggle()
         game.CoreGui:FindFirstChild(LibraryName).Enabled = true
     end
 end
-
+ 
 function Library:Drag(obj)
     local UserInputService = game:GetService("UserInputService")
     
@@ -249,6 +249,55 @@ function Library:Create(xHubName,xGameName)
 
     Tabs.Name = "Tabs"
     Tabs.Parent = TabHolder
+
+    local PlayerInfoFrame = Instance.new("Frame")
+    local PlayerAvatar = Instance.new("ImageLabel")
+    local PlayerAvatarCorner = Instance.new("UICorner")
+    local PlayerDisplayName = Instance.new("TextLabel")
+    local PlayerUsername = Instance.new("TextLabel")
+
+    PlayerInfoFrame.Name = "PlayerInfoFrame"
+    PlayerInfoFrame.Parent = Sidebar
+    PlayerInfoFrame.BackgroundTransparency = 1
+    PlayerInfoFrame.Position = UDim2.new(0, 6, 1, -36)
+    PlayerInfoFrame.Size = UDim2.new(0, 100, 0, 30)
+
+    PlayerAvatar.Name = "PlayerAvatar"
+    PlayerAvatar.Parent = PlayerInfoFrame
+    PlayerAvatar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    PlayerAvatar.Position = UDim2.new(0, 0, 0, 0)
+    PlayerAvatar.Size = UDim2.new(0, 30, 0, 30)
+    PlayerAvatar.Image = "https://www.roblox.com/headshot-thumbnail/image?userId="..tostring(game.Players.LocalPlayer.UserId).."&width=150&height=150&format=png"
+
+    PlayerAvatarCorner.CornerRadius = UDim.new(1, 0)
+    PlayerAvatarCorner.Name = "PlayerAvatarCorner"
+    PlayerAvatarCorner.Parent = PlayerAvatar
+
+    PlayerDisplayName.Name = "PlayerDisplayName"
+    PlayerDisplayName.Parent = PlayerInfoFrame
+    PlayerDisplayName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    PlayerDisplayName.BackgroundTransparency = 1.000
+    PlayerDisplayName.Position = UDim2.new(0, 35, 0, 2)
+    PlayerDisplayName.Size = UDim2.new(0, 60, 0, 12)
+    PlayerDisplayName.Font = Enum.Font.Gotham
+    PlayerDisplayName.Text = game.Players.LocalPlayer.DisplayName
+    PlayerDisplayName.TextColor3 = Color3.fromRGB(255, 255, 255)
+    PlayerDisplayName.TextSize = 10
+    PlayerDisplayName.TextXAlignment = Enum.TextXAlignment.Left
+    PlayerDisplayName.TextTruncate = Enum.TextTruncate.AtEnd
+
+    PlayerUsername.Name = "PlayerUsername"
+    PlayerUsername.Parent = PlayerInfoFrame
+    PlayerUsername.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    PlayerUsername.BackgroundTransparency = 1.000
+    PlayerUsername.Position = UDim2.new(0, 35, 0, 16)
+    PlayerUsername.Size = UDim2.new(0, 60, 0, 12)
+    PlayerUsername.Font = Enum.Font.Gotham
+    PlayerUsername.Text = "@"..game.Players.LocalPlayer.Name
+    PlayerUsername.TextColor3 = Color3.fromRGB(190, 190, 190)
+    PlayerUsername.TextSize = 9
+    PlayerUsername.TextXAlignment = Enum.TextXAlignment.Left
+    PlayerUsername.TextTruncate = Enum.TextTruncate.AtEnd
 
     Library:Drag(Main)
 
