@@ -8,7 +8,7 @@ function Library:Toggle()
         game.CoreGui:FindFirstChild(LibraryName).Enabled = true
     end
 end
- 
+
 function Library:Drag(obj)
     local UserInputService = game:GetService("UserInputService")
     
@@ -385,20 +385,20 @@ function Library:Create(xHubName,xGameName)
         if Main.Visible then
             game:GetService("TweenService"):Create(FloatFrame, TweenInfo.new(0.1), {
                 BackgroundColor3 = Color3.fromRGB(220, 70, 70),
-                Size = UDim2.new(0, 63, 0, 63)
+                Size = UDim2.new(0, 53, 0, 53)
             }):Play()
             game:GetService("TweenService"):Create(FloatToggle, TweenInfo.new(0.1), {
                 BackgroundColor3 = Color3.fromRGB(220, 70, 70),
-                Size = UDim2.new(0, 63, 0, 63)
+                Size = UDim2.new(0, 53, 0, 53)
             }):Play()
         else
             game:GetService("TweenService"):Create(FloatFrame, TweenInfo.new(0.1), {
                 BackgroundColor3 = Color3.fromRGB(70, 170, 70),
-                Size = UDim2.new(0, 63, 0, 63)
+                Size = UDim2.new(0, 53, 0, 53)
             }):Play()
             game:GetService("TweenService"):Create(FloatToggle, TweenInfo.new(0.1), {
                 BackgroundColor3 = Color3.fromRGB(70, 170, 70),
-                Size = UDim2.new(0, 63, 0, 63)
+                Size = UDim2.new(0, 53, 0, 53)
             }):Play()
         end
     end)
@@ -407,20 +407,20 @@ function Library:Create(xHubName,xGameName)
         if Main.Visible then
             game:GetService("TweenService"):Create(FloatFrame, TweenInfo.new(0.1), {
                 BackgroundColor3 = Color3.fromRGB(200, 50, 50),
-                Size = UDim2.new(0, 60, 0, 60)
+                Size = UDim2.new(0, 50, 0, 50)
             }):Play()
             game:GetService("TweenService"):Create(FloatToggle, TweenInfo.new(0.1), {
                 BackgroundColor3 = Color3.fromRGB(200, 50, 50),
-                Size = UDim2.new(0, 60, 0, 60)
+                Size = UDim2.new(0, 50, 0, 50)
             }):Play()
         else
             game:GetService("TweenService"):Create(FloatFrame, TweenInfo.new(0.1), {
                 BackgroundColor3 = Color3.fromRGB(50, 150, 50),
-                Size = UDim2.new(0, 60, 0, 60)
+                Size = UDim2.new(0, 50, 0, 50)
             }):Play()
             game:GetService("TweenService"):Create(FloatToggle, TweenInfo.new(0.1), {
                 BackgroundColor3 = Color3.fromRGB(50, 150, 50),
-                Size = UDim2.new(0, 60, 0, 60)
+                Size = UDim2.new(0, 50, 0, 50)
             }):Play()
         end
     end)
