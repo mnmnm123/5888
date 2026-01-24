@@ -8,7 +8,7 @@ function Library:Toggle()
         game.CoreGui:FindFirstChild(LibraryName).Enabled = true
     end
 end
- 
+
 function Library:Drag(obj)
     local UserInputService = game:GetService("UserInputService")
     
@@ -74,24 +74,19 @@ function Library:Create(xHubName,xGameName)
     MainCorner.Name = "MainCorner"
     MainCorner.Parent = Main
     
-    local OuterStroke = Instance.new("UIStroke")
-    OuterStroke.Name = "OuterStroke"
-    OuterStroke.Parent = Main
-    OuterStroke.Color = Color3.fromRGB(255, 165, 0)
-    OuterStroke.Transparency = 0.3
-    OuterStroke.Thickness = 2
-    OuterStroke.LineJoinMode = Enum.LineJoinMode.Round
-    OuterStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-    
-    local InnerStroke = Instance.new("UIStroke")
-    InnerStroke.Name = "InnerStroke"
-    InnerStroke.Parent = Main
-    InnerStroke.Color = Color3.fromRGB(0, 0, 0)
-    InnerStroke.Transparency = 0.7
-    InnerStroke.Thickness = 6
-    InnerStroke.LineJoinMode = Enum.LineJoinMode.Round
-    InnerStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-    
+    local GlowEffect = Instance.new("ImageLabel")
+    GlowEffect.Name = "GlowEffect"
+    GlowEffect.Parent = Main
+    GlowEffect.BackgroundTransparency = 1
+    GlowEffect.Size = UDim2.new(1, 10, 1, 10)
+    GlowEffect.Position = UDim2.new(0, -5, 0, -5)
+    GlowEffect.Image = "rbxassetid://4996891970"
+    GlowEffect.ImageColor3 = Color3.fromRGB(255, 255, 255)
+    GlowEffect.ScaleType = Enum.ScaleType.Slice
+    GlowEffect.SliceCenter = Rect.new(20, 20, 280, 280)
+    GlowEffect.SliceScale = 0.1
+    GlowEffect.ZIndex = 0
+
     local CloseButton = Instance.new("TextButton")
     local CloseButtonCorner = Instance.new("UICorner")
 
@@ -310,7 +305,7 @@ function Library:Create(xHubName,xGameName)
     FloatFrame.Name = "FloatWindowToggleFrame"
     FloatFrame.Parent = ScreenGui
     FloatFrame.Position = UDim2.new(0.02, 0, 0.5, 0)
-    FloatFrame.Size = UDim2.new(0, 60, 0, 60)
+    FloatFrame.Size = UDim2.new(0, 50, 0, 50)
     FloatFrame.BackgroundColor3 = Color3.fromRGB(31, 30, 46)
 
     FloatFrameCorner.CornerRadius = UDim.new(0.5, 0)
@@ -325,7 +320,7 @@ function Library:Create(xHubName,xGameName)
     FloatToggle.Name = "FloatWindowToggle"
     FloatToggle.Parent = FloatFrame
     FloatToggle.Position = UDim2.new(0, 0, 0, 0)
-    FloatToggle.Size = UDim2.new(0, 60, 0, 60)
+    FloatToggle.Size = UDim2.new(0, 50, 0, 50)
     FloatToggle.BackgroundColor3 = Color3.fromRGB(31, 30, 46)
     FloatToggle.Text = ""
     FloatToggle.TextColor3 = Color3.fromRGB(255,255,255)
