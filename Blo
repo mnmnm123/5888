@@ -73,91 +73,68 @@ function Library:Create(xHubName,xGameName)
     MainCorner.CornerRadius = UDim.new(0, 12)
     MainCorner.Name = "MainCorner"
     MainCorner.Parent = Main
-    
+
     local GlowContainer = Instance.new("Frame")
     GlowContainer.Name = "GlowContainer"
     GlowContainer.Parent = Main
     GlowContainer.BackgroundTransparency = 1
     GlowContainer.Size = UDim2.new(1, 0, 1, 0)
-    GlowContainer.ZIndex = -5
-    
-    local Particles = {}
-    local particleCount = 120
-    
-    local function createParticleRing(radius, count, baseSize, speedMult, lifeMult)
-        local ringParticles = {}
-        for i = 1, count do
-            local angle = (i / count) * math.pi * 2
-            local particle = Instance.new("Frame")
-            particle.Name = "ParticleRing_" .. radius .. "_" .. i
-            particle.Parent = GlowContainer
-            particle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            particle.BorderSizePixel = 0
-            particle.Size = UDim2.new(0, baseSize, 0, baseSize)
-            particle.AnchorPoint = Vector2.new(0.5, 0.5)
-            particle.ZIndex = -3
-            
-            local particleCorner = Instance.new("UICorner")
-            particleCorner.CornerRadius = UDim.new(1, 0)
-            particleCorner.Parent = particle
-            
-            table.insert(ringParticles, {
-                frame = particle,
-                angle = angle,
-                radius = radius,
-                baseSize = baseSize,
-                speed = 0.5 + math.random() * 0.8 * speedMult,
-                life = 0,
-                maxLife = 1 + math.random() * 2 * lifeMult,
-                currentLife = 0,
-                pulseOffset = math.random() * math.pi * 2
-            })
-        end
-        return ringParticles
+    GlowContainer.ZIndex = -10
+
+    local Rings = {}
+    local ringCount = 8
+
+    for i = 1, ringCount do
+        local ring = Instance.new("Frame")
+        ring.Name = "Ring_" .. i
+        ring.Parent = GlowContainer
+        ring.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        ring.BorderSizePixel = 0
+        ring.Size = UDim2.new(1, 0, 1, 0)
+        ring.AnchorPoint = Vector2.new(0.5, 0.5)
+        ring.Position = UDim2.new(0.5, 0, 0.5, 0)
+        ring.ZIndex = -9
+        
+        local ringCorner = Instance.new("UICorner")
+        ringCorner.CornerRadius = UDim.new(0, 12)
+        ringCorner.Parent = ring
+        
+        local ringStroke = Instance.new("UIStroke")
+        ringStroke.Parent = ring
+        ringStroke.Color = Color3.fromRGB(255, 255, 255)
+        ringStroke.Thickness = 2
+        ringStroke.Transparency = 0.9
+        ringStroke.LineJoinMode = Enum.LineJoinMode.Round
+        
+        table.insert(Rings, {
+            frame = ring,
+            stroke = ringStroke,
+            size = 1.0,
+            speed = 0.3 + (i * 0.1),
+            delay = i * 0.3,
+            maxSize = 1.4 + (i * 0.1),
+            currentTime = 0,
+            pulseOffset = math.random() * math.pi * 2
+        })
     end
-    
-    local ring1 = createParticleRing(15, 40, 3, 0.8, 0.8)
-    local ring2 = createParticleRing(25, 50, 2, 1, 1)
-    local ring3 = createParticleRing(35, 30, 1.5, 1.2, 1.2)
-    
-    for _, p in ipairs(ring1) do table.insert(Particles, p) end
-    for _, p in ipairs(ring2) do table.insert(Particles, p) end
-    for _, p in ipairs(ring3) do table.insert(Particles, p) end
-    
+
     spawn(function()
-        local time = 0
         while Main.Parent do
-            time = time + 0.03
-            
-            for _, particleData in ipairs(Particles) do
-                particleData.currentLife = particleData.currentLife + particleData.speed * 0.03
+            for _, ringData in ipairs(Rings) do
+                ringData.currentTime = ringData.currentTime + 0.03
                 
-                if particleData.currentLife > particleData.maxLife then
-                    particleData.currentLife = 0
-                    particleData.life = 0
-                end
+                local pulseTime = (ringData.currentTime * ringData.speed) + ringData.delay
+                local pulse = math.sin(pulseTime + ringData.pulseOffset) * 0.5 + 0.5
                 
-                local lifeProgress = particleData.currentLife / particleData.maxLife
-                local pulse = math.sin(time * 2 + particleData.pulseOffset) * 0.3 + 0.7
+                local currentSize = 1.0 + (ringData.maxSize - 1.0) * pulse
+                ringData.frame.Size = UDim2.new(currentSize, 0, currentSize, 0)
                 
-                local distance = particleData.radius + lifeProgress * 40
-                local xPos = 0.5 + math.cos(particleData.angle) * (distance / 232)
-                local yPos = 0.5 + math.sin(particleData.angle) * (distance / 148)
+                local transparency = 0.9 - (pulse * 0.7)
+                ringData.stroke.Transparency = transparency
                 
-                particleData.frame.Position = UDim2.new(xPos, 0, yPos, 0)
-                
-                local sizeMult = (1 - lifeProgress) * pulse
-                local finalSize = math.max(0.5, particleData.baseSize * sizeMult)
-                particleData.frame.Size = UDim2.new(0, finalSize, 0, finalSize)
-                
-                local transparency = 0.1 + lifeProgress * 0.9
-                particleData.frame.BackgroundTransparency = transparency
-                
-                local intensity = 1 - lifeProgress * 0.7
-                local colorValue = math.floor(200 + 55 * intensity)
-                particleData.frame.BackgroundColor3 = Color3.fromRGB(colorValue, colorValue, colorValue)
+                local thickness = 2 + (pulse * 4)
+                ringData.stroke.Thickness = thickness
             end
-            
             wait(0.03)
         end
     end)
@@ -455,20 +432,20 @@ function Library:Create(xHubName,xGameName)
         if Main.Visible then
             game:GetService("TweenService"):Create(FloatFrame, TweenInfo.new(0.1), {
                 BackgroundColor3 = Color3.fromRGB(220, 70, 70),
-                Size = UDim2.new(0, 63, 0, 63)
+                Size = UDim2.new(0, 53, 0, 53)
             }):Play()
             game:GetService("TweenService"):Create(FloatToggle, TweenInfo.new(0.1), {
                 BackgroundColor3 = Color3.fromRGB(220, 70, 70),
-                Size = UDim2.new(0, 63, 0, 63)
+                Size = UDim2.new(0, 53, 0, 53)
             }):Play()
         else
             game:GetService("TweenService"):Create(FloatFrame, TweenInfo.new(0.1), {
                 BackgroundColor3 = Color3.fromRGB(70, 170, 70),
-                Size = UDim2.new(0, 63, 0, 63)
+                Size = UDim2.new(0, 53, 0, 53)
             }):Play()
             game:GetService("TweenService"):Create(FloatToggle, TweenInfo.new(0.1), {
                 BackgroundColor3 = Color3.fromRGB(70, 170, 70),
-                Size = UDim2.new(0, 63, 0, 63)
+                Size = UDim2.new(0, 53, 0, 53)
             }):Play()
         end
     end)
@@ -477,20 +454,20 @@ function Library:Create(xHubName,xGameName)
         if Main.Visible then
             game:GetService("TweenService"):Create(FloatFrame, TweenInfo.new(0.1), {
                 BackgroundColor3 = Color3.fromRGB(200, 50, 50),
-                Size = UDim2.new(0, 60, 0, 60)
+                Size = UDim2.new(0, 50, 0, 50)
             }):Play()
             game:GetService("TweenService"):Create(FloatToggle, TweenInfo.new(0.1), {
                 BackgroundColor3 = Color3.fromRGB(200, 50, 50),
-                Size = UDim2.new(0, 60, 0, 60)
+                Size = UDim2.new(0, 50, 0, 50)
             }):Play()
         else
             game:GetService("TweenService"):Create(FloatFrame, TweenInfo.new(0.1), {
                 BackgroundColor3 = Color3.fromRGB(50, 150, 50),
-                Size = UDim2.new(0, 60, 0, 60)
+                Size = UDim2.new(0, 50, 0, 50)
             }):Play()
             game:GetService("TweenService"):Create(FloatToggle, TweenInfo.new(0.1), {
                 BackgroundColor3 = Color3.fromRGB(50, 150, 50),
-                Size = UDim2.new(0, 60, 0, 60)
+                Size = UDim2.new(0, 50, 0, 50)
             }):Play()
         end
     end)
