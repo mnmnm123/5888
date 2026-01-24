@@ -67,7 +67,7 @@ function Library:Create(xHubName,xGameName)
     Main.BackgroundColor3 = Color3.fromRGB(31, 30, 46)
     Main.Position = UDim2.new(0.5, -232, 0.5, -148)
     Main.Size = UDim2.new(0, 464, 0, 296)
-    Main.ClipsDescendants = false
+    Main.ClipsDescendants = true
 
     local MainCorner = Instance.new("UICorner")
     MainCorner.CornerRadius = UDim.new(0, 12)
@@ -80,25 +80,28 @@ function Library:Create(xHubName,xGameName)
     ParticleContainer.BackgroundTransparency = 1
     ParticleContainer.Size = UDim2.new(1, 0, 1, 0)
     ParticleContainer.ZIndex = -5
+    ParticleContainer.ClipsDescendants = true
 
     local Particles = {}
-    local particleCount = 300
+    local particleCount = 800
     
     local centerX = Main.AbsoluteSize.X / 2
     local centerY = Main.AbsoluteSize.Y / 2
-    local maxRadius = math.max(centerX, centerY) * 1.5
+    local maxRadius = math.min(centerX, centerY) * 0.9
     
     for i = 1, particleCount do
         local angle = math.random() * math.pi * 2
-        local radius = math.random() * maxRadius
-        local density = 1 - (radius / maxRadius)
-        
-        if math.random() > density then
-            radius = math.random() * (maxRadius * 0.3)
-        end
+        local radiusVariation = math.random()
+        local densityFactor = 1 - radiusVariation
+        local radius = radiusVariation * maxRadius
         
         local posX = centerX + math.cos(angle) * radius
         local posY = centerY + math.sin(angle) * radius
+        
+        if posX < 0 or posX > Main.AbsoluteSize.X or posY < 0 or posY > Main.AbsoluteSize.Y then
+            posX = math.clamp(posX, 2, Main.AbsoluteSize.X - 2)
+            posY = math.clamp(posY, 2, Main.AbsoluteSize.Y - 2)
+        end
         
         local particle = Instance.new("Frame")
         particle.Name = "Particle_" .. i
@@ -115,22 +118,26 @@ function Library:Create(xHubName,xGameName)
         particleCorner.CornerRadius = UDim.new(1, 0)
         particleCorner.Parent = particle
         
-        local speed = math.random(0.5, 1.5)
-        local targetRadius = radius + math.random(20, 50)
+        local speed = 0.2 + densityFactor * 0.8
+        local targetRadius = radius + math.random(5, 15) * densityFactor
         local startTime = math.random()
+        local moveAngle = angle + (math.random() - 0.5) * 0.2
+        
+        particle.BackgroundTransparency = 0.3 + radiusVariation * 0.7
         
         table.insert(Particles, {
             frame = particle,
-            angle = angle,
+            angle = moveAngle,
             speed = speed,
             radius = radius,
             targetRadius = targetRadius,
             startRadius = radius,
             startPos = UDim2.new(0, posX, 0, posY),
             size = size,
-            life = startTime * 2,
-            maxLife = math.random(2, 4),
-            expanding = true
+            life = startTime * 3,
+            maxLife = math.random(3, 6),
+            expanding = true,
+            densityFactor = densityFactor
         })
     end
     
@@ -144,19 +151,28 @@ function Library:Create(xHubName,xGameName)
                     particleData.expanding = true
                     
                     local angle = math.random() * math.pi * 2
-                    local radius = math.random() * (maxRadius * 0.3)
-                    local density = 1 - (radius / maxRadius)
+                    local radiusVariation = math.random()
+                    local densityFactor = 1 - radiusVariation
+                    local radius = radiusVariation * maxRadius
                     
-                    if math.random() > density then
-                        radius = math.random() * (maxRadius * 0.3)
+                    local posX = centerX + math.cos(angle) * radius
+                    local posY = centerY + math.sin(angle) * radius
+                    
+                    if posX < 0 or posX > Main.AbsoluteSize.X or posY < 0 or posY > Main.AbsoluteSize.Y then
+                        posX = math.clamp(posX, 2, Main.AbsoluteSize.X - 2)
+                        posY = math.clamp(posY, 2, Main.AbsoluteSize.Y - 2)
                     end
                     
-                    particleData.angle = angle
+                    particleData.angle = angle + (math.random() - 0.5) * 0.2
                     particleData.radius = radius
                     particleData.startRadius = radius
-                    particleData.targetRadius = radius + math.random(20, 50)
-                    particleData.speed = math.random(0.5, 1.5)
-                    particleData.maxLife = math.random(2, 4)
+                    particleData.targetRadius = radius + math.random(5, 15) * densityFactor
+                    particleData.speed = 0.2 + densityFactor * 0.8
+                    particleData.maxLife = math.random(3, 6)
+                    particleData.densityFactor = densityFactor
+                    
+                    particleData.frame.Position = UDim2.new(0, posX, 0, posY)
+                    particleData.frame.BackgroundTransparency = 0.3 + radiusVariation * 0.7
                 end
                 
                 local progress = particleData.life / particleData.maxLife
@@ -167,9 +183,10 @@ function Library:Create(xHubName,xGameName)
                     if progress >= 1 then
                         particleData.expanding = false
                         particleData.startRadius = particleData.targetRadius
-                        particleData.targetRadius = particleData.startRadius - math.random(10, 30)
+                        particleData.targetRadius = particleData.startRadius - math.random(3, 8)
+                        if particleData.targetRadius < 0 then particleData.targetRadius = 0 end
                         particleData.life = 0
-                        particleData.maxLife = math.random(1, 2)
+                        particleData.maxLife = math.random(2, 4)
                     end
                 else
                     particleData.radius = particleData.startRadius + (particleData.targetRadius - particleData.startRadius) * progress
@@ -178,14 +195,19 @@ function Library:Create(xHubName,xGameName)
                 local posX = centerX + math.cos(particleData.angle) * particleData.radius
                 local posY = centerY + math.sin(particleData.angle) * particleData.radius
                 
+                if posX < 0 or posX > Main.AbsoluteSize.X or posY < 0 or posY > Main.AbsoluteSize.Y then
+                    posX = math.clamp(posX, 2, Main.AbsoluteSize.X - 2)
+                    posY = math.clamp(posY, 2, Main.AbsoluteSize.Y - 2)
+                end
+                
                 particleData.frame.Position = UDim2.new(0, posX, 0, posY)
                 
                 local distanceFromCenter = math.sqrt((posX - centerX)^2 + (posY - centerY)^2)
                 local transparencyProgress = distanceFromCenter / maxRadius
                 
-                particleData.frame.BackgroundTransparency = 0.2 + transparencyProgress * 0.8
+                particleData.frame.BackgroundTransparency = 0.3 + transparencyProgress * 0.7
                 
-                local sizeMult = 1 - transparencyProgress * 0.6
+                local sizeMult = 1 - transparencyProgress * 0.5
                 local newSize = math.max(0.5, particleData.size * sizeMult)
                 particleData.frame.Size = UDim2.new(0, newSize, 0, newSize)
             end
@@ -379,6 +401,7 @@ function Library:Create(xHubName,xGameName)
     PlayerDisplayName.Parent = PlayerInfoFrame
     PlayerDisplayName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     PlayerDisplayName.BackgroundTransparency = 1.000
+    PlayerDisplayName.BorderSizePixel = 0
     PlayerDisplayName.Position = UDim2.new(0, 35, 0, 2)
     PlayerDisplayName.Size = UDim2.new(0, 60, 0, 12)
     PlayerDisplayName.Font = Enum.Font.Gotham
