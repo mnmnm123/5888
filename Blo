@@ -81,9 +81,10 @@ function Library:Create(xHubName,xGameName)
     GlowLayer.ZIndex = 6
     GlowLayer.ClipsDescendants = false
     GlowLayer.Parent = ScreenGui
+    GlowLayer.Name = "GlowLayer"
 
     local Particles = {}
-    local Count = 900
+    local Count = 1500
 
     for i = 1, Count do
         local p = Instance.new("Frame", GlowLayer)
@@ -135,7 +136,14 @@ function Library:Create(xHubName,xGameName)
         })
     end
 
-    game:GetService("RunService").RenderStepped:Connect(function()
+    local renderConnection
+    renderConnection = game:GetService("RunService").RenderStepped:Connect(function()
+        if not Main.Visible then
+            GlowLayer.Visible = false
+            return
+        end
+        
+        GlowLayer.Visible = true
         for _,v in ipairs(Particles) do
             v.d = v.d + v.s
             if v.d > v.m then
@@ -430,6 +438,7 @@ function Library:Create(xHubName,xGameName)
 
     FloatToggle.MouseButton1Click:Connect(function()
         Main.Visible = not Main.Visible
+        GlowLayer.Visible = Main.Visible
         if Main.Visible then
             FloatToggle.Text = ""
             FloatToggle.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
