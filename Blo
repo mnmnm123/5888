@@ -74,7 +74,6 @@ function Library:Create(xHubName,xGameName)
     MainCorner.Name = "MainCorner"
     MainCorner.Parent = Main
     
-    local SunRayGlows = {}
     local GlowContainer = Instance.new("Frame")
     GlowContainer.Name = "GlowContainer"
     GlowContainer.Parent = Main
@@ -82,86 +81,64 @@ function Library:Create(xHubName,xGameName)
     GlowContainer.Size = UDim2.new(1, 0, 1, 0)
     GlowContainer.ZIndex = -5
     
-    local CoreGlow = Instance.new("UIStroke")
-    CoreGlow.Name = "CoreGlow"
-    CoreGlow.Parent = Main
-    CoreGlow.Color = Color3.fromRGB(200, 200, 200)
-    CoreGlow.Transparency = 0.3
-    CoreGlow.Thickness = 4
-    CoreGlow.LineJoinMode = Enum.LineJoinMode.Round
+    local InnerGlow = Instance.new("UIStroke")
+    InnerGlow.Name = "InnerGlow"
+    InnerGlow.Parent = Main
+    InnerGlow.Color = Color3.fromRGB(220, 220, 220)
+    InnerGlow.Transparency = 0.2
+    InnerGlow.Thickness = 2
+    InnerGlow.LineJoinMode = Enum.LineJoinMode.Round
     
-    for i = 1, 6 do
-        local ray = Instance.new("UIStroke")
-        ray.Name = "SunRay_" .. i
-        ray.Parent = Main
-        ray.Color = Color3.fromRGB(180, 180, 180)
-        ray.Transparency = 0.5 + (i * 0.07)
-        ray.Thickness = 3 + (i * 0.8)
-        ray.LineJoinMode = Enum.LineJoinMode.Round
-        table.insert(SunRayGlows, {
-            stroke = ray,
-            baseThickness = 3 + (i * 0.8),
-            baseTransparency = 0.5 + (i * 0.07),
-            offsetX = 0,
-            offsetY = 0,
-            pulseSpeed = 0.5 + (i * 0.1),
-            pulseOffset = math.random() * math.pi * 2
-        })
-    end
+    local OuterGlow = Instance.new("UIStroke")
+    OuterGlow.Name = "OuterGlow"
+    OuterGlow.Parent = Main
+    OuterGlow.Color = Color3.fromRGB(180, 180, 180)
+    OuterGlow.Transparency = 0.4
+    OuterGlow.Thickness = 4
+    OuterGlow.LineJoinMode = Enum.LineJoinMode.Round
     
-    local SunSpots = {}
-    for i = 1, 5 do
-        local spot = Instance.new("Frame")
-        spot.Name = "SunSpot_" .. i
-        spot.Parent = GlowContainer
-        spot.BackgroundColor3 = Color3.fromRGB(220, 220, 220)
-        spot.BorderSizePixel = 0
-        spot.Size = UDim2.new(0, math.random(6, 16), 0, math.random(6, 16))
-        spot.Position = UDim2.new(
-            math.random(-0.03, 1.03), 0,
-            math.random(-0.03, 1.03), 0
+    local ParticleContainer = Instance.new("Frame")
+    ParticleContainer.Name = "ParticleContainer"
+    ParticleContainer.Parent = GlowContainer
+    ParticleContainer.BackgroundTransparency = 1
+    ParticleContainer.Size = UDim2.new(1, 0, 1, 0)
+    ParticleContainer.ZIndex = -4
+    
+    local Particles = {}
+    
+    for i = 1, 20 do
+        local particle = Instance.new("Frame")
+        particle.Name = "GlowParticle_" .. i
+        particle.Parent = ParticleContainer
+        particle.BackgroundColor3 = Color3.fromRGB(220, 220, 220)
+        particle.BorderSizePixel = 0
+        particle.Size = UDim2.new(0, math.random(1, 3), 0, math.random(1, 3))
+        particle.Position = UDim2.new(
+            math.random(0, 100) / 100,
+            math.random(-20, 20),
+            math.random(0, 100) / 100,
+            math.random(-20, 20)
         )
-        spot.ZIndex = -1
+        particle.ZIndex = -3
         
-        local spotCorner = Instance.new("UICorner")
-        spotCorner.CornerRadius = UDim.new(1, 0)
-        spotCorner.Parent = spot
+        local particleCorner = Instance.new("UICorner")
+        particleCorner.CornerRadius = UDim.new(1, 0)
+        particleCorner.Parent = particle
         
-        table.insert(SunSpots, {
-            frame = spot,
-            baseSize = spot.Size,
-            basePos = spot.Position,
-            pulseSpeed = 0.3 + math.random() * 0.4,
-            pulseOffset = math.random() * math.pi * 2,
-            moveSpeedX = (math.random() - 0.5) * 0.006,
-            moveSpeedY = (math.random() - 0.5) * 0.006,
-            moveRange = math.random(2, 7)
-        })
-    end
-    
-    local BurstParticles = {}
-    for i = 1, 4 do
-        local burst = Instance.new("Frame")
-        burst.Name = "BurstParticle_" .. i
-        burst.Parent = GlowContainer
-        burst.BackgroundColor3 = Color3.fromRGB(220, 220, 220)
-        burst.BorderSizePixel = 0
-        burst.Size = UDim2.new(0, math.random(3, 8), 0, math.random(3, 8))
-        burst.Position = UDim2.new(0.5, 0, 0.5, 0)
-        burst.AnchorPoint = Vector2.new(0.5, 0.5)
-        burst.ZIndex = -2
+        local angle = math.random() * math.pi * 2
+        local speed = math.random(0.5, 1.5)
+        local distance = math.random(10, 25)
+        local life = math.random() * math.pi * 2
         
-        local burstCorner = Instance.new("UICorner")
-        burstCorner.CornerRadius = UDim.new(1, 0)
-        burstCorner.Parent = burst
-        
-        table.insert(BurstParticles, {
-            frame = burst,
-            direction = Vector2.new(math.random() * 2 - 1, math.random() * 2 - 1).Unit,
-            speed = math.random(0.5, 1.2),
-            life = 0,
-            maxLife = math.random(1, 2),
-            size = burst.Size
+        table.insert(Particles, {
+            frame = particle,
+            baseX = particle.Position.X.Offset,
+            baseY = particle.Position.Y.Offset,
+            angle = angle,
+            speed = speed,
+            distance = distance,
+            life = life,
+            size = particle.Size
         })
     end
     
@@ -170,69 +147,40 @@ function Library:Create(xHubName,xGameName)
         while Main.Parent do
             time = time + 0.03
             
-            CoreGlow.Transparency = 0.3 + math.sin(time * 0.8) * 0.1
+            local pulse = math.sin(time * 0.8) * 0.1
+            InnerGlow.Transparency = 0.2 + pulse
+            OuterGlow.Transparency = 0.4 + pulse * 0.5
             
-            for _, rayData in ipairs(SunRayGlows) do
-                local pulse = math.sin(time * rayData.pulseSpeed + rayData.pulseOffset) * 0.08
-                local thicknessVar = math.sin(time * rayData.pulseSpeed * 1.5 + rayData.pulseOffset) * 0.8
-                local transparencyVar = math.cos(time * rayData.pulseSpeed * 0.8 + rayData.pulseOffset) * 0.1
+            for _, particleData in ipairs(Particles) do
+                particleData.life = particleData.life + particleData.speed * 0.03
                 
-                rayData.stroke.Transparency = rayData.baseTransparency + transparencyVar
-                rayData.stroke.Thickness = rayData.baseThickness + thicknessVar
+                local lifePulse = math.sin(particleData.life) * 0.5 + 0.5
+                local moveX = math.cos(particleData.angle + time * 0.5) * particleData.distance * lifePulse
+                local moveY = math.sin(particleData.angle + time * 0.5) * particleData.distance * lifePulse
                 
-                rayData.offsetX = math.sin(time * rayData.pulseSpeed * 0.3 + rayData.pulseOffset) * 1.2
-                rayData.offsetY = math.cos(time * rayData.pulseSpeed * 0.3 + rayData.pulseOffset) * 1.2
-            end
-            
-            for _, spotData in ipairs(SunSpots) do
-                local spotPulse = math.sin(time * spotData.pulseSpeed + spotData.pulseOffset) * 0.2 + 0.85
-                local moveX = math.sin(time * spotData.moveSpeedX) * spotData.moveRange
-                local moveY = math.cos(time * spotData.moveSpeedY) * spotData.moveRange
-                
-                spotData.frame.Size = UDim2.new(
-                    0, spotData.baseSize.X.Offset * spotPulse,
-                    0, spotData.baseSize.Y.Offset * spotPulse
+                particleData.frame.Position = UDim2.new(
+                    particleData.frame.Position.X.Scale,
+                    particleData.baseX + moveX,
+                    particleData.frame.Position.Y.Scale,
+                    particleData.baseY + moveY
                 )
                 
-                spotData.frame.Position = UDim2.new(
-                    spotData.basePos.X.Scale,
-                    spotData.basePos.X.Offset + moveX,
-                    spotData.basePos.Y.Scale,
-                    spotData.basePos.Y.Offset + moveY
+                particleData.frame.BackgroundTransparency = 0.1 + lifePulse * 0.6
+                
+                local sizeMult = 0.5 + lifePulse * 0.5
+                particleData.frame.Size = UDim2.new(
+                    0, particleData.size.X.Offset * sizeMult,
+                    0, particleData.size.Y.Offset * sizeMult
                 )
                 
-                local alpha = 0.4 + math.sin(time * spotData.pulseSpeed * 1.2 + spotData.pulseOffset) * 0.2
-                spotData.frame.BackgroundTransparency = alpha
-            end
-            
-            for i, burstData in ipairs(BurstParticles) do
-                burstData.life = burstData.life + 0.03
-                if burstData.life > burstData.maxLife then
-                    burstData.life = 0
-                    burstData.direction = Vector2.new(math.random() * 2 - 1, math.random() * 2 - 1).Unit
-                    burstData.speed = math.random(0.5, 1.2)
-                    burstData.maxLife = math.random(1, 2)
-                    burstData.frame.Position = UDim2.new(0.5, 0, 0.5, 0)
-                    burstData.frame.Size = burstData.size
+                if particleData.life > math.pi * 2 then
+                    particleData.life = 0
+                    particleData.angle = math.random() * math.pi * 2
+                    particleData.speed = math.random(0.5, 1.5)
+                    particleData.distance = math.random(10, 25)
+                    particleData.baseX = math.random(-20, 20)
+                    particleData.baseY = math.random(-20, 20)
                 end
-                
-                local progress = burstData.life / burstData.maxLife
-                local distance = burstData.speed * progress * 20
-                local sizeMulti = 1 - progress * 0.5
-                
-                burstData.frame.Position = UDim2.new(
-                    0.5,
-                    burstData.direction.X * distance,
-                    0.5,
-                    burstData.direction.Y * distance
-                )
-                
-                burstData.frame.Size = UDim2.new(
-                    0, burstData.size.X.Offset * sizeMulti,
-                    0, burstData.size.Y.Offset * sizeMulti
-                )
-                
-                burstData.frame.BackgroundTransparency = 0.3 + progress * 0.7
             end
             
             wait(0.03)
