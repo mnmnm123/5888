@@ -86,22 +86,22 @@ function Library:Create(xHubName,xGameName)
     CoreGlow.Name = "CoreGlow"
     CoreGlow.Parent = Main
     CoreGlow.Color = Color3.fromRGB(200, 200, 200)
-    CoreGlow.Transparency = 0.2
-    CoreGlow.Thickness = 6
+    CoreGlow.Transparency = 0.3
+    CoreGlow.Thickness = 4
     CoreGlow.LineJoinMode = Enum.LineJoinMode.Round
     
-    for i = 1, 8 do
+    for i = 1, 6 do
         local ray = Instance.new("UIStroke")
         ray.Name = "SunRay_" .. i
         ray.Parent = Main
         ray.Color = Color3.fromRGB(180, 180, 180)
-        ray.Transparency = 0.4 + (i * 0.05)
-        ray.Thickness = 4 + (i * 1.5)
+        ray.Transparency = 0.5 + (i * 0.07)
+        ray.Thickness = 3 + (i * 0.8)
         ray.LineJoinMode = Enum.LineJoinMode.Round
         table.insert(SunRayGlows, {
             stroke = ray,
-            baseThickness = 4 + (i * 1.5),
-            baseTransparency = 0.4 + (i * 0.05),
+            baseThickness = 3 + (i * 0.8),
+            baseTransparency = 0.5 + (i * 0.07),
             offsetX = 0,
             offsetY = 0,
             pulseSpeed = 0.5 + (i * 0.1),
@@ -110,16 +110,16 @@ function Library:Create(xHubName,xGameName)
     end
     
     local SunSpots = {}
-    for i = 1, 6 do
+    for i = 1, 5 do
         local spot = Instance.new("Frame")
         spot.Name = "SunSpot_" .. i
         spot.Parent = GlowContainer
         spot.BackgroundColor3 = Color3.fromRGB(220, 220, 220)
         spot.BorderSizePixel = 0
-        spot.Size = UDim2.new(0, math.random(8, 20), 0, math.random(8, 20))
+        spot.Size = UDim2.new(0, math.random(6, 16), 0, math.random(6, 16))
         spot.Position = UDim2.new(
-            math.random(-0.05, 1.05), 0,
-            math.random(-0.05, 1.05), 0
+            math.random(-0.03, 1.03), 0,
+            math.random(-0.03, 1.03), 0
         )
         spot.ZIndex = -1
         
@@ -133,9 +133,35 @@ function Library:Create(xHubName,xGameName)
             basePos = spot.Position,
             pulseSpeed = 0.3 + math.random() * 0.4,
             pulseOffset = math.random() * math.pi * 2,
-            moveSpeedX = (math.random() - 0.5) * 0.008,
-            moveSpeedY = (math.random() - 0.5) * 0.008,
-            moveRange = math.random(3, 10)
+            moveSpeedX = (math.random() - 0.5) * 0.006,
+            moveSpeedY = (math.random() - 0.5) * 0.006,
+            moveRange = math.random(2, 7)
+        })
+    end
+    
+    local BurstParticles = {}
+    for i = 1, 4 do
+        local burst = Instance.new("Frame")
+        burst.Name = "BurstParticle_" .. i
+        burst.Parent = GlowContainer
+        burst.BackgroundColor3 = Color3.fromRGB(220, 220, 220)
+        burst.BorderSizePixel = 0
+        burst.Size = UDim2.new(0, math.random(3, 8), 0, math.random(3, 8))
+        burst.Position = UDim2.new(0.5, 0, 0.5, 0)
+        burst.AnchorPoint = Vector2.new(0.5, 0.5)
+        burst.ZIndex = -2
+        
+        local burstCorner = Instance.new("UICorner")
+        burstCorner.CornerRadius = UDim.new(1, 0)
+        burstCorner.Parent = burst
+        
+        table.insert(BurstParticles, {
+            frame = burst,
+            direction = Vector2.new(math.random() * 2 - 1, math.random() * 2 - 1).Unit,
+            speed = math.random(0.5, 1.2),
+            life = 0,
+            maxLife = math.random(1, 2),
+            size = burst.Size
         })
     end
     
@@ -144,22 +170,22 @@ function Library:Create(xHubName,xGameName)
         while Main.Parent do
             time = time + 0.03
             
-            CoreGlow.Transparency = 0.2 + math.sin(time * 0.8) * 0.05
+            CoreGlow.Transparency = 0.3 + math.sin(time * 0.8) * 0.1
             
             for _, rayData in ipairs(SunRayGlows) do
-                local pulse = math.sin(time * rayData.pulseSpeed + rayData.pulseOffset) * 0.1
-                local thicknessVar = math.sin(time * rayData.pulseSpeed * 1.5 + rayData.pulseOffset) * 1.2
-                local transparencyVar = math.cos(time * rayData.pulseSpeed * 0.8 + rayData.pulseOffset) * 0.08
+                local pulse = math.sin(time * rayData.pulseSpeed + rayData.pulseOffset) * 0.08
+                local thicknessVar = math.sin(time * rayData.pulseSpeed * 1.5 + rayData.pulseOffset) * 0.8
+                local transparencyVar = math.cos(time * rayData.pulseSpeed * 0.8 + rayData.pulseOffset) * 0.1
                 
                 rayData.stroke.Transparency = rayData.baseTransparency + transparencyVar
                 rayData.stroke.Thickness = rayData.baseThickness + thicknessVar
                 
-                rayData.offsetX = math.sin(time * rayData.pulseSpeed * 0.3 + rayData.pulseOffset) * 1.5
-                rayData.offsetY = math.cos(time * rayData.pulseSpeed * 0.3 + rayData.pulseOffset) * 1.5
+                rayData.offsetX = math.sin(time * rayData.pulseSpeed * 0.3 + rayData.pulseOffset) * 1.2
+                rayData.offsetY = math.cos(time * rayData.pulseSpeed * 0.3 + rayData.pulseOffset) * 1.2
             end
             
             for _, spotData in ipairs(SunSpots) do
-                local spotPulse = math.sin(time * spotData.pulseSpeed + spotData.pulseOffset) * 0.25 + 0.8
+                local spotPulse = math.sin(time * spotData.pulseSpeed + spotData.pulseOffset) * 0.2 + 0.85
                 local moveX = math.sin(time * spotData.moveSpeedX) * spotData.moveRange
                 local moveY = math.cos(time * spotData.moveSpeedY) * spotData.moveRange
                 
@@ -175,8 +201,38 @@ function Library:Create(xHubName,xGameName)
                     spotData.basePos.Y.Offset + moveY
                 )
                 
-                local alpha = 0.3 + math.sin(time * spotData.pulseSpeed * 1.2 + spotData.pulseOffset) * 0.15
+                local alpha = 0.4 + math.sin(time * spotData.pulseSpeed * 1.2 + spotData.pulseOffset) * 0.2
                 spotData.frame.BackgroundTransparency = alpha
+            end
+            
+            for i, burstData in ipairs(BurstParticles) do
+                burstData.life = burstData.life + 0.03
+                if burstData.life > burstData.maxLife then
+                    burstData.life = 0
+                    burstData.direction = Vector2.new(math.random() * 2 - 1, math.random() * 2 - 1).Unit
+                    burstData.speed = math.random(0.5, 1.2)
+                    burstData.maxLife = math.random(1, 2)
+                    burstData.frame.Position = UDim2.new(0.5, 0, 0.5, 0)
+                    burstData.frame.Size = burstData.size
+                end
+                
+                local progress = burstData.life / burstData.maxLife
+                local distance = burstData.speed * progress * 20
+                local sizeMulti = 1 - progress * 0.5
+                
+                burstData.frame.Position = UDim2.new(
+                    0.5,
+                    burstData.direction.X * distance,
+                    0.5,
+                    burstData.direction.Y * distance
+                )
+                
+                burstData.frame.Size = UDim2.new(
+                    0, burstData.size.X.Offset * sizeMulti,
+                    0, burstData.size.Y.Offset * sizeMulti
+                )
+                
+                burstData.frame.BackgroundTransparency = 0.3 + progress * 0.7
             end
             
             wait(0.03)
