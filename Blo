@@ -82,55 +82,55 @@ function Library:Create(xHubName,xGameName)
     ParticleContainer.ZIndex = -5
 
     local Particles = {}
-    local particleCount = 120
+    local particleCount = 300
+    
+    local centerX = Main.AbsoluteSize.X / 2
+    local centerY = Main.AbsoluteSize.Y / 2
+    local maxRadius = math.max(centerX, centerY) * 1.5
     
     for i = 1, particleCount do
-        local side = math.random(1, 4)
-        local posX, posY
+        local angle = math.random() * math.pi * 2
+        local radius = math.random() * maxRadius
+        local density = 1 - (radius / maxRadius)
         
-        if side == 1 then
-            posX = math.random()
-            posY = 0
-        elseif side == 2 then
-            posX = 1
-            posY = math.random()
-        elseif side == 3 then
-            posX = math.random()
-            posY = 1
-        else
-            posX = 0
-            posY = math.random()
+        if math.random() > density then
+            radius = math.random() * (maxRadius * 0.3)
         end
+        
+        local posX = centerX + math.cos(angle) * radius
+        local posY = centerY + math.sin(angle) * radius
         
         local particle = Instance.new("Frame")
         particle.Name = "Particle_" .. i
         particle.Parent = ParticleContainer
         particle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
         particle.BorderSizePixel = 0
-        particle.Size = UDim2.new(0, math.random(1, 3), 0, math.random(1, 3))
+        local size = math.random(1, 2)
+        particle.Size = UDim2.new(0, size, 0, size)
         particle.AnchorPoint = Vector2.new(0.5, 0.5)
-        particle.Position = UDim2.new(posX, 0, posY, 0)
+        particle.Position = UDim2.new(0, posX, 0, posY)
         particle.ZIndex = -4
         
         local particleCorner = Instance.new("UICorner")
         particleCorner.CornerRadius = UDim.new(1, 0)
         particleCorner.Parent = particle
         
-        local angle = math.random() * math.pi * 2
-        local speed = math.random(0.3, 0.8)
-        local maxDistance = math.random(10, 25)
-        local startDistance = math.random(0, 5)
+        local speed = math.random(0.5, 1.5)
+        local targetRadius = radius + math.random(20, 50)
+        local startTime = math.random()
         
         table.insert(Particles, {
             frame = particle,
             angle = angle,
             speed = speed,
-            maxDistance = maxDistance,
-            distance = startDistance,
-            startPos = UDim2.new(posX, 0, posY, 0),
-            size = particle.Size,
-            life = 0,
-            maxLife = math.random(1, 3)
+            radius = radius,
+            targetRadius = targetRadius,
+            startRadius = radius,
+            startPos = UDim2.new(0, posX, 0, posY),
+            size = size,
+            life = startTime * 2,
+            maxLife = math.random(2, 4),
+            expanding = true
         })
     end
     
@@ -138,57 +138,56 @@ function Library:Create(xHubName,xGameName)
         while Main.Parent do
             for _, particleData in ipairs(Particles) do
                 particleData.life = particleData.life + particleData.speed * 0.03
-                particleData.distance = particleData.distance + particleData.speed * 0.5
                 
-                if particleData.life > particleData.maxLife or particleData.distance > particleData.maxDistance then
+                if particleData.life > particleData.maxLife then
                     particleData.life = 0
-                    particleData.distance = 0
+                    particleData.expanding = true
                     
-                    local side = math.random(1, 4)
-                    local posX, posY
+                    local angle = math.random() * math.pi * 2
+                    local radius = math.random() * (maxRadius * 0.3)
+                    local density = 1 - (radius / maxRadius)
                     
-                    if side == 1 then
-                        posX = math.random()
-                        posY = 0
-                    elseif side == 2 then
-                        posX = 1
-                        posY = math.random()
-                    elseif side == 3 then
-                        posX = math.random()
-                        posY = 1
-                    else
-                        posX = 0
-                        posY = math.random()
+                    if math.random() > density then
+                        radius = math.random() * (maxRadius * 0.3)
                     end
                     
-                    particleData.startPos = UDim2.new(posX, 0, posY, 0)
-                    particleData.frame.Position = particleData.startPos
-                    particleData.frame.Size = particleData.size
-                    particleData.frame.BackgroundTransparency = 0.1
-                    particleData.angle = math.random() * math.pi * 2
-                    particleData.speed = math.random(0.3, 0.8)
-                    particleData.maxDistance = math.random(10, 25)
-                    particleData.maxLife = math.random(1, 3)
-                else
-                    local progress = particleData.distance / particleData.maxDistance
-                    local moveX = math.cos(particleData.angle) * particleData.distance
-                    local moveY = math.sin(particleData.angle) * particleData.distance
-                    
-                    particleData.frame.Position = UDim2.new(
-                        particleData.startPos.X.Scale,
-                        particleData.startPos.X.Offset + moveX,
-                        particleData.startPos.Y.Scale,
-                        particleData.startPos.Y.Offset + moveY
-                    )
-                    
-                    particleData.frame.BackgroundTransparency = 0.1 + progress * 0.9
-                    
-                    local sizeMult = 1 - progress * 0.8
-                    particleData.frame.Size = UDim2.new(
-                        0, particleData.size.X.Offset * sizeMult,
-                        0, particleData.size.Y.Offset * sizeMult
-                    )
+                    particleData.angle = angle
+                    particleData.radius = radius
+                    particleData.startRadius = radius
+                    particleData.targetRadius = radius + math.random(20, 50)
+                    particleData.speed = math.random(0.5, 1.5)
+                    particleData.maxLife = math.random(2, 4)
                 end
+                
+                local progress = particleData.life / particleData.maxLife
+                
+                if particleData.expanding then
+                    particleData.radius = particleData.startRadius + (particleData.targetRadius - particleData.startRadius) * progress
+                    
+                    if progress >= 1 then
+                        particleData.expanding = false
+                        particleData.startRadius = particleData.targetRadius
+                        particleData.targetRadius = particleData.startRadius - math.random(10, 30)
+                        particleData.life = 0
+                        particleData.maxLife = math.random(1, 2)
+                    end
+                else
+                    particleData.radius = particleData.startRadius + (particleData.targetRadius - particleData.startRadius) * progress
+                end
+                
+                local posX = centerX + math.cos(particleData.angle) * particleData.radius
+                local posY = centerY + math.sin(particleData.angle) * particleData.radius
+                
+                particleData.frame.Position = UDim2.new(0, posX, 0, posY)
+                
+                local distanceFromCenter = math.sqrt((posX - centerX)^2 + (posY - centerY)^2)
+                local transparencyProgress = distanceFromCenter / maxRadius
+                
+                particleData.frame.BackgroundTransparency = 0.2 + transparencyProgress * 0.8
+                
+                local sizeMult = 1 - transparencyProgress * 0.6
+                local newSize = math.max(0.5, particleData.size * sizeMult)
+                particleData.frame.Size = UDim2.new(0, newSize, 0, newSize)
             end
             
             wait(0.03)
