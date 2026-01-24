@@ -74,18 +74,35 @@ function Library:Create(xHubName,xGameName)
     MainCorner.Name = "MainCorner"
     MainCorner.Parent = Main
     
-    local GlowEffect = Instance.new("ImageLabel")
-    GlowEffect.Name = "GlowEffect"
-    GlowEffect.Parent = Main
-    GlowEffect.BackgroundTransparency = 1
-    GlowEffect.Size = UDim2.new(1, 10, 1, 10)
-    GlowEffect.Position = UDim2.new(0, -5, 0, -5)
-    GlowEffect.Image = "rbxassetid://4996891970"
-    GlowEffect.ImageColor3 = Color3.fromRGB(255, 255, 255)
-    GlowEffect.ScaleType = Enum.ScaleType.Slice
-    GlowEffect.SliceCenter = Rect.new(20, 20, 280, 280)
-    GlowEffect.SliceScale = 0.1
-    GlowEffect.ZIndex = 0
+    local OuterGlow = Instance.new("UIStroke")
+    OuterGlow.Name = "OuterGlow"
+    OuterGlow.Parent = Main
+    OuterGlow.Color = Color3.fromRGB(220, 220, 220)
+    OuterGlow.Transparency = 0.1
+    OuterGlow.Thickness = 8
+    OuterGlow.LineJoinMode = Enum.LineJoinMode.Round
+    
+    local InnerGlow = Instance.new("UIStroke")
+    InnerGlow.Name = "InnerGlow"
+    InnerGlow.Parent = Main
+    InnerGlow.Color = Color3.fromRGB(255, 255, 255)
+    InnerGlow.Transparency = 0.3
+    InnerGlow.Thickness = 4
+    InnerGlow.LineJoinMode = Enum.LineJoinMode.Round
+    
+    local GlowAnimation = Instance.new("ImageLabel")
+    GlowAnimation.Name = "GlowAnimation"
+    GlowAnimation.Parent = Main
+    GlowAnimation.BackgroundTransparency = 1
+    GlowAnimation.Size = UDim2.new(1, 20, 1, 20)
+    GlowAnimation.Position = UDim2.new(0, -10, 0, -10)
+    GlowAnimation.Image = "rbxassetid://5554236805"
+    GlowAnimation.ImageColor3 = Color3.fromRGB(200, 200, 210)
+    GlowAnimation.ScaleType = Enum.ScaleType.Slice
+    GlowAnimation.SliceCenter = Rect.new(100, 100, 100, 100)
+    GlowAnimation.SliceScale = 1
+    GlowAnimation.ImageTransparency = 0.5
+    GlowAnimation.ZIndex = 0
 
     local CloseButton = Instance.new("TextButton")
     local CloseButtonCorner = Instance.new("UICorner")
