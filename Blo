@@ -77,32 +77,49 @@ function Library:Create(xHubName,xGameName)
     local OuterGlow = Instance.new("UIStroke")
     OuterGlow.Name = "OuterGlow"
     OuterGlow.Parent = Main
-    OuterGlow.Color = Color3.fromRGB(220, 220, 220)
-    OuterGlow.Transparency = 0.1
-    OuterGlow.Thickness = 8
+    OuterGlow.Color = Color3.fromRGB(255, 255, 255)
+    OuterGlow.Transparency = 0
+    OuterGlow.Thickness = 6
     OuterGlow.LineJoinMode = Enum.LineJoinMode.Round
     
-    local InnerGlow = Instance.new("UIStroke")
-    InnerGlow.Name = "InnerGlow"
-    InnerGlow.Parent = Main
-    InnerGlow.Color = Color3.fromRGB(255, 255, 255)
-    InnerGlow.Transparency = 0.3
-    InnerGlow.Thickness = 4
-    InnerGlow.LineJoinMode = Enum.LineJoinMode.Round
+    local GlowLayer1 = Instance.new("UIStroke")
+    GlowLayer1.Name = "GlowLayer1"
+    GlowLayer1.Parent = Main
+    GlowLayer1.Color = Color3.fromRGB(255, 255, 255)
+    GlowLayer1.Transparency = 0.3
+    GlowLayer1.Thickness = 12
+    GlowLayer1.LineJoinMode = Enum.LineJoinMode.Round
     
-    local GlowAnimation = Instance.new("ImageLabel")
-    GlowAnimation.Name = "GlowAnimation"
-    GlowAnimation.Parent = Main
-    GlowAnimation.BackgroundTransparency = 1
-    GlowAnimation.Size = UDim2.new(1, 20, 1, 20)
-    GlowAnimation.Position = UDim2.new(0, -10, 0, -10)
-    GlowAnimation.Image = "rbxassetid://5554236805"
-    GlowAnimation.ImageColor3 = Color3.fromRGB(200, 200, 210)
-    GlowAnimation.ScaleType = Enum.ScaleType.Slice
-    GlowAnimation.SliceCenter = Rect.new(100, 100, 100, 100)
-    GlowAnimation.SliceScale = 1
-    GlowAnimation.ImageTransparency = 0.5
-    GlowAnimation.ZIndex = 0
+    local GlowLayer2 = Instance.new("UIStroke")
+    GlowLayer2.Name = "GlowLayer2"
+    GlowLayer2.Parent = Main
+    GlowLayer2.Color = Color3.fromRGB(255, 255, 255)
+    GlowLayer2.Transparency = 0.5
+    GlowLayer2.Thickness = 20
+    GlowLayer2.LineJoinMode = Enum.LineJoinMode.Round
+    
+    local GlowLayer3 = Instance.new("UIStroke")
+    GlowLayer3.Name = "GlowLayer3"
+    GlowLayer3.Parent = Main
+    GlowLayer3.Color = Color3.fromRGB(255, 255, 255)
+    GlowLayer3.Transparency = 0.7
+    GlowLayer3.Thickness = 30
+    GlowLayer3.LineJoinMode = Enum.LineJoinMode.Round
+
+    spawn(function()
+        while Main.Parent do
+            for i = 0, 1, 0.02 do
+                local transparency1 = 0.2 + math.sin(i * math.pi) * 0.1
+                local transparency2 = 0.4 + math.sin(i * math.pi) * 0.1
+                local transparency3 = 0.6 + math.sin(i * math.pi) * 0.1
+                
+                GlowLayer1.Transparency = transparency1
+                GlowLayer2.Transparency = transparency2
+                GlowLayer3.Transparency = transparency3
+                wait(0.03)
+            end
+        end
+    end)
 
     local CloseButton = Instance.new("TextButton")
     local CloseButtonCorner = Instance.new("UICorner")
