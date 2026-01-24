@@ -74,60 +74,123 @@ function Library:Create(xHubName,xGameName)
     MainCorner.Name = "MainCorner"
     MainCorner.Parent = Main
     
-    local InnerGlow = Instance.new("ImageLabel")
-    InnerGlow.Name = "InnerGlow"
-    InnerGlow.Parent = Main
-    InnerGlow.BackgroundTransparency = 1
-    InnerGlow.Size = UDim2.new(1, 40, 1, 40)
-    InnerGlow.Position = UDim2.new(0, -20, 0, -20)
-    InnerGlow.Image = "rbxassetid://5554236805"
-    InnerGlow.ImageColor3 = Color3.fromRGB(255, 255, 200)
-    InnerGlow.ScaleType = Enum.ScaleType.Slice
-    InnerGlow.SliceCenter = Rect.new(100, 100, 100, 100)
-    InnerGlow.SliceScale = 0.1
-    InnerGlow.ImageTransparency = 0.3
-    InnerGlow.ZIndex = -1
+    -- 移除旧的发光代码，添加新的自然太阳光效果
     
-    local OuterGlow = Instance.new("ImageLabel")
-    OuterGlow.Name = "OuterGlow"
-    OuterGlow.Parent = Main
-    OuterGlow.BackgroundTransparency = 1
-    OuterGlow.Size = UDim2.new(1, 80, 1, 80)
-    OuterGlow.Position = UDim2.new(0, -40, 0, -40)
-    OuterGlow.Image = "rbxassetid://5554236805"
-    OuterGlow.ImageColor3 = Color3.fromRGB(255, 255, 180)
-    OuterGlow.ScaleType = Enum.ScaleType.Slice
-    OuterGlow.SliceCenter = Rect.new(100, 100, 100, 100)
-    OuterGlow.SliceScale = 0.1
-    OuterGlow.ImageTransparency = 0.5
-    OuterGlow.ZIndex = -2
+    local SunRayGlows = {}
+    local GlowContainer = Instance.new("Frame")
+    GlowContainer.Name = "GlowContainer"
+    GlowContainer.Parent = Main
+    GlowContainer.BackgroundTransparency = 1
+    GlowContainer.Size = UDim2.new(1, 0, 1, 0)
+    GlowContainer.ZIndex = -5
     
-    local RayGlow = Instance.new("ImageLabel")
-    RayGlow.Name = "RayGlow"
-    RayGlow.Parent = Main
-    RayGlow.BackgroundTransparency = 1
-    RayGlow.Size = UDim2.new(1, 120, 1, 120)
-    RayGlow.Position = UDim2.new(0, -60, 0, -60)
-    RayGlow.Image = "rbxassetid://5554236805"
-    RayGlow.ImageColor3 = Color3.fromRGB(255, 255, 150)
-    RayGlow.ScaleType = Enum.ScaleType.Slice
-    RayGlow.SliceCenter = Rect.new(100, 100, 100, 100)
-    RayGlow.SliceScale = 0.1
-    RayGlow.ImageTransparency = 0.7
-    RayGlow.ZIndex = -3
-
+    -- 创建核心发光层
+    local CoreGlow = Instance.new("UIStroke")
+    CoreGlow.Name = "CoreGlow"
+    CoreGlow.Parent = Main
+    CoreGlow.Color = Color3.fromRGB(255, 255, 220)
+    CoreGlow.Transparency = 0.2
+    CoreGlow.Thickness = 8
+    CoreGlow.LineJoinMode = Enum.LineJoinMode.Round
+    
+    -- 创建多层射线效果
+    for i = 1, 12 do
+        local ray = Instance.new("UIStroke")
+        ray.Name = "SunRay_" .. i
+        ray.Parent = Main
+        ray.Color = Color3.fromRGB(255, 255, 180)
+        ray.Transparency = 0.4 + (i * 0.05)
+        ray.Thickness = 6 + (i * 2)
+        ray.LineJoinMode = Enum.LineJoinMode.Round
+        table.insert(SunRayGlows, {
+            stroke = ray,
+            baseThickness = 6 + (i * 2),
+            baseTransparency = 0.4 + (i * 0.05),
+            offsetX = 0,
+            offsetY = 0,
+            pulseSpeed = 0.5 + (i * 0.1),
+            pulseOffset = math.random() * math.pi * 2
+        })
+    end
+    
+    -- 创建不规则的光点（模拟太阳表面的耀斑）
+    local SunSpots = {}
+    for i = 1, 8 do
+        local spot = Instance.new("Frame")
+        spot.Name = "SunSpot_" .. i
+        spot.Parent = GlowContainer
+        spot.BackgroundColor3 = Color3.fromRGB(255, 255, 200)
+        spot.BorderSizePixel = 0
+        spot.Size = UDim2.new(0, math.random(10, 25), 0, math.random(10, 25))
+        spot.Position = UDim2.new(
+            math.random(-0.1, 1.1), 0,
+            math.random(-0.1, 1.1), 0
+        )
+        spot.ZIndex = -1
+        
+        local spotCorner = Instance.new("UICorner")
+        spotCorner.CornerRadius = UDim.new(1, 0)
+        spotCorner.Parent = spot
+        
+        table.insert(SunSpots, {
+            frame = spot,
+            baseSize = spot.Size,
+            basePos = spot.Position,
+            pulseSpeed = 0.3 + math.random() * 0.4,
+            pulseOffset = math.random() * math.pi * 2,
+            moveSpeedX = (math.random() - 0.5) * 0.01,
+            moveSpeedY = (math.random() - 0.5) * 0.01,
+            moveRange = math.random(5, 15)
+        })
+    end
+    
+    -- 自然太阳光动画
     spawn(function()
+        local time = 0
         while Main.Parent do
-            for i = 0, 1, 0.05 do
-                local pulse = 0.3 + math.sin(i * math.pi * 2) * 0.2
-                InnerGlow.ImageTransparency = 0.3 + pulse
-                OuterGlow.ImageTransparency = 0.5 + pulse
-                RayGlow.ImageTransparency = 0.7 + pulse
+            time = time + 0.03
+            
+            -- 让核心发光层轻微脉动
+            CoreGlow.Transparency = 0.2 + math.sin(time * 0.8) * 0.05
+            
+            -- 射线层：每个射线有自己的脉动节奏
+            for _, rayData in ipairs(SunRayGlows) do
+                local pulse = math.sin(time * rayData.pulseSpeed + rayData.pulseOffset) * 0.15
+                local thicknessVar = math.sin(time * rayData.pulseSpeed * 1.5 + rayData.pulseOffset) * 2
+                local transparencyVar = math.cos(time * rayData.pulseSpeed * 0.8 + rayData.pulseOffset) * 0.1
                 
-                InnerGlow.Size = UDim2.new(1, 40 + math.sin(i * math.pi) * 10, 1, 40 + math.sin(i * math.pi) * 10)
-                InnerGlow.Position = UDim2.new(0, -20 - math.sin(i * math.pi) * 5, 0, -20 - math.sin(i * math.pi) * 5)
-                wait(0.03)
+                rayData.stroke.Transparency = rayData.baseTransparency + transparencyVar
+                rayData.stroke.Thickness = rayData.baseThickness + thicknessVar
+                
+                -- 随机偏移，制造不规则的射线效果
+                rayData.offsetX = math.sin(time * rayData.pulseSpeed * 0.3 + rayData.pulseOffset) * 2
+                rayData.offsetY = math.cos(time * rayData.pulseSpeed * 0.3 + rayData.pulseOffset) * 2
             end
+            
+            -- 光点：每个光点有自己的移动和脉动
+            for _, spotData in ipairs(SunSpots) do
+                local spotPulse = math.sin(time * spotData.pulseSpeed + spotData.pulseOffset) * 0.3 + 0.7
+                local moveX = math.sin(time * spotData.moveSpeedX) * spotData.moveRange
+                local moveY = math.cos(time * spotData.moveSpeedY) * spotData.moveRange
+                
+                spotData.frame.Size = UDim2.new(
+                    0, spotData.baseSize.X.Offset * spotPulse,
+                    0, spotData.baseSize.Y.Offset * spotPulse
+                )
+                
+                spotData.frame.Position = UDim2.new(
+                    spotData.basePos.X.Scale,
+                    spotData.basePos.X.Offset + moveX,
+                    spotData.basePos.Y.Scale,
+                    spotData.basePos.Y.Offset + moveY
+                )
+                
+                -- 透明度变化
+                local alpha = 0.3 + math.sin(time * spotData.pulseSpeed * 1.2 + spotData.pulseOffset) * 0.2
+                spotData.frame.BackgroundTransparency = alpha
+            end
+            
+            wait(0.03)
         end
     end)
 
@@ -1049,7 +1112,7 @@ function Library:Create(xHubName,xGameName)
             DropdownButton.Name = "DropdownButton"
             DropdownButton.Parent = DropdownFrame
             DropdownButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    DropdownButton.BackgroundTransparency = 1.000
+            DropdownButton.BackgroundTransparency = 1.000
             DropdownButton.BorderSizePixel = 0
             DropdownButton.Size = UDim2.new(0, 326, 0, 28)
             DropdownButton.Font = Enum.Font.SourceSans
