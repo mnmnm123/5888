@@ -1,6 +1,6 @@
 local Library = {}
 local LibraryName = tostring(math.random(100000,200000))..tostring(math.random(100000,200000))..tostring(math.random(100000,200000))
- 
+
 function Library:Toggle()
     if game.CoreGui:FindFirstChild(LibraryName).Enabled then 
         game.CoreGui:FindFirstChild(LibraryName).Enabled = false
@@ -81,111 +81,81 @@ function Library:Create(xHubName,xGameName)
     GlowContainer.Size = UDim2.new(1, 0, 1, 0)
     GlowContainer.ZIndex = -5
     
-    local InnerGlow = Instance.new("UIStroke")
-    InnerGlow.Name = "InnerGlow"
-    InnerGlow.Parent = Main
-    InnerGlow.Color = Color3.fromRGB(200, 200, 200)
-    InnerGlow.Transparency = 0.2
-    InnerGlow.Thickness = 2
-    InnerGlow.LineJoinMode = Enum.LineJoinMode.Round
-    
-    local OuterGlow = Instance.new("UIStroke")
-    OuterGlow.Name = "OuterGlow"
-    OuterGlow.Parent = Main
-    OuterGlow.Color = Color3.fromRGB(180, 180, 180)
-    OuterGlow.Transparency = 0.4
-    OuterGlow.Thickness = 3
-    OuterGlow.LineJoinMode = Enum.LineJoinMode.Round
-    
     local Particles = {}
+    local particleCount = 120
     
-    for i = 1, 15 do
-        local particle = Instance.new("Frame")
-        particle.Name = "Particle_" .. i
-        particle.Parent = GlowContainer
-        particle.BackgroundColor3 = Color3.fromRGB(220, 220, 220)
-        particle.BorderSizePixel = 0
-        particle.Size = UDim2.new(0, math.random(1, 2), 0, math.random(1, 2))
-        particle.AnchorPoint = Vector2.new(0.5, 0.5)
-        particle.Position = UDim2.new(
-            math.random(-0.1, 1.1),
-            0,
-            math.random(-0.1, 1.1),
-            0
-        )
-        particle.ZIndex = -3
-        
-        local particleCorner = Instance.new("UICorner")
-        particleCorner.CornerRadius = UDim.new(1, 0)
-        particleCorner.Parent = particle
-        
-        local angle = math.random() * math.pi * 2
-        local speed = math.random(0.5, 1.2)
-        local distance = math.random(8, 20)
-        local life = 0
-        local maxLife = math.random(1, 3)
-        local startPos = particle.Position
-        
-        table.insert(Particles, {
-            frame = particle,
-            angle = angle,
-            speed = speed,
-            distance = distance,
-            life = life,
-            maxLife = maxLife,
-            startPos = startPos,
-            startSize = particle.Size,
-            startTransparency = 0.1
-        })
+    local function createParticleRing(radius, count, baseSize, speedMult, lifeMult)
+        local ringParticles = {}
+        for i = 1, count do
+            local angle = (i / count) * math.pi * 2
+            local particle = Instance.new("Frame")
+            particle.Name = "ParticleRing_" .. radius .. "_" .. i
+            particle.Parent = GlowContainer
+            particle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            particle.BorderSizePixel = 0
+            particle.Size = UDim2.new(0, baseSize, 0, baseSize)
+            particle.AnchorPoint = Vector2.new(0.5, 0.5)
+            particle.ZIndex = -3
+            
+            local particleCorner = Instance.new("UICorner")
+            particleCorner.CornerRadius = UDim.new(1, 0)
+            particleCorner.Parent = particle
+            
+            table.insert(ringParticles, {
+                frame = particle,
+                angle = angle,
+                radius = radius,
+                baseSize = baseSize,
+                speed = 0.5 + math.random() * 0.8 * speedMult,
+                life = 0,
+                maxLife = 1 + math.random() * 2 * lifeMult,
+                currentLife = 0,
+                pulseOffset = math.random() * math.pi * 2
+            })
+        end
+        return ringParticles
     end
+    
+    local ring1 = createParticleRing(15, 40, 3, 0.8, 0.8)
+    local ring2 = createParticleRing(25, 50, 2, 1, 1)
+    local ring3 = createParticleRing(35, 30, 1.5, 1.2, 1.2)
+    
+    for _, p in ipairs(ring1) do table.insert(Particles, p) end
+    for _, p in ipairs(ring2) do table.insert(Particles, p) end
+    for _, p in ipairs(ring3) do table.insert(Particles, p) end
     
     spawn(function()
         local time = 0
         while Main.Parent do
             time = time + 0.03
             
-            local pulse = math.sin(time * 0.8) * 0.08
-            InnerGlow.Transparency = 0.2 + pulse
-            OuterGlow.Transparency = 0.4 + pulse * 0.3
-            
             for _, particleData in ipairs(Particles) do
-                particleData.life = particleData.life + particleData.speed * 0.03
+                particleData.currentLife = particleData.currentLife + particleData.speed * 0.03
                 
-                if particleData.life > particleData.maxLife then
+                if particleData.currentLife > particleData.maxLife then
+                    particleData.currentLife = 0
                     particleData.life = 0
-                    particleData.angle = math.random() * math.pi * 2
-                    particleData.speed = math.random(0.5, 1.2)
-                    particleData.distance = math.random(8, 20)
-                    particleData.maxLife = math.random(1, 3)
-                    particleData.startPos = UDim2.new(
-                        math.random(-0.1, 1.1),
-                        0,
-                        math.random(-0.1, 1.1),
-                        0
-                    )
-                    particleData.frame.Position = particleData.startPos
-                    particleData.frame.Size = particleData.startSize
-                    particleData.frame.BackgroundTransparency = particleData.startTransparency
-                else
-                    local progress = particleData.life / particleData.maxLife
-                    local moveX = math.cos(particleData.angle) * particleData.distance * progress
-                    local moveY = math.sin(particleData.angle) * particleData.distance * progress
-                    
-                    particleData.frame.Position = UDim2.new(
-                        particleData.startPos.X.Scale,
-                        particleData.startPos.X.Offset + moveX,
-                        particleData.startPos.Y.Scale,
-                        particleData.startPos.Y.Offset + moveY
-                    )
-                    
-                    particleData.frame.BackgroundTransparency = particleData.startTransparency + progress * 0.9
-                    
-                    local sizeMult = 1 - progress * 0.8
-                    particleData.frame.Size = UDim2.new(
-                        0, particleData.startSize.X.Offset * sizeMult,
-                        0, particleData.startSize.Y.Offset * sizeMult
-                    )
                 end
+                
+                local lifeProgress = particleData.currentLife / particleData.maxLife
+                local pulse = math.sin(time * 2 + particleData.pulseOffset) * 0.3 + 0.7
+                
+                local distance = particleData.radius + lifeProgress * 40
+                local xPos = 0.5 + math.cos(particleData.angle) * (distance / 232)
+                local yPos = 0.5 + math.sin(particleData.angle) * (distance / 148)
+                
+                particleData.frame.Position = UDim2.new(xPos, 0, yPos, 0)
+                
+                local sizeMult = (1 - lifeProgress) * pulse
+                local finalSize = math.max(0.5, particleData.baseSize * sizeMult)
+                particleData.frame.Size = UDim2.new(0, finalSize, 0, finalSize)
+                
+                local transparency = 0.1 + lifeProgress * 0.9
+                particleData.frame.BackgroundTransparency = transparency
+                
+                local intensity = 1 - lifeProgress * 0.7
+                local colorValue = math.floor(200 + 55 * intensity)
+                particleData.frame.BackgroundColor3 = Color3.fromRGB(colorValue, colorValue, colorValue)
             end
             
             wait(0.03)
