@@ -74,67 +74,123 @@ function Library:Create(xHubName,xGameName)
     MainCorner.Name = "MainCorner"
     MainCorner.Parent = Main
 
-    local GlowContainer = Instance.new("Frame")
-    GlowContainer.Name = "GlowContainer"
-    GlowContainer.Parent = Main
-    GlowContainer.BackgroundTransparency = 1
-    GlowContainer.Size = UDim2.new(1, 0, 1, 0)
-    GlowContainer.ZIndex = -10
+    local ParticleContainer = Instance.new("Frame")
+    ParticleContainer.Name = "ParticleContainer"
+    ParticleContainer.Parent = Main
+    ParticleContainer.BackgroundTransparency = 1
+    ParticleContainer.Size = UDim2.new(1, 0, 1, 0)
+    ParticleContainer.ZIndex = -5
 
-    local Rings = {}
-    local ringCount = 8
-
-    for i = 1, ringCount do
-        local ring = Instance.new("Frame")
-        ring.Name = "Ring_" .. i
-        ring.Parent = GlowContainer
-        ring.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-        ring.BorderSizePixel = 0
-        ring.Size = UDim2.new(1, 0, 1, 0)
-        ring.AnchorPoint = Vector2.new(0.5, 0.5)
-        ring.Position = UDim2.new(0.5, 0, 0.5, 0)
-        ring.ZIndex = -9
+    local Particles = {}
+    local particleCount = 120
+    
+    for i = 1, particleCount do
+        local side = math.random(1, 4)
+        local posX, posY
         
-        local ringCorner = Instance.new("UICorner")
-        ringCorner.CornerRadius = UDim.new(0, 12)
-        ringCorner.Parent = ring
+        if side == 1 then
+            posX = math.random()
+            posY = 0
+        elseif side == 2 then
+            posX = 1
+            posY = math.random()
+        elseif side == 3 then
+            posX = math.random()
+            posY = 1
+        else
+            posX = 0
+            posY = math.random()
+        end
         
-        local ringStroke = Instance.new("UIStroke")
-        ringStroke.Parent = ring
-        ringStroke.Color = Color3.fromRGB(255, 255, 255)
-        ringStroke.Thickness = 2
-        ringStroke.Transparency = 0.9
-        ringStroke.LineJoinMode = Enum.LineJoinMode.Round
+        local particle = Instance.new("Frame")
+        particle.Name = "Particle_" .. i
+        particle.Parent = ParticleContainer
+        particle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        particle.BorderSizePixel = 0
+        particle.Size = UDim2.new(0, math.random(1, 3), 0, math.random(1, 3))
+        particle.AnchorPoint = Vector2.new(0.5, 0.5)
+        particle.Position = UDim2.new(posX, 0, posY, 0)
+        particle.ZIndex = -4
         
-        table.insert(Rings, {
-            frame = ring,
-            stroke = ringStroke,
-            size = 1.0,
-            speed = 0.3 + (i * 0.1),
-            delay = i * 0.3,
-            maxSize = 1.4 + (i * 0.1),
-            currentTime = 0,
-            pulseOffset = math.random() * math.pi * 2
+        local particleCorner = Instance.new("UICorner")
+        particleCorner.CornerRadius = UDim.new(1, 0)
+        particleCorner.Parent = particle
+        
+        local angle = math.random() * math.pi * 2
+        local speed = math.random(0.3, 0.8)
+        local maxDistance = math.random(10, 25)
+        local startDistance = math.random(0, 5)
+        
+        table.insert(Particles, {
+            frame = particle,
+            angle = angle,
+            speed = speed,
+            maxDistance = maxDistance,
+            distance = startDistance,
+            startPos = UDim2.new(posX, 0, posY, 0),
+            size = particle.Size,
+            life = 0,
+            maxLife = math.random(1, 3)
         })
     end
-
+    
     spawn(function()
         while Main.Parent do
-            for _, ringData in ipairs(Rings) do
-                ringData.currentTime = ringData.currentTime + 0.03
+            for _, particleData in ipairs(Particles) do
+                particleData.life = particleData.life + particleData.speed * 0.03
+                particleData.distance = particleData.distance + particleData.speed * 0.5
                 
-                local pulseTime = (ringData.currentTime * ringData.speed) + ringData.delay
-                local pulse = math.sin(pulseTime + ringData.pulseOffset) * 0.5 + 0.5
-                
-                local currentSize = 1.0 + (ringData.maxSize - 1.0) * pulse
-                ringData.frame.Size = UDim2.new(currentSize, 0, currentSize, 0)
-                
-                local transparency = 0.9 - (pulse * 0.7)
-                ringData.stroke.Transparency = transparency
-                
-                local thickness = 2 + (pulse * 4)
-                ringData.stroke.Thickness = thickness
+                if particleData.life > particleData.maxLife or particleData.distance > particleData.maxDistance then
+                    particleData.life = 0
+                    particleData.distance = 0
+                    
+                    local side = math.random(1, 4)
+                    local posX, posY
+                    
+                    if side == 1 then
+                        posX = math.random()
+                        posY = 0
+                    elseif side == 2 then
+                        posX = 1
+                        posY = math.random()
+                    elseif side == 3 then
+                        posX = math.random()
+                        posY = 1
+                    else
+                        posX = 0
+                        posY = math.random()
+                    end
+                    
+                    particleData.startPos = UDim2.new(posX, 0, posY, 0)
+                    particleData.frame.Position = particleData.startPos
+                    particleData.frame.Size = particleData.size
+                    particleData.frame.BackgroundTransparency = 0.1
+                    particleData.angle = math.random() * math.pi * 2
+                    particleData.speed = math.random(0.3, 0.8)
+                    particleData.maxDistance = math.random(10, 25)
+                    particleData.maxLife = math.random(1, 3)
+                else
+                    local progress = particleData.distance / particleData.maxDistance
+                    local moveX = math.cos(particleData.angle) * particleData.distance
+                    local moveY = math.sin(particleData.angle) * particleData.distance
+                    
+                    particleData.frame.Position = UDim2.new(
+                        particleData.startPos.X.Scale,
+                        particleData.startPos.X.Offset + moveX,
+                        particleData.startPos.Y.Scale,
+                        particleData.startPos.Y.Offset + moveY
+                    )
+                    
+                    particleData.frame.BackgroundTransparency = 0.1 + progress * 0.9
+                    
+                    local sizeMult = 1 - progress * 0.8
+                    particleData.frame.Size = UDim2.new(
+                        0, particleData.size.X.Offset * sizeMult,
+                        0, particleData.size.Y.Offset * sizeMult
+                    )
+                end
             end
+            
             wait(0.03)
         end
     end)
