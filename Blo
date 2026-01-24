@@ -74,48 +74,58 @@ function Library:Create(xHubName,xGameName)
     MainCorner.Name = "MainCorner"
     MainCorner.Parent = Main
     
-    local OuterGlow = Instance.new("UIStroke")
+    local InnerGlow = Instance.new("ImageLabel")
+    InnerGlow.Name = "InnerGlow"
+    InnerGlow.Parent = Main
+    InnerGlow.BackgroundTransparency = 1
+    InnerGlow.Size = UDim2.new(1, 40, 1, 40)
+    InnerGlow.Position = UDim2.new(0, -20, 0, -20)
+    InnerGlow.Image = "rbxassetid://5554236805"
+    InnerGlow.ImageColor3 = Color3.fromRGB(255, 255, 200)
+    InnerGlow.ScaleType = Enum.ScaleType.Slice
+    InnerGlow.SliceCenter = Rect.new(100, 100, 100, 100)
+    InnerGlow.SliceScale = 0.1
+    InnerGlow.ImageTransparency = 0.3
+    InnerGlow.ZIndex = -1
+    
+    local OuterGlow = Instance.new("ImageLabel")
     OuterGlow.Name = "OuterGlow"
     OuterGlow.Parent = Main
-    OuterGlow.Color = Color3.fromRGB(255, 255, 255)
-    OuterGlow.Transparency = 0
-    OuterGlow.Thickness = 6
-    OuterGlow.LineJoinMode = Enum.LineJoinMode.Round
+    OuterGlow.BackgroundTransparency = 1
+    OuterGlow.Size = UDim2.new(1, 80, 1, 80)
+    OuterGlow.Position = UDim2.new(0, -40, 0, -40)
+    OuterGlow.Image = "rbxassetid://5554236805"
+    OuterGlow.ImageColor3 = Color3.fromRGB(255, 255, 180)
+    OuterGlow.ScaleType = Enum.ScaleType.Slice
+    OuterGlow.SliceCenter = Rect.new(100, 100, 100, 100)
+    OuterGlow.SliceScale = 0.1
+    OuterGlow.ImageTransparency = 0.5
+    OuterGlow.ZIndex = -2
     
-    local GlowLayer1 = Instance.new("UIStroke")
-    GlowLayer1.Name = "GlowLayer1"
-    GlowLayer1.Parent = Main
-    GlowLayer1.Color = Color3.fromRGB(255, 255, 255)
-    GlowLayer1.Transparency = 0.3
-    GlowLayer1.Thickness = 12
-    GlowLayer1.LineJoinMode = Enum.LineJoinMode.Round
-    
-    local GlowLayer2 = Instance.new("UIStroke")
-    GlowLayer2.Name = "GlowLayer2"
-    GlowLayer2.Parent = Main
-    GlowLayer2.Color = Color3.fromRGB(255, 255, 255)
-    GlowLayer2.Transparency = 0.5
-    GlowLayer2.Thickness = 20
-    GlowLayer2.LineJoinMode = Enum.LineJoinMode.Round
-    
-    local GlowLayer3 = Instance.new("UIStroke")
-    GlowLayer3.Name = "GlowLayer3"
-    GlowLayer3.Parent = Main
-    GlowLayer3.Color = Color3.fromRGB(255, 255, 255)
-    GlowLayer3.Transparency = 0.7
-    GlowLayer3.Thickness = 30
-    GlowLayer3.LineJoinMode = Enum.LineJoinMode.Round
+    local RayGlow = Instance.new("ImageLabel")
+    RayGlow.Name = "RayGlow"
+    RayGlow.Parent = Main
+    RayGlow.BackgroundTransparency = 1
+    RayGlow.Size = UDim2.new(1, 120, 1, 120)
+    RayGlow.Position = UDim2.new(0, -60, 0, -60)
+    RayGlow.Image = "rbxassetid://5554236805"
+    RayGlow.ImageColor3 = Color3.fromRGB(255, 255, 150)
+    RayGlow.ScaleType = Enum.ScaleType.Slice
+    RayGlow.SliceCenter = Rect.new(100, 100, 100, 100)
+    RayGlow.SliceScale = 0.1
+    RayGlow.ImageTransparency = 0.7
+    RayGlow.ZIndex = -3
 
     spawn(function()
         while Main.Parent do
-            for i = 0, 1, 0.02 do
-                local transparency1 = 0.2 + math.sin(i * math.pi) * 0.1
-                local transparency2 = 0.4 + math.sin(i * math.pi) * 0.1
-                local transparency3 = 0.6 + math.sin(i * math.pi) * 0.1
+            for i = 0, 1, 0.05 do
+                local pulse = 0.3 + math.sin(i * math.pi * 2) * 0.2
+                InnerGlow.ImageTransparency = 0.3 + pulse
+                OuterGlow.ImageTransparency = 0.5 + pulse
+                RayGlow.ImageTransparency = 0.7 + pulse
                 
-                GlowLayer1.Transparency = transparency1
-                GlowLayer2.Transparency = transparency2
-                GlowLayer3.Transparency = transparency3
+                InnerGlow.Size = UDim2.new(1, 40 + math.sin(i * math.pi) * 10, 1, 40 + math.sin(i * math.pi) * 10)
+                InnerGlow.Position = UDim2.new(0, -20 - math.sin(i * math.pi) * 5, 0, -20 - math.sin(i * math.pi) * 5)
                 wait(0.03)
             end
         end
@@ -1039,7 +1049,7 @@ function Library:Create(xHubName,xGameName)
             DropdownButton.Name = "DropdownButton"
             DropdownButton.Parent = DropdownFrame
             DropdownButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            DropdownButton.BackgroundTransparency = 1.000
+    DropdownButton.BackgroundTransparency = 1.000
             DropdownButton.BorderSizePixel = 0
             DropdownButton.Size = UDim2.new(0, 326, 0, 28)
             DropdownButton.Font = Enum.Font.SourceSans
