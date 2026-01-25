@@ -174,7 +174,7 @@ function Library:Create(xHubName,xGameName)
     local OuterStroke = Instance.new("UIStroke")
     OuterStroke.Name = "OuterStroke"
     OuterStroke.Parent = Main
-    OuterStroke.Color = Color3.fromRGB(255, 165, 0)
+    OuterStroke.Color = Color3.fromRGB(0, 0, 0)
     OuterStroke.Transparency = 0.3
     OuterStroke.Thickness = 2
     OuterStroke.LineJoinMode = Enum.LineJoinMode.Round
