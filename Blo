@@ -69,6 +69,24 @@ function Library:Create(xHubName,xGameName)
     Main.Size = UDim2.new(0, 464, 0, 296)
     Main.ClipsDescendants = false
 
+    local OuterStroke = Instance.new("UIStroke")
+    OuterStroke.Name = "OuterStroke"
+    OuterStroke.Parent = Main
+    OuterStroke.Color = Color3.fromRGB(255, 165, 0)
+    OuterStroke.Transparency = 0.3
+    OuterStroke.Thickness = 2
+    OuterStroke.LineJoinMode = Enum.LineJoinMode.Round
+    OuterStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+    
+    local InnerStroke = Instance.new("UIStroke")
+    InnerStroke.Name = "InnerStroke"
+    InnerStroke.Parent = Main
+    InnerStroke.Color = Color3.fromRGB(0, 0, 0)
+    InnerStroke.Transparency = 0.7
+    InnerStroke.Thickness = 6
+    InnerStroke.LineJoinMode = Enum.LineJoinMode.Round
+    InnerStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+
     local MainCorner = Instance.new("UICorner")
     MainCorner.CornerRadius = UDim.new(0, 12)
     MainCorner.Name = "MainCorner"
