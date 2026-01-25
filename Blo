@@ -83,27 +83,18 @@ function Library:Create(xHubName,xGameName)
     GlowLayer.Parent = ScreenGui
     GlowLayer.Name = "GlowLayer"
 
-    local particleImage = "rbxassetid://13374445915"
-    local particleSheetSize = Vector2.new(4, 4)
-
     local Particles = {}
-    local Count = 600
+    local Count = 1050
 
     for i = 1, Count do
-        local p = Instance.new("ImageLabel", GlowLayer)
-        local sz = math.random(2, 4)
-        p.Size = UDim2.new(0, sz, 0, sz)
-        p.BackgroundTransparency = 1
-        p.Image = particleImage
-        p.ImageColor3 = Color3.fromRGB(100, 150, 255)
-        
-        local frameX = math.random(0, 3)
-        local frameY = math.random(0, 3)
-        p.ImageRectOffset = Vector2.new(frameX * 16, frameY * 16)
-        p.ImageRectSize = Vector2.new(16, 16)
-        
+        local p = Instance.new("Frame", GlowLayer)
+        local sz = math.random() < 0.8 and 1 or 2
+        p.Size = UDim2.new(0,sz,0,sz)
+        p.BackgroundColor3 = Color3.fromRGB(100,100,100)
+        p.BorderSizePixel = 0
         p.AnchorPoint = Vector2.new(0.5,0.5)
         p.ZIndex = 6
+        Instance.new("UICorner",p).CornerRadius = UDim.new(1,0)
 
         local side = math.random(1,4)
         local px, py, dx, dy
@@ -163,7 +154,7 @@ function Library:Create(xHubName,xGameName)
                 v.py, v.dy * v.d
             )
             local p = v.d / v.m
-            v.f.ImageTransparency = 0.2 + p*0.8
+            v.f.BackgroundTransparency = 0.08 + p*0.9
         end
         GlowLayer.Position = Main.Position
         GlowLayer.Size = Main.Size
