@@ -68,21 +68,99 @@ function Library:Create(xHubName,xGameName)
     Main.Position = UDim2.new(0.5, -232, 0.5, -148)
     Main.Size = UDim2.new(0, 464, 0, 296)
     Main.ClipsDescendants = false
+    Main.ZIndex = 5
 
     local MainCorner = Instance.new("UICorner")
     MainCorner.CornerRadius = UDim.new(0, 12)
     MainCorner.Name = "MainCorner"
     MainCorner.Parent = Main
-    
-    local OuterStroke = Instance.new("UIStroke")
-    OuterStroke.Name = "OuterStroke"
-    OuterStroke.Parent = Main
-    OuterStroke.Color = Color3.fromRGB(255, 165, 0)
-    OuterStroke.Transparency = 0.3
-    OuterStroke.Thickness = 2
-    OuterStroke.LineJoinMode = Enum.LineJoinMode.Round
-    OuterStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-    
+
+    local GlowLayer = Instance.new("Frame")
+    GlowLayer.Size = Main.Size
+    GlowLayer.Position = Main.Position
+    GlowLayer.BackgroundTransparency = 1
+    GlowLayer.ZIndex = 3
+    GlowLayer.ClipsDescendants = false
+    GlowLayer.Parent = ScreenGui
+    GlowLayer.Name = "GlowLayer"
+
+    local Particles = {}
+    local Count = 1050
+
+    for i = 1, Count do
+        local p = Instance.new("Frame", GlowLayer)
+        local sz = math.random() < 0.8 and 2 or 3
+        p.Size = UDim2.new(0,sz,0,sz)
+        p.BackgroundColor3 = Color3.fromRGB(0,0,0)
+        p.BorderSizePixel = 0
+        p.AnchorPoint = Vector2.new(0.5,0.5)
+        p.ZIndex = 3
+        Instance.new("UICorner",p).CornerRadius = UDim.new(1,0)
+
+        local side = math.random(1,4)
+        local px, py, dx, dy
+
+        if side == 1 then
+            px = math.random()
+            py = 0
+            dx = (math.random()-0.5)*0.3
+            dy = -1
+        elseif side == 2 then
+            px = 1
+            py = math.random()
+            dx = 1
+            dy = (math.random()-0.5)*0.3
+        elseif side == 3 then
+            px = math.random()
+            py = 1
+            dx = (math.random()-0.5)*0.3
+            dy = 1
+        else
+            px = 0
+            py = math.random()
+            dx = -1
+            dy = (math.random()-0.5)*0.3
+        end
+
+        local maxDist = math.random(8,20)
+        local speed = math.random(3,6)/10
+
+        table.insert(Particles,{
+            f = p,
+            px = px,
+            py = py,
+            dx = dx,
+            dy = dy,
+            d = math.random()*maxDist,
+            m = maxDist,
+            s = speed
+        })
+    end
+
+    local renderConnection
+    renderConnection = game:GetService("RunService").RenderStepped:Connect(function()
+        if not Main.Visible then
+            GlowLayer.Visible = false
+            return
+        end
+        
+        GlowLayer.Visible = true
+        for _,v in ipairs(Particles) do
+            v.d = v.d + v.s
+            if v.d > v.m then
+                v.d = 0
+            end
+            v.f.Position = UDim2.new(
+                v.px, v.dx * v.d,
+                v.py, v.dy * v.d
+            )
+            local p = v.d / v.m
+            v.f.BackgroundTransparency = 0.08 + p*0.9
+        end
+        GlowLayer.Position = Main.Position
+        GlowLayer.Size = Main.Size
+    end)
+
     local InnerStroke = Instance.new("UIStroke")
     InnerStroke.Name = "InnerStroke"
     InnerStroke.Parent = Main
@@ -91,7 +169,18 @@ function Library:Create(xHubName,xGameName)
     InnerStroke.Thickness = 6
     InnerStroke.LineJoinMode = Enum.LineJoinMode.Round
     InnerStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-    
+    InnerStroke.ZIndex = 2
+
+    local OuterStroke = Instance.new("UIStroke")
+    OuterStroke.Name = "OuterStroke"
+    OuterStroke.Parent = Main
+    OuterStroke.Color = Color3.fromRGB(0, 0, 0)
+    OuterStroke.Transparency = 0.3
+    OuterStroke.Thickness = 2
+    OuterStroke.LineJoinMode = Enum.LineJoinMode.Round
+    OuterStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+    OuterStroke.ZIndex = 10
+
     local CloseButton = Instance.new("TextButton")
     local CloseButtonCorner = Instance.new("UICorner")
 
@@ -104,7 +193,7 @@ function Library:Create(xHubName,xGameName)
     CloseButton.Text = "❌"
     CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
     CloseButton.TextSize = 14
-    CloseButton.ZIndex = 10
+    CloseButton.ZIndex = 15
 
     CloseButtonCorner.CornerRadius = UDim.new(0, 6)
     CloseButtonCorner.Parent = CloseButton
@@ -172,6 +261,7 @@ function Library:Create(xHubName,xGameName)
     Sidebar.Position = UDim2.new(0, 0, 0, 0)
     Sidebar.Size = UDim2.new(0, 112, 1, 0)
     Sidebar.ClipsDescendants = false
+    Sidebar.ZIndex = 5
 
     SidebarCorner.CornerRadius = UDim.new(0, 12)
     SidebarCorner.Name = "SidebarCorner"
@@ -183,6 +273,7 @@ function Library:Create(xHubName,xGameName)
     Filler.BorderSizePixel = 0
     Filler.Position = UDim2.new(0.930769145, 0, 0, 0)
     Filler.Size = UDim2.new(0, 8, 0, 250)
+    Filler.ZIndex = 5
 
     HubName.Name = "HubName"
     HubName.Parent = Sidebar
@@ -195,6 +286,7 @@ function Library:Create(xHubName,xGameName)
     HubName.Text = xHubName
     HubName.TextColor3 = Color3.fromRGB(255, 0, 0)
     HubName.TextSize = 13
+    HubName.ZIndex = 6
 
     startRainbowEffect()
 
@@ -204,6 +296,7 @@ function Library:Create(xHubName,xGameName)
     Line.BorderSizePixel = 0
     Line.Position = UDim2.new(0.0642857179, 0, 0.148648649, 0)
     Line.Size = UDim2.new(0, 121, 0, 2)
+    Line.ZIndex = 6
 
     ActualSide.Name = "ActualSide"
     ActualSide.Parent = Sidebar
@@ -214,6 +307,7 @@ function Library:Create(xHubName,xGameName)
     ActualSide.Size = UDim2.new(0, 112, 0, 297)
     ActualSide.CanvasSize = UDim2.new(0,0,0,0)
     ActualSide.ScrollBarThickness = 14
+    ActualSide.ZIndex = 6
 
     ActualSideListLayout.Name = "ActualSideListLayout"
     ActualSideListLayout.Parent = ActualSide
@@ -225,6 +319,7 @@ function Library:Create(xHubName,xGameName)
     SideLine.BorderSizePixel = 0
     SideLine.Position = UDim2.new(1, 0, 0, 0)
     SideLine.Size = UDim2.new(0, 2, 0, 270)
+    SideLine.ZIndex = 6
 
     GameName.Name = "GameName"
     GameName.Parent = Sidebar
@@ -237,6 +332,7 @@ function Library:Create(xHubName,xGameName)
     GameName.Text = xGameName
     GameName.TextColor3 = Color3.fromRGB(190, 190, 190)
     GameName.TextSize = 11
+    GameName.ZIndex = 6
 
     TabHolder.Name = "TabHolder"
     TabHolder.Parent = Main
@@ -246,6 +342,7 @@ function Library:Create(xHubName,xGameName)
     TabHolder.Position = UDim2.new(0.240, 0, 0.024324324, 0)
     TabHolder.Size = UDim2.new(0, 352, 0, 280)
     TabHolder.ClipsDescendants = false
+    TabHolder.ZIndex = 5
 
     Tabs.Name = "Tabs"
     Tabs.Parent = TabHolder
@@ -261,6 +358,7 @@ function Library:Create(xHubName,xGameName)
     PlayerInfoFrame.BackgroundTransparency = 1
     PlayerInfoFrame.Position = UDim2.new(0, 6, 1, -36)
     PlayerInfoFrame.Size = UDim2.new(0, 100, 0, 30)
+    PlayerInfoFrame.ZIndex = 6
 
     PlayerAvatar.Name = "PlayerAvatar"
     PlayerAvatar.Parent = PlayerInfoFrame
@@ -268,6 +366,7 @@ function Library:Create(xHubName,xGameName)
     PlayerAvatar.Position = UDim2.new(0, 0, 0, 0)
     PlayerAvatar.Size = UDim2.new(0, 30, 0, 30)
     PlayerAvatar.Image = "https://www.roblox.com/headshot-thumbnail/image?userId="..tostring(game.Players.LocalPlayer.UserId).."&width=150&height=150&format=png"
+    PlayerAvatar.ZIndex = 7
 
     PlayerAvatarCorner.CornerRadius = UDim.new(1, 0)
     PlayerAvatarCorner.Name = "PlayerAvatarCorner"
@@ -285,6 +384,7 @@ function Library:Create(xHubName,xGameName)
     PlayerDisplayName.TextSize = 10
     PlayerDisplayName.TextXAlignment = Enum.TextXAlignment.Left
     PlayerDisplayName.TextTruncate = Enum.TextTruncate.AtEnd
+    PlayerDisplayName.ZIndex = 7
 
     PlayerUsername.Name = "PlayerUsername"
     PlayerUsername.Parent = PlayerInfoFrame
@@ -298,6 +398,7 @@ function Library:Create(xHubName,xGameName)
     PlayerUsername.TextSize = 9
     PlayerUsername.TextXAlignment = Enum.TextXAlignment.Left
     PlayerUsername.TextTruncate = Enum.TextTruncate.AtEnd
+    PlayerUsername.ZIndex = 7
 
     Library:Drag(Main)
 
@@ -306,12 +407,14 @@ function Library:Create(xHubName,xGameName)
     local FloatFrameCorner = Instance.new("UICorner")
     local FloatCorner = Instance.new("UICorner")
     local FloatStroke = Instance.new("UIStroke")
+    local FloatImage = Instance.new("ImageLabel")
 
     FloatFrame.Name = "FloatWindowToggleFrame"
     FloatFrame.Parent = ScreenGui
     FloatFrame.Position = UDim2.new(0.02, 0, 0.5, 0)
     FloatFrame.Size = UDim2.new(0, 50, 0, 50)
-    FloatFrame.BackgroundColor3 = Color3.fromRGB(31, 30, 46)
+    FloatFrame.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
+    FloatFrame.ZIndex = 15
 
     FloatFrameCorner.CornerRadius = UDim.new(0.5, 0)
     FloatFrameCorner.Parent = FloatFrame
@@ -321,20 +424,29 @@ function Library:Create(xHubName,xGameName)
     FloatStroke.Color = Color3.fromRGB(0, 0, 0)
     FloatStroke.Thickness = 2
     FloatStroke.LineJoinMode = Enum.LineJoinMode.Round
+    FloatStroke.ZIndex = 15
 
     FloatToggle.Name = "FloatWindowToggle"
     FloatToggle.Parent = FloatFrame
     FloatToggle.Position = UDim2.new(0, 0, 0, 0)
     FloatToggle.Size = UDim2.new(0, 50, 0, 50)
-    FloatToggle.BackgroundColor3 = Color3.fromRGB(31, 30, 46)
+    FloatToggle.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
     FloatToggle.Text = ""
     FloatToggle.TextColor3 = Color3.fromRGB(255,255,255)
     FloatToggle.TextScaled = true
     FloatToggle.TextSize = 14
     FloatToggle.Font = Enum.Font.GothamBold
+    FloatToggle.ZIndex = 16
 
     FloatCorner.CornerRadius = UDim.new(0.5, 0)
     FloatCorner.Parent = FloatToggle
+
+    FloatImage.Name = "FloatImage"
+    FloatImage.Parent = FloatToggle
+    FloatImage.BackgroundTransparency = 1
+    FloatImage.Size = UDim2.new(1, 0, 1, 0)
+    FloatImage.Image = "rbxassetid://110140207924279"
+    FloatImage.ZIndex = 17
 
     local FloatDragging
     local FloatDragInput
@@ -370,14 +482,15 @@ function Library:Create(xHubName,xGameName)
 
     FloatToggle.MouseButton1Click:Connect(function()
         Main.Visible = not Main.Visible
+        GlowLayer.Visible = Main.Visible
         if Main.Visible then
-            FloatToggle.Text = ""
             FloatToggle.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
             FloatFrame.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
+            FloatImage.Image = "rbxassetid://110140207924279"
         else
-            FloatToggle.Text = ""
             FloatToggle.BackgroundColor3 = Color3.fromRGB(50, 150, 50)
             FloatFrame.BackgroundColor3 = Color3.fromRGB(50, 150, 50)
+            FloatImage.Image = "rbxassetid://77962026058051"
         end
     end)
 
@@ -447,6 +560,7 @@ function Library:Create(xHubName,xGameName)
         Tab.BorderSizePixel = 0
         Tab.Size = UDim2.new(0, 352, 0, 280)
         Tab.ScrollBarThickness = 5
+        Tab.ZIndex = 5
         
         TabListLayout.Name = "TabListLayout"
         TabListLayout.Parent = Tab
@@ -463,7 +577,7 @@ function Library:Create(xHubName,xGameName)
         TabButton.Text = Name
         TabButton.TextColor3 = Color3.fromRGB(255, 255, 255)
         TabButton.TextSize = 14.000
-        TabButton.ZIndex = 2
+        TabButton.ZIndex = 7
 
         Size()
         Tab.ChildAdded:Connect(Size)
@@ -513,6 +627,7 @@ function Library:Create(xHubName,xGameName)
             LabelFrame.BackgroundColor3 = Color3.fromRGB(55, 74, 251)
             LabelFrame.Position = UDim2.new(0.0456621014, 0, 0, 0)
             LabelFrame.Size = UDim2.new(0, 326, 0, 28)
+            LabelFrame.ZIndex = 6
 
             LabelFrameCorner.Name = "LabelFrameCorner"
             LabelFrameCorner.Parent = LabelFrame
@@ -527,6 +642,7 @@ function Library:Create(xHubName,xGameName)
             Label.Text = Name
             Label.TextColor3 = Color3.fromRGB(255, 255, 255)
             Label.TextSize = 13
+            Label.ZIndex = 7
 
             Label.MouseEnter:Connect(function()
                 game:GetService("TweenService"):Create(LabelFrame, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
@@ -560,6 +676,7 @@ function Library:Create(xHubName,xGameName)
             ButtonFrame.Parent = Tab
             ButtonFrame.BackgroundColor3 = Color3.fromRGB(40, 42, 60)
             ButtonFrame.Size = UDim2.new(0, 326, 0, 28)
+            ButtonFrame.ZIndex = 6
             
             ButtonFrameCorner.Name = "ButtonFrameCorner"
             ButtonFrameCorner.Parent = ButtonFrame
@@ -573,7 +690,7 @@ function Library:Create(xHubName,xGameName)
             Button.TextSize = 13
             Button.Text = Name
             Button.TextXAlignment = Enum.TextXAlignment.Left
-            Button.ZIndex = 2
+            Button.ZIndex = 7
             
             ButtonCorner.Name = "ButtonCorner"
             ButtonCorner.Parent = Button
@@ -629,6 +746,7 @@ function Library:Create(xHubName,xGameName)
             ToggleFrame.BackgroundColor3 = Color3.fromRGB(40, 42, 60)
             ToggleFrame.BorderSizePixel = 0
             ToggleFrame.Size = UDim2.new(0, 326, 0, 28)
+            ToggleFrame.ZIndex = 6
 
             ToggleName.Name = "ToggleName"
             ToggleName.Parent = ToggleFrame
@@ -641,6 +759,7 @@ function Library:Create(xHubName,xGameName)
             ToggleName.TextColor3 = Color3.fromRGB(255, 255, 255)
             ToggleName.TextSize = 13
             ToggleName.TextXAlignment = Enum.TextXAlignment.Left
+            ToggleName.ZIndex = 7
 
             ToggleNamePadding.Name = "ToggleNamePadding"
             ToggleNamePadding.Parent = ToggleName
@@ -656,6 +775,7 @@ function Library:Create(xHubName,xGameName)
             ToggleF.BorderSizePixel = 0
             ToggleF.Position = UDim2.new(0.867647052, 0, 0.142857149, 0)
             ToggleF.Size = UDim2.new(0, 38, 0, 18)
+            ToggleF.ZIndex = 7
 
             ToggleCorner.CornerRadius = UDim.new(0, 25)
             ToggleCorner.Name = "ToggleCorner"
@@ -671,6 +791,7 @@ function Library:Create(xHubName,xGameName)
             ToggleButton.Text = ""
             ToggleButton.TextColor3 = Color3.fromRGB(0, 0, 0)
             ToggleButton.TextSize = 14.000
+            ToggleButton.ZIndex = 8
 
             ToggleCircle.Name = "ToggleCircle"
             ToggleCircle.Parent = ToggleF
@@ -682,6 +803,7 @@ function Library:Create(xHubName,xGameName)
             ToggleCircle.ScaleType = Enum.ScaleType.Slice
             ToggleCircle.SliceCenter = Rect.new(100, 100, 100, 100)
             ToggleCircle.SliceScale = 0.120
+            ToggleCircle.ZIndex = 8
 
             ToggleButton.MouseButton1Down:Connect(function()
                 ToggleEnabled = not ToggleEnabled
@@ -716,6 +838,7 @@ function Library:Create(xHubName,xGameName)
             SliderFrame.Parent = Tab
             SliderFrame.BackgroundColor3 = Color3.fromRGB(40, 42, 60)
             SliderFrame.Size = UDim2.new(0, 326, 0, 40)
+            SliderFrame.ZIndex = 6
 
             SliderFrameCorner.Name = "SliderFrameCorner"
             SliderFrameCorner.Parent = SliderFrame
@@ -730,6 +853,7 @@ function Library:Create(xHubName,xGameName)
             SliderButton.Text = ""
             SliderButton.TextColor3 = Color3.fromRGB(0, 0, 0)
             SliderButton.TextSize = 14.000
+            SliderButton.ZIndex = 7
 
             SliderButtonCorner.Name = "SliderButtonCorner"
             SliderButtonCorner.Parent = SliderButton
@@ -739,6 +863,7 @@ function Library:Create(xHubName,xGameName)
             SliderTrail.BackgroundColor3 = Color3.fromRGB(55, 74, 251)
             SliderTrail.Size = UDim2.new(0, 0, 0, 10)
             SliderTrail.BorderSizePixel = 0
+            SliderTrail.ZIndex = 8
 
             SliderTrailCorner.Name = "SliderTrailCorner"
             SliderTrailCorner.Parent = SliderTrail
@@ -754,6 +879,7 @@ function Library:Create(xHubName,xGameName)
             SliderName.TextColor3 = Color3.fromRGB(255, 255, 255)
             SliderName.TextSize = 13
             SliderName.TextXAlignment = Enum.TextXAlignment.Left
+            SliderName.ZIndex = 7
 
             SliderNamePadding.Name = "SliderNamePadding"
             SliderNamePadding.Parent = SliderName
@@ -772,6 +898,7 @@ function Library:Create(xHubName,xGameName)
             SliderValue.TextColor3 = Color3.fromRGB(255, 255, 255)
             SliderValue.TextSize = 13
             SliderValue.TextXAlignment = Enum.TextXAlignment.Right
+            SliderValue.ZIndex = 7
 
             SliderValuePadding.Name = "SliderValuePadding"
             SliderValuePadding.Parent = SliderValue
@@ -832,6 +959,7 @@ function Library:Create(xHubName,xGameName)
             TextboxFrame.Parent = Tab
             TextboxFrame.BackgroundColor3 = Color3.fromRGB(40, 42, 60)
             TextboxFrame.Size = UDim2.new(0, 326, 0, 28)
+            TextboxFrame.ZIndex = 6
 
             TextboxFrameCorner.Name = "TextboxFrameCorner"
             TextboxFrameCorner.Parent = TextboxFrame
@@ -847,6 +975,7 @@ function Library:Create(xHubName,xGameName)
             TextboxName.TextColor3 = Color3.fromRGB(255, 255, 255)
             TextboxName.TextSize = 13
             TextboxName.TextXAlignment = Enum.TextXAlignment.Left
+            TextboxName.ZIndex = 7
 
             TextboxNamePadding.Name = "TextboxNamePadding"
             TextboxNamePadding.Parent = TextboxName
@@ -864,6 +993,7 @@ function Library:Create(xHubName,xGameName)
             Textbox.Text = ""
             Textbox.TextColor3 = Color3.fromRGB(255, 255, 255)
             Textbox.TextSize = 11
+            Textbox.ZIndex = 7
 
             TextboxCorner.Name = "TextboxCorner"
             TextboxCorner.Parent = Textbox
@@ -898,6 +1028,7 @@ function Library:Create(xHubName,xGameName)
             KeybindFrame.BackgroundColor3 = Color3.fromRGB(40, 42, 60)
             KeybindFrame.BorderSizePixel = 0
             KeybindFrame.Size = UDim2.new(0, 326, 0, 28)
+            KeybindFrame.ZIndex = 6
             
             KeybindFrameCorner.Name = "KeybindFrameCorner"
             KeybindFrameCorner.Parent = KeybindFrame
@@ -913,6 +1044,7 @@ function Library:Create(xHubName,xGameName)
             KeybindName.TextColor3 = Color3.fromRGB(255, 255, 255)
             KeybindName.TextSize = 13
             KeybindName.TextXAlignment = Enum.TextXAlignment.Left
+            KeybindName.ZIndex = 7
             
             KeybindNamePadding.Name = "KeybindNamePadding"
             KeybindNamePadding.Parent = KeybindName
@@ -927,7 +1059,7 @@ function Library:Create(xHubName,xGameName)
             KeybindButton.Text = Keyx
             KeybindButton.TextColor3 = Color3.fromRGB(255, 255, 255)
             KeybindButton.TextSize = 11
-            KeybindButton.ZIndex = 2
+            KeybindButton.ZIndex = 7
             
             KeybindButtonCorner.Name = "KeybindButtonCorner"
             KeybindButtonCorner.Parent = KeybindButton
@@ -977,6 +1109,7 @@ function Library:Create(xHubName,xGameName)
             DropdownFrame.BackgroundColor3 = Color3.fromRGB(40, 42, 60)
             DropdownFrame.BorderSizePixel = 0
             DropdownFrame.Size = UDim2.new(0, 326, 0, 28)
+            DropdownFrame.ZIndex = 6
 
             DropdownFrameCorner.Name = "DropdownFrameCorner"
             DropdownFrameCorner.Parent = DropdownFrame
@@ -992,6 +1125,7 @@ function Library:Create(xHubName,xGameName)
             DropdownName.TextColor3 = Color3.fromRGB(255, 255, 255)
             DropdownName.TextSize = 13
             DropdownName.TextXAlignment = Enum.TextXAlignment.Left
+            DropdownName.ZIndex = 7
 
             DropdownNamePadding.Name = "DropdownNamePadding"
             DropdownNamePadding.Parent = DropdownName
@@ -1002,7 +1136,7 @@ function Library:Create(xHubName,xGameName)
             DropdownIcon.BackgroundTransparency = 1.000
             DropdownIcon.Position = UDim2.new(0.914644599, 0, 0.140659884, 0)
             DropdownIcon.Size = UDim2.new(0, 20, 0, 20)
-            DropdownIcon.ZIndex = 2
+            DropdownIcon.ZIndex = 7
             DropdownIcon.Image = "rbxassetid://3926305904"
             DropdownIcon.ImageRectOffset = Vector2.new(604, 684)
             DropdownIcon.ImageRectSize = Vector2.new(36, 36)
@@ -1017,6 +1151,7 @@ function Library:Create(xHubName,xGameName)
             DropdownButton.Text = ""
             DropdownButton.TextColor3 = Color3.fromRGB(0, 0, 0)
             DropdownButton.TextSize = 14.000
+            DropdownButton.ZIndex = 7
 
             DropList.Name = "DropList"
             DropList.Parent = DropdownFrame
@@ -1025,7 +1160,7 @@ function Library:Create(xHubName,xGameName)
             DropList.BorderSizePixel = 0
             DropList.ClipsDescendants = true
             DropList.Size = UDim2.new(0, 326, 0, 28)
-            DropList.ZIndex = 100
+            DropList.ZIndex = 107
             DropList.Position = UDim2.new(0, 0, 1.14285719, 0)
             DropList.Visible = false
 
@@ -1094,6 +1229,7 @@ function Library:Create(xHubName,xGameName)
                 Option.Text = v
                 Option.TextColor3 = Color3.fromRGB(255, 255, 255)
                 Option.TextSize = 13
+                Option.ZIndex = 107
 
                 OptionCorner.Name = "OptionCorner"
                 OptionCorner.Parent = Option
@@ -1147,6 +1283,7 @@ function Library:Create(xHubName,xGameName)
                     Option.Text = v
                     Option.TextColor3 = Color3.fromRGB(255, 255, 255)
                     Option.TextSize = 16.000
+                    Option.ZIndex = 107
     
                     OptionCorner.Name = "OptionCorner"
                     OptionCorner.Parent = Option
