@@ -88,7 +88,7 @@ function Library:Create(xHubName,xGameName)
 
     for i = 1, Count do
         local p = Instance.new("Frame", GlowLayer)
-        local sz = math.random() < 0.8 and 1 or 2
+        local sz = math.random() < 0.7 and 2 or 3
         p.Size = UDim2.new(0,sz,0,sz)
         p.BackgroundColor3 = Color3.fromRGB(255,255,255)
         p.BorderSizePixel = 0
@@ -121,8 +121,8 @@ function Library:Create(xHubName,xGameName)
             dy = (math.random()-0.5)*0.3
         end
 
-        local maxDist = math.random(30,65)
-        local speed = math.random(6,11)/10
+        local maxDist = math.random(15,35)
+        local speed = math.random(4,8)/10
 
         table.insert(Particles,{
             f = p,
@@ -154,7 +154,7 @@ function Library:Create(xHubName,xGameName)
                 v.py, v.dy * v.d
             )
             local p = v.d / v.m
-            v.f.BackgroundTransparency = 0.08 + p*0.9
+            v.f.BackgroundTransparency = 0.05 + p*0.95
         end
         GlowLayer.Position = Main.Position
         GlowLayer.Size = Main.Size
