@@ -402,51 +402,15 @@ function Library:Create(xHubName,xGameName)
 
     Library:Drag(Main)
 
-    local FloatToggle = Instance.new("TextButton")
-    local FloatFrame = Instance.new("Frame")
-    local FloatFrameCorner = Instance.new("UICorner")
-    local FloatCorner = Instance.new("UICorner")
-    local FloatStroke = Instance.new("UIStroke")
-    local FloatImage = Instance.new("ImageLabel")
-
-    FloatFrame.Name = "FloatWindowToggleFrame"
-    FloatFrame.Parent = ScreenGui
-    FloatFrame.Position = UDim2.new(0.02, 0, 0.5, 0)
-    FloatFrame.Size = UDim2.new(0, 50, 0, 50)
-    FloatFrame.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
-    FloatFrame.ZIndex = 15
-
-    FloatFrameCorner.CornerRadius = UDim.new(0.5, 0)
-    FloatFrameCorner.Parent = FloatFrame
-
-    FloatStroke.Name = "FloatStroke"
-    FloatStroke.Parent = FloatFrame
-    FloatStroke.Color = Color3.fromRGB(0, 0, 0)
-    FloatStroke.Thickness = 2
-    FloatStroke.LineJoinMode = Enum.LineJoinMode.Round
-    FloatStroke.ZIndex = 15
-
+    local FloatToggle = Instance.new("ImageButton")
+    
     FloatToggle.Name = "FloatWindowToggle"
-    FloatToggle.Parent = FloatFrame
-    FloatToggle.Position = UDim2.new(0, 0, 0, 0)
+    FloatToggle.Parent = ScreenGui
+    FloatToggle.Position = UDim2.new(0.02, 0, 0.5, 0)
     FloatToggle.Size = UDim2.new(0, 50, 0, 50)
-    FloatToggle.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
-    FloatToggle.Text = ""
-    FloatToggle.TextColor3 = Color3.fromRGB(255,255,255)
-    FloatToggle.TextScaled = true
-    FloatToggle.TextSize = 14
-    FloatToggle.Font = Enum.Font.GothamBold
-    FloatToggle.ZIndex = 16
-
-    FloatCorner.CornerRadius = UDim.new(0.5, 0)
-    FloatCorner.Parent = FloatToggle
-
-    FloatImage.Name = "FloatImage"
-    FloatImage.Parent = FloatToggle
-    FloatImage.BackgroundTransparency = 1
-    FloatImage.Size = UDim2.new(1, 0, 1, 0)
-    FloatImage.Image = "rbxassetid://110140207924279"
-    FloatImage.ZIndex = 17
+    FloatToggle.BackgroundTransparency = 1
+    FloatToggle.Image = "rbxassetid://110140207924279"
+    FloatToggle.ZIndex = 15
 
     local FloatDragging
     local FloatDragInput
@@ -457,7 +421,7 @@ function Library:Create(xHubName,xGameName)
         if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
             FloatDragging = true
             FloatDragStart = input.Position
-            FloatStartPos = FloatFrame.Position
+            FloatStartPos = FloatToggle.Position
 
             input.Changed:Connect(function()
                 if input.UserInputState == Enum.UserInputState.End then
@@ -476,7 +440,7 @@ function Library:Create(xHubName,xGameName)
     game:GetService("UserInputService").InputChanged:Connect(function(input)
         if input == FloatDragInput and FloatDragging then
             local delta = input.Position - FloatDragStart
-            FloatFrame.Position = UDim2.new(FloatStartPos.X.Scale, FloatStartPos.X.Offset + delta.X, FloatStartPos.Y.Scale, FloatStartPos.Y.Offset + delta.Y)
+            FloatToggle.Position = UDim2.new(FloatStartPos.X.Scale, FloatStartPos.X.Offset + delta.X, FloatStartPos.Y.Scale, FloatStartPos.Y.Offset + delta.Y)
         end
     end)
 
@@ -484,57 +448,9 @@ function Library:Create(xHubName,xGameName)
         Main.Visible = not Main.Visible
         GlowLayer.Visible = Main.Visible
         if Main.Visible then
-            FloatToggle.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
-            FloatFrame.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
-            FloatImage.Image = "rbxassetid://110140207924279"
+            FloatToggle.Image = "rbxassetid://110140207924279"
         else
-            FloatToggle.BackgroundColor3 = Color3.fromRGB(50, 150, 50)
-            FloatFrame.BackgroundColor3 = Color3.fromRGB(50, 150, 50)
-            FloatImage.Image = "rbxassetid://77962026058051"
-        end
-    end)
-
-    FloatToggle.MouseEnter:Connect(function()
-        if Main.Visible then
-            game:GetService("TweenService"):Create(FloatFrame, TweenInfo.new(0.1), {
-                BackgroundColor3 = Color3.fromRGB(220, 70, 70),
-                Size = UDim2.new(0, 53, 0, 53)
-            }):Play()
-            game:GetService("TweenService"):Create(FloatToggle, TweenInfo.new(0.1), {
-                BackgroundColor3 = Color3.fromRGB(220, 70, 70),
-                Size = UDim2.new(0, 53, 0, 53)
-            }):Play()
-        else
-            game:GetService("TweenService"):Create(FloatFrame, TweenInfo.new(0.1), {
-                BackgroundColor3 = Color3.fromRGB(70, 170, 70),
-                Size = UDim2.new(0, 53, 0, 53)
-            }):Play()
-            game:GetService("TweenService"):Create(FloatToggle, TweenInfo.new(0.1), {
-                BackgroundColor3 = Color3.fromRGB(70, 170, 70),
-                Size = UDim2.new(0, 53, 0, 53)
-            }):Play()
-        end
-    end)
-
-    FloatToggle.MouseLeave:Connect(function()
-        if Main.Visible then
-            game:GetService("TweenService"):Create(FloatFrame, TweenInfo.new(0.1), {
-                BackgroundColor3 = Color3.fromRGB(200, 50, 50),
-                Size = UDim2.new(0, 50, 0, 50)
-            }):Play()
-            game:GetService("TweenService"):Create(FloatToggle, TweenInfo.new(0.1), {
-                BackgroundColor3 = Color3.fromRGB(200, 50, 50),
-                Size = UDim2.new(0, 50, 0, 50)
-            }):Play()
-        else
-            game:GetService("TweenService"):Create(FloatFrame, TweenInfo.new(0.1), {
-                BackgroundColor3 = Color3.fromRGB(50, 150, 50),
-                Size = UDim2.new(0, 50, 0, 50)
-            }):Play()
-            game:GetService("TweenService"):Create(FloatToggle, TweenInfo.new(0.1), {
-                BackgroundColor3 = Color3.fromRGB(50, 150, 50),
-                Size = UDim2.new(0, 50, 0, 50)
-            }):Play()
+            FloatToggle.Image = "rbxassetid://77962026058051"
         end
     end)
 
