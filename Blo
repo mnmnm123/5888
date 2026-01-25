@@ -89,9 +89,9 @@ function Library:Create(xHubName,xGameName)
 
     for i = 1, Count do
         local p = Instance.new("Frame", GlowLayer)
-        local sz = math.random() < 0.8 and 1 or 2
+        local sz = math.random() < 0.8 and 2 or 3
         p.Size = UDim2.new(0,sz,0,sz)
-        p.BackgroundColor3 = Color3.fromRGB(200,200,200)
+        p.BackgroundColor3 = Color3.fromRGB(0,0,0)
         p.BorderSizePixel = 0
         p.AnchorPoint = Vector2.new(0.5,0.5)
         p.ZIndex = 3
