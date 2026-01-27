@@ -85,7 +85,7 @@ function Library:Create(xHubName,xGameName)
     GlowLayer.Name = "GlowLayer"
 
     local Particles = {}
-    local Count = 1050
+    local Count = 900
 
     for i = 1, Count do
         local p = Instance.new("Frame", GlowLayer)
