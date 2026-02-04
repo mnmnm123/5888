@@ -462,6 +462,10 @@ function Library:Create(xHubName,xGameName)
         end
     end
 
+    function Library:GetParticlesEnabled()
+        return ParticlesEnabled
+    end
+
     local xTabs = {}
     
     function xTabs:Tab(Name,xVisible)
