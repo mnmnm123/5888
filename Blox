@@ -1,9 +1,5 @@
 local Library = {}
 local LibraryName = tostring(math.random(100000,200000))..tostring(math.random(100000,200000))..tostring(math.random(100000,200000))
-local ParticlesEnabled = true
-local Particles = {}
-local GlowLayer = nil
-local renderConnection = nil
 
 function Library:Toggle()
     if game.CoreGui:FindFirstChild(LibraryName).Enabled then 
@@ -55,13 +51,6 @@ function Library:Drag(obj)
     end)
 end
 
-function Library:ToggleParticles(enabled)
-    ParticlesEnabled = enabled
-    if GlowLayer then
-        GlowLayer.Visible = enabled
-    end
-end
-
 function Library:Create(xHubName,xGameName)
     local xHubName = xHubName or "UI Library"
     local xGameName = xGameName or "By Mapple#3045"
@@ -86,7 +75,7 @@ function Library:Create(xHubName,xGameName)
     MainCorner.Name = "MainCorner"
     MainCorner.Parent = Main
 
-    GlowLayer = Instance.new("Frame")
+    local GlowLayer = Instance.new("Frame")
     GlowLayer.Size = Main.Size
     GlowLayer.Position = Main.Position
     GlowLayer.BackgroundTransparency = 1
@@ -95,8 +84,9 @@ function Library:Create(xHubName,xGameName)
     GlowLayer.Parent = ScreenGui
     GlowLayer.Name = "GlowLayer"
 
-    Particles = {}
+    local Particles = {}
     local Count = 900
+    local ParticlesEnabled = true
 
     for i = 1, Count do
         local p = Instance.new("Frame", GlowLayer)
@@ -148,6 +138,7 @@ function Library:Create(xHubName,xGameName)
         })
     end
 
+    local renderConnection
     renderConnection = game:GetService("RunService").RenderStepped:Connect(function()
         if not Main.Visible then
             GlowLayer.Visible = false
@@ -463,6 +454,13 @@ function Library:Create(xHubName,xGameName)
             FloatToggle.Image = "rbxassetid://77962026058051"
         end
     end)
+
+    function Library:ToggleParticles(enabled)
+        ParticlesEnabled = enabled
+        if Main.Visible then
+            GlowLayer.Visible = enabled
+        end
+    end
 
     local xTabs = {}
     
