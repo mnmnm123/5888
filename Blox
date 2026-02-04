@@ -1,5 +1,9 @@
 local Library = {}
 local LibraryName = tostring(math.random(100000,200000))..tostring(math.random(100000,200000))..tostring(math.random(100000,200000))
+local ParticlesEnabled = true
+local Particles = {}
+local GlowLayer = nil
+local renderConnection = nil
 
 function Library:Toggle()
     if game.CoreGui:FindFirstChild(LibraryName).Enabled then 
@@ -51,6 +55,13 @@ function Library:Drag(obj)
     end)
 end
 
+function Library:ToggleParticles(enabled)
+    ParticlesEnabled = enabled
+    if GlowLayer then
+        GlowLayer.Visible = enabled
+    end
+end
+
 function Library:Create(xHubName,xGameName)
     local xHubName = xHubName or "UI Library"
     local xGameName = xGameName or "By Mapple#3045"
@@ -75,7 +86,7 @@ function Library:Create(xHubName,xGameName)
     MainCorner.Name = "MainCorner"
     MainCorner.Parent = Main
 
-    local GlowLayer = Instance.new("Frame")
+    GlowLayer = Instance.new("Frame")
     GlowLayer.Size = Main.Size
     GlowLayer.Position = Main.Position
     GlowLayer.BackgroundTransparency = 1
@@ -84,8 +95,8 @@ function Library:Create(xHubName,xGameName)
     GlowLayer.Parent = ScreenGui
     GlowLayer.Name = "GlowLayer"
 
-    local Particles = {}
-    local Count = 1050
+    Particles = {}
+    local Count = 900
 
     for i = 1, Count do
         local p = Instance.new("Frame", GlowLayer)
@@ -137,14 +148,13 @@ function Library:Create(xHubName,xGameName)
         })
     end
 
-    local renderConnection
     renderConnection = game:GetService("RunService").RenderStepped:Connect(function()
         if not Main.Visible then
             GlowLayer.Visible = false
             return
         end
         
-        GlowLayer.Visible = true
+        GlowLayer.Visible = ParticlesEnabled
         for _,v in ipairs(Particles) do
             v.d = v.d + v.s
             if v.d > v.m then
@@ -446,7 +456,7 @@ function Library:Create(xHubName,xGameName)
 
     FloatToggle.MouseButton1Click:Connect(function()
         Main.Visible = not Main.Visible
-        GlowLayer.Visible = Main.Visible
+        GlowLayer.Visible = Main.Visible and ParticlesEnabled
         if Main.Visible then
             FloatToggle.Image = "rbxassetid://110140207924279"
         else
